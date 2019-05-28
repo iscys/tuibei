@@ -17,12 +17,9 @@ import java.util.Map;
 public class KuaidiNiaoHttp {
 
 
-    public static void main(String[] args)throws Exception {
-        KuaidiNiaoHttp u =new KuaidiNiaoHttp();
-        String s = u.doGet("https://www.baidu.com");
-        System.out.println(s);
-    }
+
     private KuaidiNiaoHttp(){}
+
     public static KuaidiNiaoHttp INSTANCE = new KuaidiNiaoHttp();
 
     /**
