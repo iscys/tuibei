@@ -28,15 +28,20 @@ public class ExpressController {
      * @return
      */
     @PostMapping("/search")
-    public ResultObject express_search(TraceInfo trackInfo)throws Exception{
+    public ResultObject express_search(TraceInfo trackInfo) {
         String trackNum = trackInfo.getTraceNum();
         if(StringUtils.isEmpty(trackNum)){
             logger.error("快递单号为空");
             return ResultObject.build(Constant.TRACE_NUM_NULL,null,Constant.TRACE_NUM_NULL_MESSAGE);
         }
         logger.info("开始查询快递单号为：{} 的信息",trackNum);
+            try {
+                ResultObject result = express.traceDetail(trackInfo);
+                return  result;
+            }catch (Exception e){
+                logger.error("系统异常发生：{}",e.getMessage());
+                return ResultObject.error(null);
+            }
 
-        ResultObject result = express.traceDetail(trackInfo);
-        return result;
     }
 }
