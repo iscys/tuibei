@@ -29,10 +29,10 @@ public class ExpressController {
      */
     @PostMapping("/search")
     public ResultObject express_search(TraceInfo trackInfo){
-        String trackNum = trackInfo.getTrackNum();
+        String trackNum = trackInfo.getTraceNum();
         if(StringUtils.isEmpty(trackNum)){
             logger.error("快递单号为空");
-            return ResultObject.build(Constant.TRACK_NUM_NULL,null,Constant.TRACK_NUM_NULL_MESSAGE);
+            return ResultObject.build(Constant.TRACE_NUM_NULL,null,Constant.TRACE_NUM_NULL_MESSAGE);
         }
         logger.info("开始查询快递单号为：{} 的信息",trackNum);
         KuaidiDisNiaoModel scanInfo= express.orderScan(trackInfo);
