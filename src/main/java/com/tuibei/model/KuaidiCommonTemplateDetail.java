@@ -14,7 +14,7 @@ public class KuaidiCommonTemplateDetail implements Serializable {
     private List<KuaidiCommonTemplate> traces;//快递物流信息
     private String state;//快递目前的状态
     private String operator;//快递运营方
-    private String traceNum;//订单号
+    private String traceNum;//快递单号
 
     public String getTraceNum() {
         return traceNum;
