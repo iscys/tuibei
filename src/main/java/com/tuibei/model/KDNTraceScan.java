@@ -2,10 +2,10 @@ package com.tuibei.model;
 
 import java.util.List;
 
-public class KuaidiDisNiaoModel {
+public class KDNTraceScan {
 
     private  String LogisticCode;//快递号码
-    private List<KuaidiNiaoShippers> Shippers; //快递信息
+    private List<KDNTracrsShipper> Shippers; //快递信息
     private String EBusinessID;
     private String Code;//100说明快递查询成功
     private String Success;
@@ -18,11 +18,11 @@ public class KuaidiDisNiaoModel {
         LogisticCode = logisticCode;
     }
 
-    public List<KuaidiNiaoShippers> getShippers() {
+    public List<KDNTracrsShipper> getShippers() {
         return Shippers;
     }
 
-    public void setShippers(List<KuaidiNiaoShippers> shippers) {
+    public void setShippers(List<KDNTracrsShipper> shippers) {
         Shippers = shippers;
     }
 

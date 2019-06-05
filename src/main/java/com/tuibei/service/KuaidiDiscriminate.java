@@ -1,7 +1,7 @@
 
 package com.tuibei.service;
 import com.tuibei.http.KuaidiNiaoHttp;
-import com.tuibei.model.KuaidiDisNiaoModel;
+import com.tuibei.model.KDNTraceScan;
 import com.tuibei.utils.GsonUtils;
 import com.tuibei.utils.KudiNiaoMD5Utils;
 
@@ -14,7 +14,7 @@ public class KuaidiDiscriminate {
         KuaidiDiscriminate api = new KuaidiDiscriminate();
         try {
             String result = api.getOrderTracesByJson("3705902276766");
-            KuaidiDisNiaoModel kuaidiDisModel = GsonUtils.fromJson(result, KuaidiDisNiaoModel.class);
+            KDNTraceScan kuaidiDisModel = GsonUtils.fromJson(result, KDNTraceScan.class);
             System.out.print(kuaidiDisModel);
 
         } catch (Exception e) {

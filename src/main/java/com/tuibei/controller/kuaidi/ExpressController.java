@@ -2,7 +2,7 @@ package com.tuibei.controller.kuaidi;
 
 
 import com.tuibei.model.Constant;
-import com.tuibei.model.KuaidiDisNiaoModel;
+import com.tuibei.model.KDNTraceScan;
 import com.tuibei.model.TraceInfo;
 import com.tuibei.service.kuaidi.ExpressService;
 import com.tuibei.utils.ResultObject;
@@ -35,7 +35,7 @@ public class ExpressController {
             return ResultObject.build(Constant.TRACE_NUM_NULL,null,Constant.TRACE_NUM_NULL_MESSAGE);
         }
         logger.info("开始查询快递单号为：{} 的信息",trackNum);
-        KuaidiDisNiaoModel scanInfo= express.orderScan(trackInfo);
+        KDNTraceScan scanInfo= express.orderScan(trackInfo);
         return null;
     }
 }

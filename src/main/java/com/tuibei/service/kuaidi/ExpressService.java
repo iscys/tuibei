@@ -1,6 +1,6 @@
 package com.tuibei.service.kuaidi;
 
-import com.tuibei.model.KuaidiDisNiaoModel;
+import com.tuibei.model.KDNTraceScan;
 import com.tuibei.model.TraceInfo;
 
 public interface ExpressService {
@@ -9,5 +9,5 @@ public interface ExpressService {
      * @param trackInfo
      * @return
      */
-    KuaidiDisNiaoModel orderScan(TraceInfo trackInfo);
+    KDNTraceScan orderScan(TraceInfo trackInfo);
 }
