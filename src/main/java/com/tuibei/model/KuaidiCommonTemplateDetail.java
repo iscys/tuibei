@@ -48,7 +48,7 @@ public class KuaidiCommonTemplateDetail implements Serializable {
         this.operator = operator;
     }
 
-    public void conv2Common(KDNTracesDetail kdnTracesDetail) {
+    public void KDN2Common(KDNTracesDetail kdnTracesDetail) {
         this.traces =new ArrayList<KuaidiCommonTemplate>();
         List<KDNTraces> kdnTraces = kdnTracesDetail.getTraces();
         if(!CollectionUtils.isEmpty(kdnTraces)){

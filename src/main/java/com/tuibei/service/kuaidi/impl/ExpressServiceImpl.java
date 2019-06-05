@@ -81,7 +81,7 @@ public class ExpressServiceImpl implements ExpressService {
         logger.info("快递鸟返回物流信息：{}",traces);
         KDNTracesDetail kdnTracesDetail = GsonUtils.fromJson(traces, KDNTracesDetail.class);
         if(kdnTracesDetail.isSuccess()){
-            commonDetail.conv2Common(kdnTracesDetail);
+            commonDetail.KDN2Common(kdnTracesDetail);
         }else{
             return ResultObject.build(Constant.TRACK_TRACES_ERROR,null,Constant.TRACK_TRACES_ERROR_MESSAGE);
         }
