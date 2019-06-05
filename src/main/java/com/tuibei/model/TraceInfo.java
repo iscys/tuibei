@@ -1,16 +1,16 @@
 package com.tuibei.model;
 
 public class TraceInfo {
-    private String trackNum;
+    private String traceNum;
     private String ShipperName;//快递公司名
     private String ShipperCode;//快递公司编码
 
-    public String getTrackNum() {
-        return trackNum;
+    public String getTraceNum() {
+        return traceNum;
     }
 
-    public void setTrackNum(String trackNum) {
-        this.trackNum = trackNum;
+    public void setTraceNum(String traceNum) {
+        this.traceNum = traceNum;
     }
 
     public String getShipperName() {
