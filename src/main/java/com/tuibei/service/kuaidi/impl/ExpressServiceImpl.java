@@ -82,6 +82,8 @@ public class ExpressServiceImpl implements ExpressService {
         KDNTracesDetail kdnTracesDetail = GsonUtils.fromJson(traces, KDNTracesDetail.class);
         if(kdnTracesDetail.isSuccess()){
             commonDetail.conv2Common(kdnTracesDetail);
+        }else{
+            return ResultObject.build(Constant.TRACK_TRACES_ERROR,null,Constant.TRACK_TRACES_ERROR_MESSAGE);
         }
         commonDetail.setTraceNum(traceNum);
         return ResultObject.success(commonDetail);

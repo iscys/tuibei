@@ -9,7 +9,8 @@ public class Constant {
     public static final String TRACE_NUM_NULL_MESSAGE ="请输入快递单号";
     public static final String TRACK_NUM_ERROR ="1002";
     public static final String TRACK_NUM_ERROR_MESSAGE ="查询不出此快递的运营方";
-
+    public static final String TRACK_TRACES_ERROR ="1003";
+    public static final String TRACK_TRACES_ERROR_MESSAGE ="查询不到快递物流信息";
 
     /**
      * URL常量
