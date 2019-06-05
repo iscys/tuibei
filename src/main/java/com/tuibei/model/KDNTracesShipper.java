@@ -3,7 +3,7 @@ package com.tuibei.model;
 /**
  * 快递信息
  */
-public class KDNTracrsShipper {
+public class KDNTracesShipper {
 
     //快递名字
     private String ShipperName;

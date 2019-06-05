@@ -5,7 +5,7 @@ import java.util.List;
 public class KDNTraceScan {
 
     private  String LogisticCode;//快递号码
-    private List<KDNTracrsShipper> Shippers; //快递信息
+    private List<KDNTracesShipper> Shippers; //快递信息
     private String EBusinessID;
     private Integer Code;//100说明快递查询成功
     private String Success;
@@ -18,11 +18,11 @@ public class KDNTraceScan {
         LogisticCode = logisticCode;
     }
 
-    public List<KDNTracrsShipper> getShippers() {
+    public List<KDNTracesShipper> getShippers() {
         return Shippers;
     }
 
-    public void setShippers(List<KDNTracrsShipper> shippers) {
+    public void setShippers(List<KDNTracesShipper> shippers) {
         Shippers = shippers;
     }
 
