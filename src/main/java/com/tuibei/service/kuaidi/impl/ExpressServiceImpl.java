@@ -81,14 +81,16 @@ public class ExpressServiceImpl implements ExpressService {
         String traces = KDNHttp.INSTANCE.doPost(Constant.URL.KDN_TRACES_URL, params);
         logger.info("快递鸟返回物流信息：{}",traces);
         KDNTracesDetail kdnTracesDetail = GsonUtils.fromJson(traces, KDNTracesDetail.class);
+        commonDetail.setTraceNum(traceNum);
+        commonDetail.setOperator(shipperName);
         if(kdnTracesDetail.isSuccess()){
             commonDetail.KDN2Common(kdnTracesDetail);
         }else{
-            logger.error("物流单号：{}获取物流信息失败,物流公司：{}",traceNum,shipperName);
-            return ResultObject.build(Constant.TRACK_TRACES_ERROR,null,Constant.TRACK_TRACES_ERROR_MESSAGE);
+            commonDetail.setState("无轨迹");
+            logger.error("物流单号：{}获取物流信息失败,物流公司：{}，error:{}",traceNum,shipperName,kdnTracesDetail.getReason());
+            return ResultObject.success(commonDetail);
         }
-        commonDetail.setTraceNum(traceNum);
-        commonDetail.setOperator(shipperName);
+
         return ResultObject.success(commonDetail);
     }
 }
