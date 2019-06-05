@@ -1,6 +1,6 @@
 package com.tuibei.model;
 
-public class TrackInfo {
+public class TraceInfo {
     private String trackNum;
     private String ShipperName;//快递公司名
     private String ShipperCode;//快递公司编码

@@ -98,7 +98,6 @@ public class KuaidiNiaoHttp {
             httppost.setEntity(new UrlEncodedFormEntity(pair));
             CloseableHttpResponse response = httpclient.execute(httppost);
             String result = Utf8ResponseHandler.INSTANCE.handleResponse(response);
-            System.out.println(result);
             return result;
         }catch (Exception e){
             return "-1";
