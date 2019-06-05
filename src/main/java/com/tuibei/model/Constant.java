@@ -17,7 +17,10 @@ public class Constant {
      */
     public static class URL{
         public static final String KDN_SHIPPER_URL ="http://api.kdniao.com/Ebusiness/EbusinessOrderHandle.aspx";
+        //物流跟踪
         public static final String KDN_TRACES_URL ="http://api.kdniao.com/api/dist";
+        //及时查询
+        public static final String KDN_NOW_SEARCH="http://api.kdniao.com/Ebusiness/EbusinessOrderHandle.aspx";
     }
 
     /**
