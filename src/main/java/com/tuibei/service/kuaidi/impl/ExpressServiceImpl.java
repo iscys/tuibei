@@ -84,7 +84,7 @@ public class ExpressServiceImpl implements ExpressService {
         if(kdnTracesDetail.isSuccess()){
             commonDetail.KDN2Common(kdnTracesDetail);
         }else{
-            logger.error("物流单号：{}获取物流信息失败",traceNum);
+            logger.error("物流单号：{}获取物流信息失败,物流公司：{}",traceNum,shipperName);
             return ResultObject.build(Constant.TRACK_TRACES_ERROR,null,Constant.TRACK_TRACES_ERROR_MESSAGE);
         }
         commonDetail.setTraceNum(traceNum);
