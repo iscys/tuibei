@@ -13,7 +13,7 @@ public class KuaidiDiscriminate {
     public static void main(String[] args) {
         KuaidiDiscriminate api = new KuaidiDiscriminate();
         try {
-            String result = api.getOrderTracesByJson("75120498194666");
+            String result = api.getOrderTracesByJson("3705902276766");
             KuaidiDisNiaoModel kuaidiDisModel = GsonUtils.fromJson(result, KuaidiDisNiaoModel.class);
             System.out.print(kuaidiDisModel);
 

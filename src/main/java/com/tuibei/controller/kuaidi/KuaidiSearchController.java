@@ -51,9 +51,9 @@ public class KuaidiSearchController {
      * @throws Exception
      */
     public String orderTracesSubByJson() throws Exception{
-        String requestData="{'OrderCode': '75120498194666'," +
-                "'ShipperCode':'ZTO'," +
-                "'LogisticCode':'3100707578976'}";
+        String requestData="{'OrderCode': ''," +
+                "'ShipperCode':'YD'," +
+                "'LogisticCode':'3705902276766'}";
 
         Map<String, String> params = new HashMap<String, String>();
         params.put("RequestData", urlEncoder(requestData, "UTF-8"));
