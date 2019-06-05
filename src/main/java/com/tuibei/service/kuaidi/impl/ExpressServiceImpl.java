@@ -74,7 +74,7 @@ public class ExpressServiceImpl implements ExpressService {
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("RequestData", KudiNiaoMD5Utils.urlEncoder(requestData, "UTF-8"));
         params.put("EBusinessID", EBusinessID);
-        params.put("RequestType", "1002");
+        params.put("RequestType", Constant.KDN.KDN_TICKET_TRACES);//指令
         String dataSign= KudiNiaoMD5Utils.encrypt(requestData, AppKey, "UTF-8");
         params.put("DataSign", KudiNiaoMD5Utils.urlEncoder(dataSign, "UTF-8"));
         params.put("DataType", Constant.KDN.KDN_JSON_TYPE);

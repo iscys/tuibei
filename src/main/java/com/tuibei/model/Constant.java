@@ -25,6 +25,7 @@ public class Constant {
      */
     public static class KDN{
         public static final String KDN_TICKET_SCAN ="2002";
+        public static final String KDN_TICKET_TRACES ="1002";
         public static final String KDN_JSON_TYPE ="2";
 
     }
