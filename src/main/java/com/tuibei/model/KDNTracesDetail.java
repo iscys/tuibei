@@ -7,7 +7,7 @@ import java.util.List;
  * 快递鸟物流跟踪
  * <a href =http://www.kdniao.com/v2/API/Follow.aspx>
  */
-public class KDNExpressDetail implements Serializable {
+public class KDNTracesDetail implements Serializable {
 
     private  String LogisticCode;//快递单号
     private List<KDNTraces> Traces; //物流信息
