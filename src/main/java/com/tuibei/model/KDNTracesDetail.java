@@ -15,5 +15,5 @@ public class KDNTracesDetail implements Serializable {
     private String Code;//100说明快递查询成功
     private String Success;
     private String ShipperCode;//快递编码
-    private String State;//物流状态: 0-无轨迹，1-已揽收，2-在途中，3-签收,4-问题件
+    private Integer State;//物流状态: 0-无轨迹，1-已揽收，2-在途中，3-签收,4-问题件
 }
