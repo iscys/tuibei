@@ -36,8 +36,7 @@ public class ExpressController {
         }
         logger.info("开始查询快递单号为：{} 的信息",trackNum);
 
-        KDNTraceScan scanInfo= express.orderScan(trackInfo);
         ResultObject result = express.traceDetail(trackInfo);
-        return null;
+        return result;
     }
 }

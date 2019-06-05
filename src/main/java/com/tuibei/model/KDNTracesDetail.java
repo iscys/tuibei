@@ -13,7 +13,7 @@ public class KDNTracesDetail implements Serializable {
     private List<KDNTraces> Traces; //物流信息
     private String EBusinessID;//快递鸟用户id
     private String Code;//100说明快递查询成功
-    private String Success;
+    private boolean Success;
     private String ShipperCode;//快递编码
     private Integer State;//物流状态: 0-无轨迹，1-已揽收，2-在途中，3-签收,4-问题件
 
@@ -50,11 +50,11 @@ public class KDNTracesDetail implements Serializable {
         Code = code;
     }
 
-    public String getSuccess() {
+    public boolean isSuccess() {
         return Success;
     }
 
-    public void setSuccess(String success) {
+    public void setSuccess(boolean success) {
         Success = success;
     }
 
