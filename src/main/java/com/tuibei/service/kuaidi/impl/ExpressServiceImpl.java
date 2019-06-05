@@ -49,6 +49,8 @@ public class ExpressServiceImpl implements ExpressService {
      */
     @Override
     public ResultObject traceDetail(TraceInfo trackInfo) throws Exception {
+
+        KuaidiCommonTemplateDetail commonDetail =new KuaidiCommonTemplateDetail();
         String traceNum =trackInfo.getTraceNum();
         KDNTraceScan kdnTraceScan = this.orderScan(trackInfo);
         List<KDNTracesShipper> shippers = kdnTraceScan.getShippers();
@@ -78,6 +80,10 @@ public class ExpressServiceImpl implements ExpressService {
         String traces = KDNHttp.INSTANCE.doPost(Constant.URL.KDN_TRACES_URL, params);
         logger.info("快递鸟返回物流信息：{}",traces);
         KDNTracesDetail kdnTracesDetail = GsonUtils.fromJson(traces, KDNTracesDetail.class);
-        return ResultObject.success(kdnTracesDetail);
+        if(kdnTracesDetail.isSuccess()){
+            commonDetail.conv2Common(kdnTracesDetail);
+        }
+        commonDetail.setTraceNum(traceNum);
+        return ResultObject.success(commonDetail);
     }
 }
