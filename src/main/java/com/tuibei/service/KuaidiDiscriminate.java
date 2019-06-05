@@ -1,6 +1,6 @@
 
 package com.tuibei.service;
-import com.tuibei.http.KuaidiNiaoHttp;
+import com.tuibei.http.KDNHttp;
 import com.tuibei.model.KDNTraceScan;
 import com.tuibei.utils.GsonUtils;
 import com.tuibei.utils.KudiNiaoMD5Utils;
@@ -60,7 +60,7 @@ public class KuaidiDiscriminate {
      */
     @SuppressWarnings("unused")
     private String sendPost(String url, HashMap<String, String> params)throws Exception {
-        String result = KuaidiNiaoHttp.INSTANCE.doPost("http://api.kdniao.com/Ebusiness/EbusinessOrderHandle.aspx", params);
+        String result = KDNHttp.INSTANCE.doPost("http://api.kdniao.com/Ebusiness/EbusinessOrderHandle.aspx", params);
         System.out.println(result);
         return result;
     }

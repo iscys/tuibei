@@ -2,6 +2,7 @@ package com.tuibei.service.kuaidi;
 
 import com.tuibei.model.KDNTraceScan;
 import com.tuibei.model.TraceInfo;
+import com.tuibei.utils.ResultObject;
 
 public interface ExpressService {
     /**
@@ -9,5 +10,7 @@ public interface ExpressService {
      * @param trackInfo
      * @return
      */
-    KDNTraceScan orderScan(TraceInfo trackInfo);
+    KDNTraceScan orderScan(TraceInfo trackInfo)throws Exception;
+
+    ResultObject traceDetail(TraceInfo trackInfo)throws Exception;
 }

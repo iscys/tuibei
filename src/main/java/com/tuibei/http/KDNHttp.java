@@ -14,13 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class KuaidiNiaoHttp {
+public class KDNHttp {
 
 
 
-    private KuaidiNiaoHttp(){}
+    private KDNHttp(){}
 
-    public static KuaidiNiaoHttp INSTANCE = new KuaidiNiaoHttp();
+    public static KDNHttp INSTANCE = new KDNHttp();
 
     /**
      * 发送Get请求

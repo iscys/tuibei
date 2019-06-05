@@ -8,7 +8,7 @@ public class KDNTraceScan {
     private List<KDNTracesShipper> Shippers; //快递信息
     private String EBusinessID;
     private Integer Code;//100说明快递查询成功
-    private String Success;
+    private boolean Success;
 
     public String getLogisticCode() {
         return LogisticCode;
@@ -42,11 +42,11 @@ public class KDNTraceScan {
         Code = code;
     }
 
-    public String getSuccess() {
+    public boolean isSuccess() {
         return Success;
     }
 
-    public void setSuccess(String success) {
+    public void setSuccess(boolean success) {
         Success = success;
     }
 }
