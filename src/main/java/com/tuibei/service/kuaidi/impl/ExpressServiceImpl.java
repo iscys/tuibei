@@ -86,6 +86,7 @@ public class ExpressServiceImpl implements ExpressService {
             return ResultObject.build(Constant.TRACK_TRACES_ERROR,null,Constant.TRACK_TRACES_ERROR_MESSAGE);
         }
         commonDetail.setTraceNum(traceNum);
+        commonDetail.setOperator(shipperName);
         return ResultObject.success(commonDetail);
     }
 }
