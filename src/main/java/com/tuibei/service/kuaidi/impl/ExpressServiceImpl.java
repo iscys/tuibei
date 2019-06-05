@@ -52,6 +52,7 @@ public class ExpressServiceImpl implements ExpressService {
 
         KuaidiCommonTemplateDetail commonDetail =new KuaidiCommonTemplateDetail();
         String traceNum =trackInfo.getTraceNum();
+        //获取单号运营商信息
         KDNTraceScan kdnTraceScan = this.orderScan(trackInfo);
         List<KDNTracesShipper> shippers = kdnTraceScan.getShippers();
         if(!kdnTraceScan.isSuccess()||kdnTraceScan.getCode()!=100|| CollectionUtils.isEmpty(shippers)){
