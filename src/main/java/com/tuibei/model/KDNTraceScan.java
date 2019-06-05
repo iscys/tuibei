@@ -7,7 +7,7 @@ public class KDNTraceScan {
     private  String LogisticCode;//快递号码
     private List<KDNTracrsShipper> Shippers; //快递信息
     private String EBusinessID;
-    private String Code;//100说明快递查询成功
+    private Integer Code;//100说明快递查询成功
     private String Success;
 
     public String getLogisticCode() {
