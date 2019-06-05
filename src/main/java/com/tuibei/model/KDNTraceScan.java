@@ -34,11 +34,11 @@ public class KDNTraceScan {
         this.EBusinessID = EBusinessID;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return Code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         Code = code;
     }
 
