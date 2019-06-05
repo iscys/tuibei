@@ -28,14 +28,16 @@ public class ExpressController {
      * @return
      */
     @PostMapping("/search")
-    public ResultObject express_search(TraceInfo trackInfo){
+    public ResultObject express_search(TraceInfo trackInfo)throws Exception{
         String trackNum = trackInfo.getTraceNum();
         if(StringUtils.isEmpty(trackNum)){
             logger.error("快递单号为空");
             return ResultObject.build(Constant.TRACE_NUM_NULL,null,Constant.TRACE_NUM_NULL_MESSAGE);
         }
         logger.info("开始查询快递单号为：{} 的信息",trackNum);
+
         KDNTraceScan scanInfo= express.orderScan(trackInfo);
+        ResultObject result = express.traceDetail(trackInfo);
         return null;
     }
 }
