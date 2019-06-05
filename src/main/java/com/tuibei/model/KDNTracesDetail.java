@@ -15,8 +15,17 @@ public class KDNTracesDetail implements Serializable {
     private String Code;//100说明快递查询成功
     private boolean Success;
     private String ShipperCode;//快递编码
+    private String Reason;//失败原因
     private Integer State;//物流状态: 0-无轨迹，1-已揽收，2-在途中，3-签收,4-问题件
 
+
+    public String getReason() {
+        return Reason;
+    }
+
+    public void setReason(String reason) {
+        Reason = reason;
+    }
 
     public String getLogisticCode() {
         return LogisticCode;
