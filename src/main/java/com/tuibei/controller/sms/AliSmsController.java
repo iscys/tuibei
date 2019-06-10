@@ -6,6 +6,7 @@ import com.tuibei.model.PhoneCode;
 import com.tuibei.utils.ResultObject;
 import com.tuibei.utils.ToolsUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +19,7 @@ public class AliSmsController extends BaseController {
      * @param phoneInfo
      * @return
      */
-    @RequestMapping("/code")
+    @PostMapping("/code")
     public ResultObject code(PhoneCode phoneInfo){
         if(phoneInfo.getType()==null){
             return ResultObject.build(Constant.VALIDATE_CODE_TYPE,Constant.VALIDATE_CODE_TYPE_MESSAGE,null);
