@@ -54,6 +54,12 @@ public class UserServiceImpl implements UserService {
 
         //密码加密
         user.setPassword(ToolsUtils.getMD5String(user.getPassword()));
+        //生成邀请码6位数字
+        user.setInvite_code("qwqeq123");
+        //用户member_id
+        user.setMember_id(ToolsUtils.idGenerate());
+        user.setOrigin("1");//
+        userMapper.saveNewUser(user);
         return null;
     }
 }

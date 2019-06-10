@@ -2,6 +2,9 @@ package com.tuibei.utils;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ToolsUtils {
 
@@ -20,4 +23,26 @@ public class ToolsUtils {
             return null;
         }
     }
+
+    //手机号检测合法
+    public static boolean checkMobileNumber(String mobileNumber) {
+        boolean flag = false;
+        try {
+            Pattern regex = Pattern.compile("^1[345789]\\d{9}$");
+            Matcher matcher = regex.matcher(mobileNumber);
+            flag = matcher.matches();
+        } catch (Exception e) {
+            e.printStackTrace();
+            flag = false;
+
+        }
+        return flag;
+    }
+
+
+    public static String idGenerate() {
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        return uuid;
+    }
+
 }

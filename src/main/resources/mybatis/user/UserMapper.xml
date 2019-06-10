@@ -21,4 +21,86 @@
         </if>
     </select>
 
+
+    <insert id="saveNewUser" parameterType="com.tuibei.model.User">
+        insert  into
+        sdb_tuibei_user
+        <trim prefix="(" suffix=")"  suffixOverrides=",">
+
+            <if test="member_id != null  and member_id != '' ">
+                member_id,
+            </if>
+            <if test="openid != null  and openid != '' ">
+                openid,
+            </if>
+            <if test="unionid != null  and unionid != '' ">
+                unionid,
+            </if>
+            <if test="nickname != null  and nickname != '' ">
+                nickname,
+            </if>
+            <if test="headimgurl != null  and headimgurl != '' ">
+                headimgurl,
+            </if>
+            <if test="sex != null  and sex != '' ">
+                sex,
+            </if>
+            <if test="invite_code != null  and invite_code != '' ">
+                invite_code,
+            </if>
+            <if test="origin != null  and origin != '' ">
+                origin,
+            </if>
+            <if test="master != null  and master != '' ">
+                master,
+            </if>
+            <if test="phone != null  and phone != '' ">
+                phone,
+            </if>
+            <if test="password != null  and password != '' ">
+                password,
+            </if>
+        </trim>
+
+        <trim prefix="values(" suffix=")"  suffixOverrides=",">
+
+            <if test="member_id != null  and member_id != '' ">
+                #{member_id},
+            </if>
+            <if test="openid != null  and openid != '' ">
+                #{openid},
+            </if>
+            <if test="unionid != null  and unionid != '' ">
+                #{unionid},
+            </if>
+            <if test="nickname != null  and nickname != '' ">
+                #{nickname},
+            </if>
+            <if test="headimgurl != null  and headimgurl != '' ">
+                #{headimgurl},
+            </if>
+            <if test="sex != null  and sex != '' ">
+                #{sex},
+            </if>
+            <if test="invite_code != null  and invite_code != '' ">
+                #{invite_code},
+            </if>
+            <if test="origin != null  and origin != '' ">
+                #{origin},
+            </if>
+            <if test="master != null  and master != '' ">
+                #{master},
+            </if>
+            <if test="phone != null  and phone != '' ">
+                #{phone},
+            </if>
+            <if test="password != null  and password != '' ">
+                #{password},
+            </if>
+
+        </trim>
+
+
+    </insert>
+
 </mapper>

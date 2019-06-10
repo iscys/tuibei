@@ -4,4 +4,6 @@ import com.tuibei.model.User;
 
 public interface UserMapper {
     User getUserInfo(User invit);
+
+    void saveNewUser(User user);
 }
