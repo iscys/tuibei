@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     //主键id
-    private String id;
+    private Integer id;
     //性别
     private String sex;
     //用户唯一的 member_id
@@ -44,11 +44,11 @@ public class User implements Serializable {
         this.phone_code = phone_code;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

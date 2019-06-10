@@ -24,7 +24,7 @@
 
     <insert id="saveNewUser" parameterType="com.tuibei.model.User">
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
-
+            select LAST_INSERT_ID()
         </selectKey>
         insert  into
         sdb_tuibei_user

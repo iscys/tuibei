@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
                 user.setMaster(master.getMember_id());
             }
         }
+
         //微信小程序获取openid unionid sessionkey
         WxMaJscode2SessionResult wxsmallInfo = null;
         try {
@@ -48,8 +49,9 @@ public class UserServiceImpl implements UserService {
         } catch (WxErrorException e) {
             return ResultObject.build(Constant.WX_ERROR, e.getMessage(), e.getMessage());
         }
-        String openid = wxsmallInfo.getOpenid();
-        String unionid = wxsmallInfo.getUnionid();
+         String openid = wxsmallInfo.getOpenid();
+         String unionid = wxsmallInfo.getUnionid();
+
         user.setOpenid(openid);
         user.setUnionid(StringUtils.isEmpty(unionid)?"":unionid);
 
