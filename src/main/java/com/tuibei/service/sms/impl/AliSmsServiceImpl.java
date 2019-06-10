@@ -47,13 +47,14 @@ public class AliSmsServiceImpl implements AliSmsService {
                 logger.warn("用户已经被注册过了：{} ",phone);
                 return ResultObject.build(Constant.MEMBER_EXIST,Constant.MEMBER_EXIST_MESSAGE,null);
             }
-            int code = ToolsUtils.fourCode();
-            phoneInfo.setCode(code);
-            phoneInfo.setStart_time(DateUtils.getTimeInSecond());
-            smsMapper.saveSmsCode(phoneInfo);
-            logger.info("用户: {} 发送验证码结束",phone);
 
         }
+
+        int code = ToolsUtils.fourCode();
+        phoneInfo.setCode(code);
+        phoneInfo.setStart_time(DateUtils.getTimeInSecond());
+        smsMapper.saveSmsCode(phoneInfo);
+        logger.info("用户: {} 发送验证码结束",phone);
            
             
 
