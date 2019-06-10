@@ -38,6 +38,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResultObject toRegistry(User user) throws Exception {
         String invite_code = user.getInvite_code();
+
+        //step 1:
         logger.info("检测用户：{}是否已经被注册" ,user.getPhone());
         User checkUser =new User();
         checkUser.setPhone(user.getPhone());
@@ -47,6 +49,7 @@ public class UserServiceImpl implements UserService {
             return ResultObject.build(Constant.PHONE_EXIST,Constant.PHONE_EXIST_MESSAGE,null);
         }
         checkUser=null;//help gc
+        //step 2:
         if(!StringUtils.isEmpty(invite_code)){
             logger.info("检测推广人信息 invite_code：{}" ,invite_code);
             User invit =new User();
@@ -62,7 +65,7 @@ public class UserServiceImpl implements UserService {
                 user.setMaster(master.getMember_id());
             }
         }
-
+        //step3:
         //微信小程序获取openid unionid sessionkey
         WxMaJscode2SessionResult wxsmallInfo = null;
         try {
