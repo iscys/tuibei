@@ -12,7 +12,7 @@ public class ResultObject implements Serializable {
     //**返回成功失败标志**//
     private String code;
     //**返回的成功错误信息**//
-    private String error;
+    private String msg;
     //**返回的数据**//
     private Object data;
 
@@ -24,12 +24,12 @@ public class ResultObject implements Serializable {
         this.code = code;
     }
 
-    public String getError() {
-        return error;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setError(String error) {
-        this.error = error;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public Object getData() {
@@ -54,9 +54,9 @@ public class ResultObject implements Serializable {
 
 
 
-    ResultObject(String code, String error , Object data){
+    ResultObject(String code, String msg , Object data){
         this.code=code;
-        this.error=error;
+        this.msg=msg;
         this.data=data;
     }
 
