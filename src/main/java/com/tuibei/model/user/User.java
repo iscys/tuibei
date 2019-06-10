@@ -1,7 +1,11 @@
 package com.tuibei.model.user;
 
-import java.io.Serializable;
+import lombok.Data;
+import lombok.ToString;
 
+import java.io.Serializable;
+@Data
+@ToString
 public class User implements Serializable {
 
     //主键id
@@ -41,147 +45,4 @@ public class User implements Serializable {
     //vip 失效时间
     private  String vip_expire_time;
 
-    public String getVip_expire_time() {
-        return vip_expire_time;
-    }
-
-    public void setVip_expire_time(String vip_expire_time) {
-        this.vip_expire_time = vip_expire_time;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public String getPhone_code() {
-        return phone_code;
-    }
-
-    public void setPhone_code(String phone_code) {
-        this.phone_code = phone_code;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getMember_id() {
-        return member_id;
-    }
-
-    public void setMember_id(String member_id) {
-        this.member_id = member_id;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getOpenid() {
-        return openid;
-    }
-
-    public void setOpenid(String openid) {
-        this.openid = openid;
-    }
-
-    public String getUnionid() {
-        return unionid;
-    }
-
-    public void setUnionid(String unionid) {
-        this.unionid = unionid;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getHeadimgurl() {
-        return headimgurl;
-    }
-
-    public void setHeadimgurl(String headimgurl) {
-        this.headimgurl = headimgurl;
-    }
-
-    public String getInvite_code() {
-        return invite_code;
-    }
-
-    public void setInvite_code(String invite_code) {
-        this.invite_code = invite_code;
-    }
-
-    public String getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(String origin) {
-        this.origin = origin;
-    }
-
-    public String getLevel_id() {
-        return level_id;
-    }
-
-    public void setLevel_id(String level_id) {
-        this.level_id = level_id;
-    }
-
-    public String getMaster() {
-        return master;
-    }
-
-    public void setMaster(String master) {
-        this.master = master;
-    }
 }

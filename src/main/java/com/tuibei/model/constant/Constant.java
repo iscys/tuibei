@@ -33,6 +33,8 @@ public class Constant {
     public static final String VALIDATE_CODE_TYPE_MESSAGE ="无效的验证码类型";
     public static final String ORIGIN_NULL ="2011";
     public static final String ORIGIN_NULL_MESSAGE ="用户来源不能为空";
+    public static final String MEMBER_EXIST ="2012";
+    public static final String MEMBER_EXIST_MESSAGE ="用户已经存在";
     /**
      * URL常量
      */

@@ -30,7 +30,8 @@ public class UserServiceImpl implements UserService {
      *  regist  step:
      *  1.检测手机是否被注册过
      *  2.如果有邀请人码那么就查看邀请人是否存在
-     *  3.通过wx code 获取用户openid ,unionid(开放平台)
+     *  3.检测手机验证码是否正确
+     *  4.通过wx code 获取用户openid ,unionid(开放平台)
      * @param user
      * @return
      * @throws Exception
@@ -44,7 +45,7 @@ public class UserServiceImpl implements UserService {
         User checkUser =new User();
         checkUser.setPhone(user.getPhone());
         User isExist=userMapper.getUserInfo(checkUser);
-        if(isExist!=null){
+        if(null!=isExist){
             logger.error("用户手机 ：{} 已经被注册" ,user.getPhone());
             return ResultObject.build(Constant.PHONE_EXIST,Constant.PHONE_EXIST_MESSAGE,null);
         }
@@ -56,7 +57,7 @@ public class UserServiceImpl implements UserService {
             invit.setInvite_code(invite_code);
             User master=userMapper.getUserInfo(invit);
             invit=null;//help gc
-            if(master==null){
+            if(null==master){
                 //推广码无效让用户重新注册
                 logger.error("无效推广码 invite_code：{}" ,invite_code);
                 return ResultObject.build(Constant.INVITE_CODE_ERROR,Constant.INVITE_CODE_ERROR_MESSAGE,null);
@@ -65,7 +66,10 @@ public class UserServiceImpl implements UserService {
                 user.setMaster(master.getMember_id());
             }
         }
-        //step3:
+
+        //step 3:
+
+        //step 4:
         //微信小程序获取openid unionid sessionkey
         WxMaJscode2SessionResult wxsmallInfo = null;
         try {

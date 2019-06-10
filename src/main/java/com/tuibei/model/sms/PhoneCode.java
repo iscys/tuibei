@@ -1,14 +1,19 @@
 package com.tuibei.model.sms;
 
+import lombok.Data;
+import lombok.ToString;
+
 import java.io.Serializable;
 
+@Data
+@ToString
 public class PhoneCode implements Serializable {
 
     private String id;
     //手机号码
     private String phone;
     //手机验证码
-    private String code;
+    private int code;
     //开始时间
     private String start_time;
     //过期时间
@@ -18,67 +23,5 @@ public class PhoneCode implements Serializable {
     private Integer type;
     private Integer flag;
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getStart_time() {
-        return start_time;
-    }
-
-    public void setStart_time(String start_time) {
-        this.start_time = start_time;
-    }
-
-    public String getExpire_time() {
-        return expire_time;
-    }
-
-    public void setExpire_time(String expire_time) {
-        this.expire_time = expire_time;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public Integer getFlag() {
-        return flag;
-    }
-
-    public void setFlag(Integer flag) {
-        this.flag = flag;
-    }
 }
