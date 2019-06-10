@@ -63,6 +63,9 @@
             <if test="password != null  and password != '' ">
                 password,
             </if>
+            <if test="time != null  and time != '' ">
+                time,
+            </if>
         </trim>
 
         <trim prefix="values(" suffix=")"  suffixOverrides=",">
@@ -99,6 +102,9 @@
             </if>
             <if test="password != null  and password != '' ">
                 #{password},
+            </if>
+            <if test="time != null  and time != '' ">
+                #{time},
             </if>
 
         </trim>

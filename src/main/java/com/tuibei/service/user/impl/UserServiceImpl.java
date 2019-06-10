@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
         user.setOrigin("1");
         user.setTime(DateUtils.getTimeInSecond());
         userMapper.saveNewUser(user);
-        logger.info("用户：{} 注册成功",user.getMember_id());
+        logger.info("用户member_id：{} 注册成功",user.getMember_id());
         return ResultObject.success(user);
     }
 }
