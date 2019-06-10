@@ -51,4 +51,9 @@ public class Constant {
         public static final String KDN_JSON_TYPE ="2";
 
     }
+
+    public static class SMS{
+        public static final String PRODUCT ="2002";
+        public static final String DOMAIN ="1002";
+    }
 }
