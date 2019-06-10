@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/sms")
 public class AliSmsController {
 
+    /**
+     * 发送验证码
+     * @param phoneInfo
+     * @return
+     */
     @RequestMapping("/code")
     public ResultObject code(PhoneCode phoneInfo){
         if(phoneInfo.getType()==null){
