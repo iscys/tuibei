@@ -4,6 +4,7 @@ import com.tuibei.model.Constant;
 import com.tuibei.model.User;
 import com.tuibei.service.user.UserService;
 import com.tuibei.utils.ResultObject;
+import com.tuibei.utils.ToolsUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class UserController {
 
         if(StringUtils.isEmpty(user.getPhone())){
           return  ResultObject.build(Constant.PHONE_NULL,Constant.PHONE_NULL_MESSAGE,null);
+        }
+        if(!ToolsUtils.checkMobileNumber(user.getPhone())){
+            return  ResultObject.build(Constant.PHONE_ERROR,Constant.PHONE_ERROR_MESSAGE,null);
         }
         logger.info("用户：{} 进行注册",user.getPhone());
         if(StringUtils.isEmpty(user.getPhone_code())){
