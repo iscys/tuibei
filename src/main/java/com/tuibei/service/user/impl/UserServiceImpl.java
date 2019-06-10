@@ -28,11 +28,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResultObject toRegistry(User user) throws Exception {
         String invite_code = user.getInvite_code();
+        logger.info("检测用户：{}是否已经被注册" ,user.getPhone());
+        User checkUser =new User();
+        checkUser.setPhone(user.getPhone());
+        User isExist=userMapper.getUserInfo(checkUser);
+        if(isExist!=null){
+            logger.error("用户手机 ：{} 已经被注册" ,user.getPhone());
+            return ResultObject.build(Constant.PHONE_EXIST,Constant.PHONE_EXIST_MESSAGE,null);
+        }
         if(!StringUtils.isEmpty(invite_code)){
             logger.info("检测推广人信息 invite_code：{}" ,invite_code);
             User invit =new User();
             invit.setInvite_code(invite_code);
             User master=userMapper.getUserInfo(invit);
+            invit=null;
             if(master==null){
                 //推广码无效让用户重新注册
                 logger.error("无效推广码 invite_code：{}" ,invite_code);
