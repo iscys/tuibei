@@ -62,12 +62,12 @@ public class ResultObject implements Serializable {
 
     public static ResultObject success (Object data){
 
-        return  new ResultObject("0","success",data);
+        return  new ResultObject("200","success",data);
     }
 
     public static ResultObject error (Object data){
 
-        return  new ResultObject("1","error",data);
+        return  new ResultObject("500","error",data);
     }
 
 
