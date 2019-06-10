@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tuibei.mapper.sms.AliSmsMapper">
+
+    <insert id="saveSmsCode" parameterType="com.tuibei.model.sms.PhoneCode" resultType="com.tuibei.model.user.User">
+
+        insert  into
+        sdb_tuibei_phone_code
+        <trim prefix="(" suffix=")"  suffixOverrides=",">
+
+            <if test="phone != null  and phone != '' ">
+                phone,
+            </if>
+            <if test="code != null  and code != '' ">
+                code,
+            </if>
+
+            <if test="start_time != null  and start_time != '' ">
+                start_time,
+            </if>
+            <if test="expire_time != null  and expire_time != '' ">
+                expire_time,
+            </if>
+            <if test="type != null  and type != '' ">
+                type,
+            </if>
+            <if test="content != null  and content != '' ">
+                content,
+            </if>
+
+        </trim>
+
+        <trim prefix="values(" suffix=")"  suffixOverrides=",">
+
+            <if test="phone != null  and phone != '' ">
+                #{phone},
+            </if>
+            <if test="code != null  and code != '' ">
+                #{code},
+            </if>
+
+            <if test="start_time != null  and start_time != '' ">
+                #{start_time},
+            </if>
+            <if test="expire_time != null  and expire_time != '' ">
+                #{expire_time},
+            </if>
+            <if test="type != null  and type != '' ">
+                #{type},
+            </if>
+            <if test="content != null  and content != '' ">
+                #{content},
+            </if>
+
+        </trim>
+    </insert>
+
+</mapper>
