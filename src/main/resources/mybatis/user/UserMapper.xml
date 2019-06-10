@@ -112,4 +112,32 @@
 
     </insert>
 
+
+    <insert id="saveInitVipInfo" parameterType="com.tuibei.model.user.User">
+        insert  into
+        sdb_tuibei_user_vip
+        <trim prefix="(" suffix=")"  suffixOverrides=",">
+
+            <if test="member_id != null  and member_id != '' ">
+                member_id,
+            </if>
+            <if test="vip_expire_time != null  and vip_expire_time != '' ">
+                vip_expire_time,
+            </if>
+
+        </trim>
+
+        <trim prefix="values(" suffix=")"  suffixOverrides=",">
+
+            <if test="member_id != null  and member_id != '' ">
+                #{member_id},
+            </if>
+            <if test="vip_expire_time != null  and vip_expire_time != '' ">
+                #{vip_expire_time},
+            </if>
+
+        </trim>
+
+    </insert>
+
 </mapper>
