@@ -25,6 +25,16 @@ public class UserServiceImpl implements UserService {
     private WxMaServiceImpl wxsmall;//微信小程序服务
     @Autowired
     private UserMapper userMapper;
+
+    /**
+     * step:
+     *  1.检测手机是否被注册过
+     *  2.如果有邀请人码那么就查看邀请人是否存在
+     *  3.通过wx code 获取用户openid ,unionid(开放平台)
+     * @param user
+     * @return
+     * @throws Exception
+     */
     @Override
     public ResultObject toRegistry(User user) throws Exception {
         String invite_code = user.getInvite_code();
@@ -36,12 +46,13 @@ public class UserServiceImpl implements UserService {
             logger.error("用户手机 ：{} 已经被注册" ,user.getPhone());
             return ResultObject.build(Constant.PHONE_EXIST,Constant.PHONE_EXIST_MESSAGE,null);
         }
+        checkUser=null;//help gc
         if(!StringUtils.isEmpty(invite_code)){
             logger.info("检测推广人信息 invite_code：{}" ,invite_code);
             User invit =new User();
             invit.setInvite_code(invite_code);
             User master=userMapper.getUserInfo(invit);
-            invit=null;
+            invit=null;//help gc
             if(master==null){
                 //推广码无效让用户重新注册
                 logger.error("无效推广码 invite_code：{}" ,invite_code);
