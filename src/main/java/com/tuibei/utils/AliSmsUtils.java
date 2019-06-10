@@ -6,6 +6,7 @@ import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
+import com.tuibei.model.sms.SmsContent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -22,9 +23,7 @@ public class AliSmsUtils {
      * 发送短信验证码
      * 具体查看阿里云验证码demo以及sdk；
      */
-    public  String sendSms()throws Exception {
-        String accessKeyId = accessKeyId;
-        String accessKeySecret = accessKeySecret;
+    public  String sendSms(SmsContent content)throws Exception {
         String phone = sms.getPhone();
         String product = sms.product;
         String domain = sms.domain;
