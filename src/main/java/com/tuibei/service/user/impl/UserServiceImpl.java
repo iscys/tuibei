@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     /**
-     * step:
+     *  regist  step:
      *  1.检测手机是否被注册过
      *  2.如果有邀请人码那么就查看邀请人是否存在
      *  3.通过wx code 获取用户openid ,unionid(开放平台)
