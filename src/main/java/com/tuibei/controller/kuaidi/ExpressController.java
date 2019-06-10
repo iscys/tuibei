@@ -1,8 +1,7 @@
 package com.tuibei.controller.kuaidi;
 
 
-import com.tuibei.model.Constant;
-import com.tuibei.model.KDNTraceScan;
+import com.tuibei.model.constant.Constant;
 import com.tuibei.model.TraceInfo;
 import com.tuibei.service.kuaidi.ExpressService;
 import com.tuibei.utils.ResultObject;

@@ -1,6 +1,6 @@
 package com.tuibei.service.user;
 
-import com.tuibei.model.User;
+import com.tuibei.model.user.User;
 import com.tuibei.utils.ResultObject;
 
 public interface UserService {

@@ -2,6 +2,7 @@ package com.tuibei.service.kuaidi.impl;
 
 import com.tuibei.http.KDNHttp;
 import com.tuibei.model.*;
+import com.tuibei.model.constant.Constant;
 import com.tuibei.service.kuaidi.ExpressService;
 import com.tuibei.utils.GsonUtils;
 import com.tuibei.utils.KudiNiaoMD5Utils;
@@ -14,7 +15,6 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ExpressServiceImpl implements ExpressService {

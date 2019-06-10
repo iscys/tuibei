@@ -1,8 +1,8 @@
 package com.tuibei.controller.sms;
 
 import com.tuibei.controller.BaseController;
-import com.tuibei.model.Constant;
-import com.tuibei.model.PhoneCode;
+import com.tuibei.model.constant.Constant;
+import com.tuibei.model.sms.PhoneCode;
 import com.tuibei.utils.ResultObject;
 import com.tuibei.utils.ToolsUtils;
 import org.slf4j.Logger;

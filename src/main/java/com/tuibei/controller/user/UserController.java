@@ -1,7 +1,7 @@
 package com.tuibei.controller.user;
 
-import com.tuibei.model.Constant;
-import com.tuibei.model.User;
+import com.tuibei.model.constant.Constant;
+import com.tuibei.model.user.User;
 import com.tuibei.service.user.UserService;
 import com.tuibei.utils.ResultObject;
 import com.tuibei.utils.ToolsUtils;

@@ -1,4 +1,4 @@
-package com.tuibei.model;
+package com.tuibei.model.sms;
 
 import java.io.Serializable;
 
