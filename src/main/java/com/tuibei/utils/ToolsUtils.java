@@ -45,4 +45,19 @@ public class ToolsUtils {
         return uuid;
     }
 
+    /**
+     * 随机4位数字
+     * @return
+     */
+    public static int fourCode(){
+        return (int)((Math.random()*9+1)*1000);
+    }
+
+    /**
+     * 随机6位数字
+     * @return
+     */
+    public static int sixCode(){
+        return (int)((Math.random()*9+1)*100000);
+    }
 }
