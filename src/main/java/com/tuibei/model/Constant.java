@@ -12,6 +12,19 @@ public class Constant {
     public static final String TRACK_TRACES_ERROR ="1003";
     public static final String TRACK_TRACES_ERROR_MESSAGE ="查询不到快递物流信息";
 
+    public static final String PHONE_NULL ="2001";
+    public static final String PHONE_NULL_MESSAGE ="手机号码不能为空";
+    public static final String PHONE_CODE_NULL ="2002";
+    public static final String PHONE_CODE_NULL_MESSAGE ="手机验证码不能为空";
+    public static final String PHONE_CODE_ERROR ="2003";
+    public static final String PHONE_CODE_ERROR_MESSAGE ="手机验证码错误";
+    public static final String WX_CODE_NULL ="2004";
+    public static final String WX_CODE_NULL_MESSAGE ="微信code不能为空";
+    public static final String PASSWORD_NULL ="2005";
+    public static final String PASSWORD_NULL_MESSAGE ="密码不能为空";
+    public static final String WX_ERROR ="2006";
+    public static final String INVITE_CODE_ERROR ="2007";
+    public static final String INVITE_CODE_ERROR_MESSAGE ="无效的推广人";
     /**
      * URL常量
      */

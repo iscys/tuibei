@@ -33,6 +33,15 @@ public class User implements Serializable {
     private String level_id;
     //用户上一级member_id
     private String master;
+    private String phone_code;
+
+    public String getPhone_code() {
+        return phone_code;
+    }
+
+    public void setPhone_code(String phone_code) {
+        this.phone_code = phone_code;
+    }
 
     public String getId() {
         return id;
