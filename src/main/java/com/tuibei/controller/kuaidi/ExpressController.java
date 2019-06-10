@@ -3,6 +3,7 @@ package com.tuibei.controller.kuaidi;
 
 import com.tuibei.model.constant.Constant;
 import com.tuibei.model.kdn.TraceInfo;
+import com.tuibei.model.user.User;
 import com.tuibei.service.kuaidi.ExpressService;
 import com.tuibei.utils.ResultObject;
 import org.slf4j.Logger;
@@ -23,11 +24,11 @@ public class ExpressController {
 
     /**
      * 快递单号查询
-     * @param trackInfo
+     * @param trackInfo user
      * @return
      */
     @PostMapping("/search")
-    public ResultObject express_search(TraceInfo trackInfo) {
+    public ResultObject express_search(User user ,TraceInfo trackInfo) {
         String trackNum = trackInfo.getTraceNum();
         if(StringUtils.isEmpty(trackNum)){
             logger.error("快递单号为空");
