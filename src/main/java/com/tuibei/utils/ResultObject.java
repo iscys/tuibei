@@ -10,18 +10,18 @@ import java.io.Serializable;
 public class ResultObject implements Serializable {
 
     //**返回成功失败标志**//
-    private String flag;
+    private String code;
     //**返回的成功错误信息**//
     private String error;
     //**返回的数据**//
     private Object data;
 
-    public String getFlag() {
-        return flag;
+    public String getCode() {
+        return code;
     }
 
-    public void setFlag(String flag) {
-        this.flag = flag;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getError() {
@@ -54,8 +54,8 @@ public class ResultObject implements Serializable {
 
 
 
-    ResultObject(String flag, String error , Object data){
-        this.flag=flag;
+    ResultObject(String code, String error , Object data){
+        this.code=code;
         this.error=error;
         this.data=data;
     }
