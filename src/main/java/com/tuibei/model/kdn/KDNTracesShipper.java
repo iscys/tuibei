@@ -1,17 +1,14 @@
-package com.tuibei.model;
+package com.tuibei.model.kdn;
 
-public class TraceInfo {
-    private String traceNum;
-    private String ShipperName;//快递公司名
-    private String ShipperCode;//快递公司编码
+/**
+ * 快递信息
+ */
+public class KDNTracesShipper {
 
-    public String getTraceNum() {
-        return traceNum;
-    }
-
-    public void setTraceNum(String traceNum) {
-        this.traceNum = traceNum;
-    }
+    //快递名字
+    private String ShipperName;
+    //快递代码
+    private String ShipperCode;
 
     public String getShipperName() {
         return ShipperName;

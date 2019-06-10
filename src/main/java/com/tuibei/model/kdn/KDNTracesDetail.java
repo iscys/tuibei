@@ -1,4 +1,6 @@
-package com.tuibei.model;
+package com.tuibei.model.kdn;
+
+import com.tuibei.model.kdn.KDNTraces;
 
 import java.io.Serializable;
 import java.util.List;

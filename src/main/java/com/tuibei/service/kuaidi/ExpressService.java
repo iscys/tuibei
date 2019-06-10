@@ -1,7 +1,7 @@
 package com.tuibei.service.kuaidi;
 
-import com.tuibei.model.KDNTraceScan;
-import com.tuibei.model.TraceInfo;
+import com.tuibei.model.kdn.KDNTraceScan;
+import com.tuibei.model.kdn.TraceInfo;
 import com.tuibei.utils.ResultObject;
 
 public interface ExpressService {

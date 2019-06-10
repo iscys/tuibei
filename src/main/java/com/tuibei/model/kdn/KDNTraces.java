@@ -1,4 +1,4 @@
-package com.tuibei.model;
+package com.tuibei.model.kdn;
 
 import java.io.Serializable;
 

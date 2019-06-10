@@ -1,5 +1,8 @@
 package com.tuibei.model;
 
+import com.tuibei.model.KuaidiCommonTemplate;
+import com.tuibei.model.kdn.KDNTraces;
+import com.tuibei.model.kdn.KDNTracesDetail;
 import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;

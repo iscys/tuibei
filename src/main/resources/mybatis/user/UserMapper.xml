@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tuibei.mapper.user.UserMapper">
 
-    <select id="getUserInfo" parameterType="com.tuibei.model.User" resultType="com.tuibei.model.User">
+    <select id="getUserInfo" parameterType="com.tuibei.model.user.User" resultType="com.tuibei.model.user.User">
 
         select * from
         sdb_tuibei_user
@@ -22,7 +22,7 @@
     </select>
 
 
-    <insert id="saveNewUser" parameterType="com.tuibei.model.User">
+    <insert id="saveNewUser" parameterType="com.tuibei.model.user.User">
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             select LAST_INSERT_ID()
         </selectKey>
