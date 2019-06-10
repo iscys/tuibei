@@ -29,6 +29,8 @@ public class Constant {
     public static final String PHONE_EXIST_MESSAGE ="用户已经被注册过了";
     public static final String PHONE_ERROR ="2009";
     public static final String PHONE_ERROR_MESSAGE ="输入有效的手机号码";
+    public static final String VALIDATE_CODE_TYPE ="2010";
+    public static final String VALIDATE_CODE_TYPE_MESSAGE ="无效的验证码类型";
     /**
      * URL常量
      */
