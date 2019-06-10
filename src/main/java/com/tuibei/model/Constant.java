@@ -27,6 +27,8 @@ public class Constant {
     public static final String INVITE_CODE_ERROR_MESSAGE ="无效的推广人";
     public static final String PHONE_EXIST ="2008";
     public static final String PHONE_EXIST_MESSAGE ="用户已经被注册过了";
+    public static final String PHONE_ERROR ="2009";
+    public static final String PHONE_ERROR_MESSAGE ="输入有效的手机号码";
     /**
      * URL常量
      */
