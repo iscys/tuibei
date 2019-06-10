@@ -13,9 +13,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
@@ -38,7 +40,6 @@ public class UserServiceImpl implements UserService {
                 //设置用户的推广人
                 user.setMaster(master.getMember_id());
             }
-
         }
         //微信小程序获取openid unionid sessionkey
         WxMaJscode2SessionResult wxsmallInfo = null;
@@ -58,8 +59,8 @@ public class UserServiceImpl implements UserService {
         user.setInvite_code("qwqeq123");
         //用户member_id
         user.setMember_id(ToolsUtils.idGenerate());
-        user.setOrigin("1");//
+        user.setOrigin("1");
         userMapper.saveNewUser(user);
-        return null;
+        return ResultObject.success(user);
     }
 }

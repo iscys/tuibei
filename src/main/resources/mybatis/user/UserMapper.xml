@@ -23,6 +23,9 @@
 
 
     <insert id="saveNewUser" parameterType="com.tuibei.model.User">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+
+        </selectKey>
         insert  into
         sdb_tuibei_user
         <trim prefix="(" suffix=")"  suffixOverrides=",">

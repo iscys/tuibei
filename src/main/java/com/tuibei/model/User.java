@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
+    //主键id
     private String id;
     //性别
     private String sex;
