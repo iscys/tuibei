@@ -34,7 +34,18 @@ public class User implements Serializable {
     private String level_id;
     //用户上一级member_id
     private String master;
+    //手机验证码
     private String phone_code;
+    //时间
+    private String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getPhone_code() {
         return phone_code;

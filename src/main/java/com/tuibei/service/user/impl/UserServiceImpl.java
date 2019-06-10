@@ -6,6 +6,7 @@ import com.tuibei.mapper.user.UserMapper;
 import com.tuibei.model.Constant;
 import com.tuibei.model.User;
 import com.tuibei.service.user.UserService;
+import com.tuibei.utils.DateUtils;
 import com.tuibei.utils.ResultObject;
 import com.tuibei.utils.ToolsUtils;
 import me.chanjar.weixin.common.error.WxErrorException;
@@ -62,7 +63,9 @@ public class UserServiceImpl implements UserService {
         //用户member_id
         user.setMember_id(ToolsUtils.idGenerate());
         user.setOrigin("1");
+        user.setTime(DateUtils.getTimeInSecond());
         userMapper.saveNewUser(user);
+        logger.info("用户：{} 注册成功",user.getMember_id());
         return ResultObject.success(user);
     }
 }
