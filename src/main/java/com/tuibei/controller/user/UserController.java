@@ -39,6 +39,9 @@ public class UserController {
         if(StringUtils.isEmpty(user.getPassword())){
             return  ResultObject.build(Constant.PASSWORD_NULL,Constant.PASSWORD_NULL_MESSAGE,null);
         }
+        if(StringUtils.isEmpty(user.getOrigin())){
+            return  ResultObject.build(Constant.ORIGIN_NULL,Constant.ORIGIN_NULL_MESSAGE,null);
+        }
 
         try {
             ResultObject result = userService.toRegistry(user);

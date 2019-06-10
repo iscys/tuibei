@@ -6,4 +6,6 @@ public interface UserMapper {
     User getUserInfo(User invit);
 
     void saveNewUser(User user);
+
+    void saveInitVipInfo(User user);
 }

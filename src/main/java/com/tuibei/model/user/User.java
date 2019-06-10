@@ -36,8 +36,18 @@ public class User implements Serializable {
     private String master;
     //手机验证码
     private String phone_code;
-    //时间
+    //关注公众号时间
     private String time;
+    //vip 失效时间
+    private  String vip_expire_time;
+
+    public String getVip_expire_time() {
+        return vip_expire_time;
+    }
+
+    public void setVip_expire_time(String vip_expire_time) {
+        this.vip_expire_time = vip_expire_time;
+    }
 
     public String getTime() {
         return time;

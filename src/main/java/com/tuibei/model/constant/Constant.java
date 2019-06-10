@@ -31,6 +31,8 @@ public class Constant {
     public static final String PHONE_ERROR_MESSAGE ="输入有效的手机号码";
     public static final String VALIDATE_CODE_TYPE ="2010";
     public static final String VALIDATE_CODE_TYPE_MESSAGE ="无效的验证码类型";
+    public static final String ORIGIN_NULL ="2011";
+    public static final String ORIGIN_NULL_MESSAGE ="用户来源不能为空";
     /**
      * URL常量
      */

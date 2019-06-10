@@ -85,9 +85,10 @@ public class UserServiceImpl implements UserService {
         user.setInvite_code("qwqeq123");
         //用户member_id
         user.setMember_id(ToolsUtils.idGenerate());
-        user.setOrigin("1");
         user.setTime(DateUtils.getTimeInSecond());
-        userMapper.saveNewUser(user);
+        user.setVip_expire_time(DateUtils.getTimeInSecond());
+        userMapper.saveNewUser(user);//保存新用户
+        userMapper.saveInitVipInfo(user);//保存新用户vip 初始化信息
         logger.info("用户member_id：{} 注册成功",user.getMember_id());
         return ResultObject.success(user);
     }
