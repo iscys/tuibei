@@ -14,7 +14,9 @@ public class PhoneCode implements Serializable {
     //过期时间
     private String expire_time;
     private String content;
-    private String flag;
+    //发送类型 0 登录 1 注册 2 找回密码 3购买信息
+    private Integer type;
+    private Integer flag;
 
     public String getId() {
         return id;
@@ -64,11 +66,19 @@ public class PhoneCode implements Serializable {
         this.content = content;
     }
 
-    public String getFlag() {
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getFlag() {
         return flag;
     }
 
-    public void setFlag(String flag) {
+    public void setFlag(Integer flag) {
         this.flag = flag;
     }
 }
