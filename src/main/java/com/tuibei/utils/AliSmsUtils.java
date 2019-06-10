@@ -23,7 +23,6 @@ public class AliSmsUtils {
      * 具体查看阿里云验证码demo以及sdk；
      */
     public  String sendSms()throws Exception {
-
         String accessKeyId = accessKeyId;
         String accessKeySecret = accessKeySecret;
         String phone = sms.getPhone();
