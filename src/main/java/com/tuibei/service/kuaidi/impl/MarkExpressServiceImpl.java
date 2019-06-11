@@ -54,7 +54,7 @@ public class MarkExpressServiceImpl implements MarkExpressService {
             res.put("dayRecord", dayRecord);//日记录
             res.put("excRecord", exception);//异常记录
         }
-        res.put("record",expressList);
+        res.put("List",expressList);
 
         return ResultObject.success(res);
     }
