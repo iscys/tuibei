@@ -99,8 +99,8 @@ public class UserServiceImpl implements UserService {
 
         //密码加密
         user.setPassword(ToolsUtils.getMD5String(user.getPassword()));
-        //生成邀请码6位数字
-        user.setInvite_code("qwqeq123");
+        //生成邀请码8位
+        user.setInvite_code(ToolsUtils.generateShortUuid());
         //用户member_id
         user.setMember_id(ToolsUtils.idGenerate());
         user.setTime(DateUtils.getTimeInSecond());
