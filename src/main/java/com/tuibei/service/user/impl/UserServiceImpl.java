@@ -109,6 +109,7 @@ public class UserServiceImpl implements UserService {
         userMapper.saveNewUser(user);//保存新用户
         userMapper.saveInitVipInfo(user);//保存新用户vip 初始化信息
         logger.info("用户member_id：{} 注册成功",user.getMember_id());
+        user.setPassword("************");
         return ResultObject.success(user);
     }
 
