@@ -63,7 +63,8 @@ public class AliSmsServiceImpl implements AliSmsService {
             }
         }
         int code = ToolsUtils.fourCode();
-        phoneInfo.setCode(code);
+        //phoneInfo.setCode(code);
+        phoneInfo.setCode(1234);
         phoneInfo.setStart_time(DateUtils.getTimeInSecond_long());
         //有效期间为30分钟
         phoneInfo.setExpire_time(DateUtils.getTimeInSecond_long()+30*60);
