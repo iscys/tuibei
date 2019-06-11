@@ -92,6 +92,7 @@ public class ExpressServiceImpl implements ExpressService {
         if(null!=expressRecord){
             commonDetail.setOperation_type(expressRecord.getOperation_type());
             commonDetail.setTime(expressRecord.getOperation_time());
+            commonDetail.setRemark(expressRecord.getRemark());
         }
 
 
