@@ -35,6 +35,8 @@ public class Constant {
     public static final String ORIGIN_NULL_MESSAGE ="用户来源不能为空";
     public static final String MEMBER_EXIST ="2012";
     public static final String MEMBER_EXIST_MESSAGE ="用户已经存在";
+    public static final String PHONE_CODE_BUSY ="2013";
+    public static final String PHONE_CODE_BUSY_MESSAGE ="验证码发送频繁";
     /**
      * URL常量
      */

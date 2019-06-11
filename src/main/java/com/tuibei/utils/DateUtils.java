@@ -95,6 +95,11 @@ public class DateUtils {
         return String.valueOf(timeInSecond);
     }
 
+    public static Long getTimeInSecond_long(){
+        long timeInSecond =Calendar.getInstance().getTimeInMillis()/1000;
+        return timeInSecond;
+    }
+
     public static void main(String[] args)throws Exception {
         System.out.println(getTimeInMillis());
         System.out.println(getTimeInSecond());

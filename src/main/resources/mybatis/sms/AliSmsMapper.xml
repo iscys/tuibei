@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tuibei.mapper.sms.AliSmsMapper">
 
-    <insert id="saveSmsCode" parameterType="com.tuibei.model.sms.PhoneCode" resultType="com.tuibei.model.user.User">
+    <insert id="saveSmsCode" parameterType="com.tuibei.model.sms.PhoneCode">
 
         insert  into
         sdb_tuibei_phone_code
@@ -54,5 +54,22 @@
 
         </trim>
     </insert>
+
+
+
+    <select id="getRecentPhoneCode" parameterType="com.tuibei.model.sms.PhoneCode" resultType="com.tuibei.model.sms.PhoneCode">
+
+      select id, phone,code,start_time,expire_time,type,content,flag
+      from
+       sdb_tuibei_phone_code
+       where 1=1
+        and flag ='1'
+       <if test="phone != null  and phone != '' ">
+       and  phone=#{phone}
+        </if>
+        order by id desc
+        limit 1
+
+    </select>
 
 </mapper>

@@ -15,9 +15,9 @@ public class PhoneCode implements Serializable {
     //手机验证码
     private int code;
     //开始时间
-    private String start_time;
+    private Long start_time;
     //过期时间
-    private String expire_time;
+    private Long expire_time;
     private String content;
     //发送类型 0 登录 1 注册 2 找回密码 3购买信息
     private Integer type;
