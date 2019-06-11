@@ -53,12 +53,13 @@ public class ExpressServiceImpl implements ExpressService {
 
         KuaidiCommonTemplateDetail commonDetail =new KuaidiCommonTemplateDetail();
         String traceNum =trackInfo.getTraceNum();
+        commonDetail.setTraceNum(traceNum);
         //获取单号运营商信息
         KDNTraceScan kdnTraceScan = this.orderScan(trackInfo);
         List<KDNTracesShipper> shippers = kdnTraceScan.getShippers();
         if(!kdnTraceScan.isSuccess()||kdnTraceScan.getCode()!=100|| CollectionUtils.isEmpty(shippers)){
             logger.error("快递鸟查询不出单号：{} 的快递运营方",traceNum);
-            return ResultObject.build(Constant.TRACK_NUM_ERROR,null,Constant.TRACK_NUM_ERROR_MESSAGE);
+            return ResultObject.build(Constant.TRACK_NUM_ERROR,Constant.TRACK_NUM_ERROR_MESSAGE,commonDetail);
         }
         //快递公司code
         String shipperCode = kdnTraceScan.getShippers().get(0).getShipperCode();
@@ -82,7 +83,6 @@ public class ExpressServiceImpl implements ExpressService {
         String traces = KDNHttp.INSTANCE.doPost(Constant.URL.KDN_TRACES_URL, params);
         logger.info("快递鸟返回物流信息：{}",traces);
         KDNTracesDetail kdnTracesDetail = GsonUtils.fromJson(traces, KDNTracesDetail.class);
-        commonDetail.setTraceNum(traceNum);
         commonDetail.setOperator(shipperName);
         if(kdnTracesDetail.isSuccess()){
             commonDetail.KDN2Common(kdnTracesDetail);
