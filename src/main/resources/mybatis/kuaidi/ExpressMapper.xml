@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tuibei.mapper.kuaidi.ExpressMapper">
+
+
+
+    <select id="getExpressRecord" parameterType="com.tuibei.model.ExpressRecord" resultType="com.tuibei.model.ExpressRecord">
+
+    select id ,member_id,trace_num,operation_time,operation_type,
+    remark,ship_code
+    from
+    sdb_tuibei_kuaidi_record
+    where 1=1
+    <if test="member_id !=null  and member_id != '' ">
+        and member_id=#{member_id}
+    </if>
+        <if test="trace_num !=null  and trace_num != '' ">
+            and trace_num=#{trace_num}
+        </if>
+        limit 1
+    </select>
+
+</mapper>

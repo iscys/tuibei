@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tuibei.mapper.kuaidi.MarkExpressMapper">
+
+
+
+
+    <select id="getMonthRecord" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+      select count(1)
+      from
+       (
+       select  DATE_FORMAT(operation_time,'%Y-%m')
+       as time from sdb_tuibei_kuaidi_record
+       where member_id=#{member_id}
+        )a
+      where a.time =#{month}
+    </select>
+
+    <select id="getDayRecord" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    select count(1)
+      from
+       (
+       select  DATE_FORMAT(operation_time,'%Y-%m-%d')
+       as time from sdb_tuibei_kuaidi_record
+       where member_id=#{member_id}
+        )a
+      where a.time =#{day}
+    </select>
+
+
+
+    <select id="getRecordListCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+
+    select count(1)
+    from (
+
+        select id ,member_id,trace_num,operation_time,operation_type,
+        remark,ship_code
+        from
+        sdb_tuibei_kuaidi_record
+        where 1=1
+        <if test="member_id !=null  and member_id != '' ">
+            and member_id=#{member_id}
+        </if>
+        <if test="trace_num !=null  and trace_num != '' ">
+            and trace_num=#{trace_num}
+        </if>
+
+        <if test="operation_type !=null  and operation_type != '' ">
+            and operation_type=#{operation_type}
+        </if>
+) a
+    </select>
+
+
+
+    <select id="getRecordList" parameterType="java.util.HashMap" resultType="com.tuibei.model.ExpressRecord">
+
+    select id ,member_id,trace_num,operation_time,operation_type,
+    remark,ship_code
+    from
+    sdb_tuibei_kuaidi_record
+    where 1=1
+        <if test="member_id !=null  and member_id != '' ">
+            and member_id=#{member_id}
+        </if>
+        <if test="trace_num !=null  and trace_num != '' ">
+            and trace_num=#{trace_num}
+        </if>
+
+        <if test="operation_type !=null  and operation_type != '' ">
+            and operation_type=#{operation_type}
+        </if>
+
+      limit #{startIndex},#{pageSize}
+    </select>
+
+</mapper>
