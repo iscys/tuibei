@@ -2,6 +2,7 @@ package com.tuibei.service.kuaidi.impl;
 
 import com.tuibei.http.KDNHttp;
 import com.tuibei.mapper.kuaidi.ExpressMapper;
+import com.tuibei.model.ExpressRecord;
 import com.tuibei.model.KuaidiCommonExtend;
 import com.tuibei.model.KuaidiCommonTemplateDetail;
 import com.tuibei.model.constant.Constant;
@@ -61,7 +62,7 @@ public class ExpressServiceImpl implements ExpressService {
         if(!kdnTraceScan.isSuccess()||kdnTraceScan.getCode()!=100|| CollectionUtils.isEmpty(shippers)){
             logger.error("快递鸟查询不出单号：{} 的快递运营方",traceNum);
             //return ResultObject.build(Constant.TRACK_NUM_ERROR,Constant.TRACK_NUM_ERROR_MESSAGE,commonDetail);
-            commonDetail.setCode(Constant.COMMON.UNKNOW);//未知
+            commonDetail.setShip_code(Constant.COMMON.UNKNOW);//未知
             commonDetail.setOperator(Constant.COMMON.UNKNOW);//未知
             return ResultObject.success(commonDetail);
         }
@@ -69,7 +70,7 @@ public class ExpressServiceImpl implements ExpressService {
         String shipperCode = kdnTraceScan.getShippers().get(0).getShipperCode();
         //快递公司名字
         String shipperName = kdnTraceScan.getShippers().get(0).getShipperName();
-        commonDetail.setCode(shipperCode);
+        commonDetail.setShip_code(shipperCode);
         commonDetail.setOperator(shipperName);
         return ResultObject.success(commonDetail);
     }
@@ -82,15 +83,27 @@ public class ExpressServiceImpl implements ExpressService {
      */
     @Override
     public ResultObject traceDetail(TraceInfo trackInfo) throws Exception {
-
         KuaidiCommonExtend commonDetail =new KuaidiCommonExtend();
+        ExpressRecord record =new ExpressRecord();
+        record.setMember_id(trackInfo.getMember_id());
+        record.setTrace_num(trackInfo.getTraceNum());
+        ExpressRecord expressRecord=expressMapper.getExpressRecord(record);
+        record=null;
+        if(null!=expressRecord){
+            commonDetail.setOperation_type(expressRecord.getOperation_type());
+            commonDetail.setTime(expressRecord.getOperation_time());
+        }
+
+
         commonDetail.setMember_id(trackInfo.getMember_id());
         String traceNum =trackInfo.getTraceNum();
         //获取单号运营商信息
         String shipperCode = trackInfo.getCode();
         commonDetail.setTraceNum(traceNum);
-        commonDetail.setTime(DateUtils.stableTime());
-        commonDetail.setCode(shipperCode);
+        if(null==expressRecord) {
+            commonDetail.setTime(DateUtils.stableTime());
+        }
+        commonDetail.setShip_code(shipperCode);
         //组装参数信息
         HashMap<String,String> shipperInfo =new HashMap<String,String>();
         shipperInfo.put("ShipperCode",shipperCode);

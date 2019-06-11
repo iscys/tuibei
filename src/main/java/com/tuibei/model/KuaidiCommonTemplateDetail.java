@@ -22,7 +22,7 @@ public class KuaidiCommonTemplateDetail implements Serializable {
     private String state;//快递目前的状态
     private String operator;//快递运营方
     private String traceNum;//快递单号
-    private String code;//公司code
+    private String ship_code;//公司code
     private String time;//查询时间
 
 
