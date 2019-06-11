@@ -5,8 +5,6 @@ import com.tuibei.model.user.User;
 import com.tuibei.service.user.UserService;
 import com.tuibei.utils.ResultObject;
 import com.tuibei.utils.ToolsUtils;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +76,5 @@ public class UserController {
             return ResultObject.error(null);
         }
 
-        return null;
     }
 }

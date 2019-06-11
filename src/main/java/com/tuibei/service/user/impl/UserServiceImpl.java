@@ -127,4 +127,8 @@ public class UserServiceImpl implements UserService {
         }
         return ResultObject.success(userInfo);
     }
+
+    public static void main(String[] args) {
+        System.out.println(ToolsUtils.getMD5String("123456"));
+    }
 }
