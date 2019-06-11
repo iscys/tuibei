@@ -110,4 +110,21 @@ public class UserServiceImpl implements UserService {
         logger.info("用户member_id：{} 注册成功",user.getMember_id());
         return ResultObject.success(user);
     }
+
+    /**
+     * 用户登录
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public ResultObject toLogin(User user) throws Exception {
+        
+        user.setPassword(ToolsUtils.getMD5String(user.getPassword()));
+        User userInfo = userMapper.getUserInfo(user);
+        if(null==userInfo){
+            return ResultObject.build(Constant.VALIDATE_MEMBER_ERROR_CODE,Constant.VALIDATE_MEMBER_ERROR_CODE_MESSAGE,null);
+        }
+        return ResultObject.success(userInfo);
+    }
 }

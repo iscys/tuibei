@@ -19,6 +19,9 @@
         <if test="invite_code !=null  and invite_code != '' ">
             and invite_code=#{invite_code}
         </if>
+        <if test="password !=null  and password != '' ">
+            and password=#{password}
+        </if>
         limit 1
     </select>
 

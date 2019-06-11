@@ -5,4 +5,6 @@ import com.tuibei.utils.ResultObject;
 
 public interface UserService {
     ResultObject toRegistry(User user) throws Exception;
+
+    ResultObject toLogin(User user)throws Exception;
 }

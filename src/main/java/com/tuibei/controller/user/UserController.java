@@ -56,4 +56,28 @@ public class UserController {
         }
 
     }
+
+    @PostMapping("/login")
+    public ResultObject login(User user){
+        if(StringUtils.isEmpty(user.getPhone())){
+            return  ResultObject.build(Constant.PHONE_NULL,Constant.PHONE_NULL_MESSAGE,null);
+        }
+        if(!ToolsUtils.checkMobileNumber(user.getPhone())){
+            return  ResultObject.build(Constant.PHONE_ERROR,Constant.PHONE_ERROR_MESSAGE,null);
+        }
+        if(StringUtils.isEmpty(user.getPassword())){
+            return  ResultObject.build(Constant.PASSWORD_NULL,Constant.PASSWORD_NULL_MESSAGE,null);
+        }
+
+        try{
+            ResultObject result = userService.toLogin(user);
+            return result;
+
+        }catch(Exception e){
+            logger.error("登录异常：{}" ,e.getMessage());
+            return ResultObject.error(null);
+        }
+
+        return null;
+    }
 }

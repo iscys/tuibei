@@ -42,6 +42,8 @@ public class Constant {
     public static final String PHONE_CODE_BUSY_MESSAGE ="验证码发送频繁";
     public static final String EXPIRE_PHONE_CODE ="2014";
     public static final String EXPIRE_PHONE_CODE_MESSAGE ="无效手机验证码";
+    public static final String VALIDATE_MEMBER_ERROR_CODE ="2015";
+    public static final String VALIDATE_MEMBER_ERROR_CODE_MESSAGE ="用户名或者密码错误";
     /**
      * URL常量
      */
