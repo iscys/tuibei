@@ -1,5 +1,7 @@
 package com.tuibei.model.user;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
@@ -18,6 +20,7 @@ public class User implements Serializable {
     private String nickname;
     //用户姓名
     private String username;
+
     //用户手机
     private String phone;
     //用户密码
