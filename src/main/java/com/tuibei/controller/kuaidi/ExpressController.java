@@ -29,7 +29,7 @@ public class ExpressController {
      * @param trackInfo user
      * @return
      */
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResultObject express_search(TraceInfo trackInfo) {
         String trackNum = trackInfo.getTraceNum();
         if(StringUtils.isEmpty(trackNum)){
@@ -46,7 +46,7 @@ public class ExpressController {
             }
 
     }
-    @GetMapping("/info")
+    @PostMapping("/info")
     public ResultObject express_info(TraceInfo trackInfo) {
         if(StringUtils.isEmpty(trackInfo.getMember_id())){
             return ResultObject.build(Constant.MEMBER_NULL,Constant.MEMBER_NULL_MESSAGE,null);

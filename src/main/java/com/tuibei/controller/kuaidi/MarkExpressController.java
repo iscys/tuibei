@@ -8,6 +8,7 @@ import com.tuibei.utils.PageData;
 import com.tuibei.utils.ResultObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,7 @@ public class MarkExpressController extends BaseController {
     @Autowired
     private MarkExpressService markService;
 
-    @RequestMapping("/list")
+    @PostMapping("/list")
     public ResultObject recordList(){
         PageData pd = this.getPageData();
         String pageNum = pd.getString("pageNum");
