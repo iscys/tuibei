@@ -26,7 +26,13 @@ public class DateUtils {
         return result;
     }
 
-
+    /**
+     * 时间YYYY-MM-DD HH:MI:SS
+     */
+    public static String stableTime(){
+        String result = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        return result;
+    }
     /**
      * 月份
      * @param chazhi
@@ -100,9 +106,6 @@ public class DateUtils {
         return timeInSecond;
     }
 
-    public static void main(String[] args)throws Exception {
-        System.out.println(getTimeInMillis());
-        System.out.println(getTimeInSecond());
-        System.out.println(milltamp2date(Long.valueOf(getTimeInMillis())));
-    }
+
+
 }

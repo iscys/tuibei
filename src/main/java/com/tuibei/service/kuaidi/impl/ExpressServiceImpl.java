@@ -5,6 +5,7 @@ import com.tuibei.model.KuaidiCommonTemplateDetail;
 import com.tuibei.model.constant.Constant;
 import com.tuibei.model.kdn.*;
 import com.tuibei.service.kuaidi.ExpressService;
+import com.tuibei.utils.DateUtils;
 import com.tuibei.utils.GsonUtils;
 import com.tuibei.utils.KudiNiaoMD5Utils;
 import com.tuibei.utils.ResultObject;
@@ -54,19 +55,21 @@ public class ExpressServiceImpl implements ExpressService {
         KuaidiCommonTemplateDetail commonDetail =new KuaidiCommonTemplateDetail();
         String traceNum =trackInfo.getTraceNum();
         commonDetail.setTraceNum(traceNum);
+        commonDetail.setTime(DateUtils.stableTime());
         //获取单号运营商信息
         KDNTraceScan kdnTraceScan = this.orderScan(trackInfo);
         List<KDNTracesShipper> shippers = kdnTraceScan.getShippers();
         if(!kdnTraceScan.isSuccess()||kdnTraceScan.getCode()!=100|| CollectionUtils.isEmpty(shippers)){
             logger.error("快递鸟查询不出单号：{} 的快递运营方",traceNum);
-            return ResultObject.build(Constant.TRACK_NUM_ERROR,Constant.TRACK_NUM_ERROR_MESSAGE,commonDetail);
+            //return ResultObject.build(Constant.TRACK_NUM_ERROR,Constant.TRACK_NUM_ERROR_MESSAGE,commonDetail);
+            return ResultObject.success(commonDetail);
         }
         //快递公司code
         String shipperCode = kdnTraceScan.getShippers().get(0).getShipperCode();
         //快递公司名字
         String shipperName = kdnTraceScan.getShippers().get(0).getShipperName();
         logger.info("得到单号：{} 的运营方信息，运营方code:{},运营方名字：{}",traceNum,shipperCode,shipperName);
-
+        commonDetail.setCode(shipperCode);
         //组装参数信息
         HashMap<String,String> shipperInfo =new HashMap<String,String>();
         shipperInfo.put("ShipperCode",shipperCode);

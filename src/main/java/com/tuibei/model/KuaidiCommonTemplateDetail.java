@@ -3,6 +3,8 @@ package com.tuibei.model;
 import com.tuibei.model.KuaidiCommonTemplate;
 import com.tuibei.model.kdn.KDNTraces;
 import com.tuibei.model.kdn.KDNTracesDetail;
+import lombok.Data;
+import lombok.ToString;
 import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;
@@ -12,44 +14,18 @@ import java.util.List;
 /**
  * 快递返回公共模板，返回前端
  */
+@Data
+@ToString
 public class KuaidiCommonTemplateDetail implements Serializable {
 
     private List<KuaidiCommonTemplate> traces;//快递物流信息
     private String state;//快递目前的状态
     private String operator;//快递运营方
     private String traceNum;//快递单号
+    private String code;//公司code
+    private String time;//查询时间
 
-    public String getTraceNum() {
-        return traceNum;
-    }
 
-    public void setTraceNum(String traceNum) {
-        this.traceNum = traceNum;
-    }
-
-    public List<KuaidiCommonTemplate> getTraces() {
-        return traces;
-    }
-
-    public void setTraces(List<KuaidiCommonTemplate> traces) {
-        this.traces = traces;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getOperator() {
-        return operator;
-    }
-
-    public void setOperator(String operator) {
-        this.operator = operator;
-    }
 
     public void KDN2Common(KDNTracesDetail kdnTracesDetail) {
         this.traces =new ArrayList<KuaidiCommonTemplate>();
