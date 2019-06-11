@@ -2,8 +2,10 @@ package com.tuibei.service.user.impl;
 
 import cn.binarywang.wx.miniapp.api.impl.WxMaServiceImpl;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
+import com.tuibei.mapper.sms.AliSmsMapper;
 import com.tuibei.mapper.user.UserMapper;
 import com.tuibei.model.constant.Constant;
+import com.tuibei.model.sms.PhoneCode;
 import com.tuibei.model.user.User;
 import com.tuibei.service.user.UserService;
 import com.tuibei.utils.DateUtils;
@@ -25,6 +27,8 @@ public class UserServiceImpl implements UserService {
     private WxMaServiceImpl wxsmall;//微信小程序服务
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private AliSmsMapper smsMapper;
 
     /**
      *  regist  step:
@@ -67,7 +71,17 @@ public class UserServiceImpl implements UserService {
             }
         }
 
-        //step 3:
+        //step 3: 验证手机验证码
+        Integer phone_code = Integer.valueOf(user.getPhone_code());
+        PhoneCode phone =new PhoneCode();
+        phone.setPhone(user.getPhone());
+        PhoneCode phoneCheck = smsMapper.getRecentPhoneCode(phone);
+        phone=null;
+        if(null==phoneCheck ||DateUtils.getTimeInSecond_long()>phoneCheck.getExpire_time()|| !phone_code.equals(phoneCheck.getCode())){
+            logger.warn("无效手机验证码：{}",user.getPhone());
+            return ResultObject.build(Constant.EXPIRE_PHONE_CODE,Constant.EXPIRE_PHONE_CODE_MESSAGE,null);
+        }
+
 
         //step 4:
         //微信小程序获取openid unionid sessionkey
