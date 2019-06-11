@@ -1,6 +1,8 @@
 package com.tuibei.service.kuaidi.impl;
 
 import com.tuibei.http.KDNHttp;
+import com.tuibei.mapper.kuaidi.ExpressMapper;
+import com.tuibei.model.KuaidiCommonExtend;
 import com.tuibei.model.KuaidiCommonTemplateDetail;
 import com.tuibei.model.constant.Constant;
 import com.tuibei.model.kdn.*;
@@ -11,6 +13,7 @@ import com.tuibei.utils.KudiNiaoMD5Utils;
 import com.tuibei.utils.ResultObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -21,12 +24,22 @@ import java.util.List;
 @Service
 public class ExpressServiceImpl implements ExpressService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private ExpressMapper expressMapper;
     @Value("${kuaidiniao.EBusinessID}")
     private String EBusinessID;
     @Value("${kuaidiniao.AppKey}")
     private String AppKey;
+
+    /**
+     * 物流快递公司信息
+     * @param trackInfo
+     * @return
+     * @throws Exception
+     */
     @Override
-    public KDNTraceScan orderScan(TraceInfo trackInfo)throws Exception {
+    public ResultObject orderScan(TraceInfo trackInfo)throws Exception {
         String traceNum = trackInfo.getTraceNum();
         logger.info("开始查询快递单号识别：{} ",traceNum);
         String requestData= "{'LogisticCode':'" + traceNum + "'}";
@@ -40,11 +53,29 @@ public class ExpressServiceImpl implements ExpressService {
         String result = KDNHttp.INSTANCE.doPost(Constant.URL.KDN_SHIPPER_URL, params);
         logger.info("快递单号：{} 识别信息为：{} ",traceNum,result);
         KDNTraceScan kdnTraceScan = GsonUtils.fromJson(result, KDNTraceScan.class);
-        return kdnTraceScan;
+
+        KuaidiCommonTemplateDetail commonDetail =new KuaidiCommonTemplateDetail();
+        commonDetail.setTraceNum(traceNum);
+        commonDetail.setTime(DateUtils.stableTime());
+        List<KDNTracesShipper> shippers = kdnTraceScan.getShippers();
+        if(!kdnTraceScan.isSuccess()||kdnTraceScan.getCode()!=100|| CollectionUtils.isEmpty(shippers)){
+            logger.error("快递鸟查询不出单号：{} 的快递运营方",traceNum);
+            //return ResultObject.build(Constant.TRACK_NUM_ERROR,Constant.TRACK_NUM_ERROR_MESSAGE,commonDetail);
+            commonDetail.setCode(Constant.COMMON.UNKNOW);//未知
+            commonDetail.setOperator(Constant.COMMON.UNKNOW);//未知
+            return ResultObject.success(commonDetail);
+        }
+        //快递公司code
+        String shipperCode = kdnTraceScan.getShippers().get(0).getShipperCode();
+        //快递公司名字
+        String shipperName = kdnTraceScan.getShippers().get(0).getShipperName();
+        commonDetail.setCode(shipperCode);
+        commonDetail.setOperator(shipperName);
+        return ResultObject.success(commonDetail);
     }
 
     /**
-     * 获取物流信息
+     * 获取物流轨迹信息
      * @param trackInfo
      * @return
      * @throws Exception
@@ -52,23 +83,13 @@ public class ExpressServiceImpl implements ExpressService {
     @Override
     public ResultObject traceDetail(TraceInfo trackInfo) throws Exception {
 
-        KuaidiCommonTemplateDetail commonDetail =new KuaidiCommonTemplateDetail();
+        KuaidiCommonExtend commonDetail =new KuaidiCommonExtend();
+        commonDetail.setMember_id(trackInfo.getMember_id());
         String traceNum =trackInfo.getTraceNum();
+        //获取单号运营商信息
+        String shipperCode = trackInfo.getCode();
         commonDetail.setTraceNum(traceNum);
         commonDetail.setTime(DateUtils.stableTime());
-        //获取单号运营商信息
-        KDNTraceScan kdnTraceScan = this.orderScan(trackInfo);
-        List<KDNTracesShipper> shippers = kdnTraceScan.getShippers();
-        if(!kdnTraceScan.isSuccess()||kdnTraceScan.getCode()!=100|| CollectionUtils.isEmpty(shippers)){
-            logger.error("快递鸟查询不出单号：{} 的快递运营方",traceNum);
-            //return ResultObject.build(Constant.TRACK_NUM_ERROR,Constant.TRACK_NUM_ERROR_MESSAGE,commonDetail);
-            return ResultObject.success(commonDetail);
-        }
-        //快递公司code
-        String shipperCode = kdnTraceScan.getShippers().get(0).getShipperCode();
-        //快递公司名字
-        String shipperName = kdnTraceScan.getShippers().get(0).getShipperName();
-        logger.info("得到单号：{} 的运营方信息，运营方code:{},运营方名字：{}",traceNum,shipperCode,shipperName);
         commonDetail.setCode(shipperCode);
         //组装参数信息
         HashMap<String,String> shipperInfo =new HashMap<String,String>();
@@ -86,12 +107,11 @@ public class ExpressServiceImpl implements ExpressService {
         String traces = KDNHttp.INSTANCE.doPost(Constant.URL.KDN_TRACES_URL, params);
         logger.info("快递鸟返回物流信息：{}",traces);
         KDNTracesDetail kdnTracesDetail = GsonUtils.fromJson(traces, KDNTracesDetail.class);
-        commonDetail.setOperator(shipperName);
         if(kdnTracesDetail.isSuccess()){
             commonDetail.KDN2Common(kdnTracesDetail);
         }else{
             commonDetail.setState("无轨迹");
-            logger.error("物流单号：{}获取物流信息失败,物流公司：{}，error:{}",traceNum,shipperName,kdnTracesDetail.getReason());
+            logger.error("物流单号：{}获取物流信息失败,error:{}",traceNum,kdnTracesDetail.getReason());
             return ResultObject.success(commonDetail);
         }
 

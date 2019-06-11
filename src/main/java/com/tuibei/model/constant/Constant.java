@@ -12,6 +12,9 @@ public class Constant {
     public static final String TRACK_TRACES_ERROR ="1003";
     public static final String TRACK_TRACES_ERROR_MESSAGE ="查询不到快递物流信息";
 
+
+    public static final String MEMBER_NULL ="2000";
+    public static final String MEMBER_NULL_MESSAGE ="用户ID 不能为空";
     public static final String PHONE_NULL ="2001";
     public static final String PHONE_NULL_MESSAGE ="手机号码不能为空";
     public static final String PHONE_CODE_NULL ="2002";
@@ -63,5 +66,9 @@ public class Constant {
     public static class SMS{
         public static final String PRODUCT ="2002";
         public static final String DOMAIN ="1002";
+    }
+
+    public static class COMMON{
+        public static final String UNKNOW ="UNKNOW";
     }
 }

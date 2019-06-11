@@ -10,7 +10,7 @@ public interface ExpressService {
      * @param trackInfo
      * @return
      */
-    KDNTraceScan orderScan(TraceInfo trackInfo)throws Exception;
+    ResultObject orderScan(TraceInfo trackInfo)throws Exception;
 
     ResultObject traceDetail(TraceInfo trackInfo)throws Exception;
 }
