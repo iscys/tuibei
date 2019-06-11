@@ -70,5 +70,6 @@ public class Constant {
 
     public static class COMMON{
         public static final String UNKNOW ="UNKNOW";
+        public static final Integer PAGESIZE=20;
     }
 }

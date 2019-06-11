@@ -27,10 +27,26 @@ public class DateUtils {
     }
 
     /**
-     * 时间YYYY-MM-DD HH:MI:SS
+     * 标准时间YYYY-MM-DD HH:MI:SS
      */
     public static String stableTime(){
         String result = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        return result;
+    }
+
+    /**
+     * 标准时间月YYYY-MM
+     */
+    public static String stableMonth(){
+        String result = new SimpleDateFormat("yyyy-MM").format(new Date());
+        return result;
+    }
+
+    /**
+     * 标准时间日YYYY-MM
+     */
+    public static String stableDay(){
+        String result = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         return result;
     }
     /**
