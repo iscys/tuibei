@@ -50,6 +50,8 @@ public class Constant {
     public static final String SHIP_CODE_NULL_MESSAGE ="快递编码为空";
     public static final String SHIP_OPERATOR_NULL ="2017";
     public static final String SHIP_OPERATOR_NULL_MESSAGE ="快递公司为空";
+    public static final String FEED_BACK_NULL ="2018";
+    public static final String FEED_BACK_NULL_MESSAGE ="反馈不能为空";
     /**
      * URL常量
      */
