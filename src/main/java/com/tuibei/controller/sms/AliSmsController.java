@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
+import java.util.List;
+
 @RestController
 @RequestMapping("/sms")
 public class AliSmsController extends BaseController {
@@ -27,7 +30,7 @@ public class AliSmsController extends BaseController {
      */
     @PostMapping("/code")
     public ResultObject code(PhoneCode phoneInfo){
-        if(phoneInfo.getType()==null){
+        if(phoneInfo.getType()==null||!Constant.COMMON.TYPES.contains(phoneInfo.getType().toString())){
             return ResultObject.build(Constant.VALIDATE_CODE_TYPE,Constant.VALIDATE_CODE_TYPE_MESSAGE,null);
         }
         if(StringUtils.isEmpty(phoneInfo.getPhone())){
