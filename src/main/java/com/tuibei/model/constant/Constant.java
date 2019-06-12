@@ -48,6 +48,8 @@ public class Constant {
     public static final String OPERATION_TYPE_NULL_MESSAGE ="请选择需要进行操作";
     public static final String SHIP_CODE_NULL ="2017";
     public static final String SHIP_CODE_NULL_MESSAGE ="快递编码为空";
+    public static final String SHIP_OPERATOR_NULL ="2017";
+    public static final String SHIP_OPERATOR_NULL_MESSAGE ="快递公司为空";
     /**
      * URL常量
      */
