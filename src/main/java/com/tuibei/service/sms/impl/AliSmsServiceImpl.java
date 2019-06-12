@@ -39,13 +39,12 @@ public class AliSmsServiceImpl implements AliSmsService {
     public ResultObject toSendCode(PhoneCode phoneInfo) throws Exception {
         String phone = phoneInfo.getPhone();
         logger.info("用户: {} 发送验证码开始",phone);
-        //type =1 是注册用户
-
             User user =new User();
             user.setPhone(phoneInfo.getPhone());
             User isExist = userMapper.getUserInfo(user);
             user =null;//help gc
         if(phoneInfo.getType()==1) {
+            //type =1 是注册用户
             if (null != isExist) {
                 logger.warn("用户已经被注册过了：{} ", phone);
                 return ResultObject.build(Constant.MEMBER_EXIST, Constant.MEMBER_EXIST_MESSAGE, null);
