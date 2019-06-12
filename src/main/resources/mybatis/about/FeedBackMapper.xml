@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tuibei.mapper.about.FeedBackMapper">
+
+
+
+    <insert id="saveFeedBack" parameterType="com.tuibei.model.about.FeedBack" >
+            insert into
+            sdb_tuibei_feedback
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="member_id != null  and member_id != '' ">
+                    member_id,
+                </if>
+                <if test="feedback != null  and feedback != '' ">
+                    feedback,
+                </if>
+                <if test="qq != null  and qq != '' ">
+                    qq,
+                </if>
+                <if test="wx != null  and wx != '' ">
+                    wx,
+                </if>
+            </trim>
+
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="member_id != null  and member_id != '' ">
+                #{member_id},
+            </if>
+            <if test="feedback != null  and feedback != '' ">
+                #{feedback},
+            </if>
+            <if test="qq != null  and qq != '' ">
+                #{qq},
+            </if>
+            <if test="wx != null  and wx != '' ">
+                #{wx},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>
