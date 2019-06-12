@@ -40,17 +40,23 @@ public class AliSmsServiceImpl implements AliSmsService {
         String phone = phoneInfo.getPhone();
         logger.info("用户: {} 发送验证码开始",phone);
         //type =1 是注册用户
-        if(phoneInfo.getType()==1){
+
             User user =new User();
             user.setPhone(phoneInfo.getPhone());
             User isExist = userMapper.getUserInfo(user);
             user =null;//help gc
-            if(null!=isExist){
-                logger.warn("用户已经被注册过了：{} ",phone);
-                return ResultObject.build(Constant.MEMBER_EXIST,Constant.MEMBER_EXIST_MESSAGE,null);
+        if(phoneInfo.getType()==1) {
+            if (null != isExist) {
+                logger.warn("用户已经被注册过了：{} ", phone);
+                return ResultObject.build(Constant.MEMBER_EXIST, Constant.MEMBER_EXIST_MESSAGE, null);
             }
-
+        }else{
+            if (null == isExist) {
+                logger.warn("用户尚未被注册：{} ", phone);
+                return ResultObject.build(Constant.MEMBER_XXX_NULL, Constant.MEMBER_XXX_NULL_MESSAGE, null);
+            }
         }
+
         //防止恶意接口攻击,距离上一次验证码发送时间不能小于一分钟，即必须等待一分钟才能发送下一个手机验证码
         PhoneCode phoneCode = smsMapper.getRecentPhoneCode(phoneInfo);
         if(null!=phoneCode){
