@@ -138,7 +138,29 @@ public class UserServiceImpl implements UserService {
         return ResultObject.success(userInfo);
     }
 
-    public static void main(String[] args) {
-        System.out.println(ToolsUtils.getMD5String("123456"));
+    @Override
+    public ResultObject toModify(User user) throws Exception {
+        User checkUser =new User();
+        checkUser.setPhone(user.getPhone());
+        User isExist=userMapper.getUserInfo(checkUser);
+        if(null==isExist){
+            logger.error("用户手机 ：{} 尚未被注册" ,user.getPhone());
+            return ResultObject.build(Constant.MEMBER_XXX_NULL,Constant.MEMBER_XXX_NULL_MESSAGE,null);
+        }
+
+        //step 3: 验证手机验证码
+        Integer phone_code = Integer.valueOf(user.getPhone_code());
+        PhoneCode phone =new PhoneCode();
+        phone.setPhone(user.getPhone());
+        PhoneCode phoneCheck = smsMapper.getRecentPhoneCode(phone);
+        phone=null;
+        if(null==phoneCheck ||DateUtils.getTimeInSecond_long()>phoneCheck.getExpire_time()|| !phone_code.equals(phoneCheck.getCode())){
+            logger.warn("无效手机验证码：{}",user.getPhone());
+            return ResultObject.build(Constant.EXPIRE_PHONE_CODE,Constant.EXPIRE_PHONE_CODE_MESSAGE,null);
+        }
+
+        return null;
     }
+
+
 }
