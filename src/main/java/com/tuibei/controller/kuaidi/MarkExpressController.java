@@ -41,7 +41,7 @@ public class MarkExpressController extends BaseController {
      * 标记快递状态
      * @return
      */
-    @GetMapping("/tag")
+    @PostMapping("/tag")
     public ResultObject tag(){
         PageData pd = this.getPageData();
         Object member_id = pd.get("member_id");
