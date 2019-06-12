@@ -9,6 +9,8 @@ import com.tuibei.utils.DateUtils;
 import com.tuibei.utils.Page;
 import com.tuibei.utils.PageData;
 import com.tuibei.utils.ResultObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +22,7 @@ import java.util.List;
 @Transactional
 public class MarkExpressServiceImpl implements MarkExpressService {
 
-
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private MarkExpressMapper markExpressMapper;
 
@@ -31,7 +33,7 @@ public class MarkExpressServiceImpl implements MarkExpressService {
      */
     @Override
     public ResultObject getRecordList(PageData pd) {
-
+        logger.info("获取记录列表");
         String pageNum = pd.get("pageNum").toString();
         Integer totalRecord =markExpressMapper.getRecordListCount(pd);
         Page page =new Page(Integer.valueOf(pageNum),totalRecord,Constant.COMMON.PAGESIZE);
@@ -61,6 +63,7 @@ public class MarkExpressServiceImpl implements MarkExpressService {
 
     @Override
     public ResultObject tagExpressType(PageData pd) {
+        logger.info("快递打标记");
         String trace_num = pd.get("trace_num").toString();
         String member_id = pd.get("member_id").toString();
         ExpressRecord exp =new ExpressRecord();
@@ -68,8 +71,10 @@ public class MarkExpressServiceImpl implements MarkExpressService {
         exp.setTrace_num(trace_num);
         ExpressRecord expRecord=markExpressMapper.getExpressInfo(exp);
         if(null !=expRecord) {
+            logger.info("已有快递单号打标记");
             markExpressMapper.tagExpressType(pd);
         }else{
+            logger.info("添加新的快递标记信息");
             markExpressMapper.addTagExpressType(pd);
         }
         return ResultObject.success(null);
