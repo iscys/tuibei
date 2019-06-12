@@ -27,6 +27,10 @@ public class MarkExpressController extends BaseController {
     @PostMapping("/list")
     public ResultObject recordList(){
         PageData pd = this.getPageData();
+        Object member_id = pd.get("member_id");
+        if(StringUtils.isEmpty(member_id)){
+            return ResultObject.build(Constant.MEMBER_NULL,Constant.MEMBER_NULL_MESSAGE,null);
+        }
         String pageNum = pd.getString("pageNum");
         if(StringUtils.isEmpty(pageNum)||pageNum.equals("0")){
             pageNum ="1";
