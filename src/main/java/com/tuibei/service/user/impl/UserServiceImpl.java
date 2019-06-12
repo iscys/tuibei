@@ -127,6 +127,7 @@ public class UserServiceImpl implements UserService {
         if(null==userInfo){
             return ResultObject.build(Constant.VALIDATE_MEMBER_ERROR_CODE,Constant.VALIDATE_MEMBER_ERROR_CODE_MESSAGE,null);
         }
+        userInfo.setPassword("***********");
         return ResultObject.success(userInfo);
     }
 
