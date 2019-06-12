@@ -161,7 +161,7 @@ public class UserServiceImpl implements UserService {
         }
         userMapper.modifyUser(user);
 
-        return null;
+        return ResultObject.success(null);
     }
 
 
