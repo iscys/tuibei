@@ -44,6 +44,10 @@ public class Constant {
     public static final String EXPIRE_PHONE_CODE_MESSAGE ="无效手机验证码";
     public static final String VALIDATE_MEMBER_ERROR_CODE ="2015";
     public static final String VALIDATE_MEMBER_ERROR_CODE_MESSAGE ="用户名或者密码错误";
+    public static final String OPERATION_TYPE_NULL ="2016";
+    public static final String OPERATION_TYPE_NULL_MESSAGE ="请选择需要进行操作";
+    public static final String SHIP_CODE_NULL ="2017";
+    public static final String SHIP_CODE_NULL_MESSAGE ="快递编码为空";
     /**
      * URL常量
      */

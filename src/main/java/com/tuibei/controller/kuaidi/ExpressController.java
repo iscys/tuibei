@@ -52,6 +52,11 @@ public class ExpressController {
             return ResultObject.build(Constant.MEMBER_NULL,Constant.MEMBER_NULL_MESSAGE,null);
         }
         String trackNum = trackInfo.getTraceNum();
+        String ship_code = trackInfo.getShip_code();
+        if(StringUtils.isEmpty(ship_code)){
+            logger.error("快递编码为空");
+            return ResultObject.build(Constant.SHIP_CODE_NULL,Constant.SHIP_CODE_NULL_MESSAGE,null);
+        }
         if(StringUtils.isEmpty(trackNum)){
             logger.error("快递单号为空");
             return ResultObject.build(Constant.TRACE_NUM_NULL,Constant.TRACE_NUM_NULL_MESSAGE,null);

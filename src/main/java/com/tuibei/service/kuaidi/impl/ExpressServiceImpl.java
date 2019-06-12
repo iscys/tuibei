@@ -99,7 +99,7 @@ public class ExpressServiceImpl implements ExpressService {
         commonDetail.setMember_id(trackInfo.getMember_id());
         String traceNum =trackInfo.getTraceNum();
         //获取单号运营商信息
-        String shipperCode = trackInfo.getCode();
+        String shipperCode = trackInfo.getShip_code();
         commonDetail.setTraceNum(traceNum);
         if(null==expressRecord) {
             commonDetail.setTime(DateUtils.stableTime());
