@@ -72,14 +72,7 @@ public class MarkExpressServiceImpl implements MarkExpressService {
         }else{
             markExpressMapper.addTagExpressType(pd);
         }
-        return null;
+        return ResultObject.success(null);
     }
 
-    public MarkExpressMapper getMarkExpressMapper() {
-        return markExpressMapper;
-    }
-
-    public void setMarkExpressMapper(MarkExpressMapper markExpressMapper) {
-        this.markExpressMapper = markExpressMapper;
-    }
 }
