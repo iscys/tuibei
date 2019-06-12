@@ -22,6 +22,9 @@
         <if test="password !=null  and password != '' ">
             and password=#{password}
         </if>
+        <if test="member_id !=null  and member_id != '' ">
+            and member_id=#{member_id}
+        </if>
         limit 1
     </select>
 
