@@ -35,4 +35,16 @@ public class MarkExpressController extends BaseController {
         return result;
     }
 
+    /**
+     * 标记快递状态
+     * @return
+     */
+    @PostMapping("/tag")
+    public ResultObject tag(){
+        PageData pd = this.getPageData();
+        ResultObject result = markService.tagExpressType(pd);
+        return result;
+    }
+
+
 }

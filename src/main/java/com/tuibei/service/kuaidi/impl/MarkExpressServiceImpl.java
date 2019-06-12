@@ -58,4 +58,28 @@ public class MarkExpressServiceImpl implements MarkExpressService {
 
         return ResultObject.success(res);
     }
+
+    @Override
+    public ResultObject tagExpressType(PageData pd) {
+        String trace_num = pd.get("trace_num").toString();
+        String member_id = pd.get("member_id").toString();
+        ExpressRecord exp =new ExpressRecord();
+        exp.setMember_id(member_id);
+        exp.setTrace_num(trace_num);
+        ExpressRecord expRecord=markExpressMapper.getExpressInfo(exp);
+        if(null !=expRecord) {
+            markExpressMapper.tagExpressType(pd);
+        }else{
+            markExpressMapper.addTagExpressType(pd);
+        }
+        return null;
+    }
+
+    public MarkExpressMapper getMarkExpressMapper() {
+        return markExpressMapper;
+    }
+
+    public void setMarkExpressMapper(MarkExpressMapper markExpressMapper) {
+        this.markExpressMapper = markExpressMapper;
+    }
 }

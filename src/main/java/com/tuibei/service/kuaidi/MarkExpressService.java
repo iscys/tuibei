@@ -9,4 +9,6 @@ import java.util.HashMap;
 
 public interface MarkExpressService {
     ResultObject getRecordList(PageData pd);
+
+    ResultObject tagExpressType(PageData pd);
 }
