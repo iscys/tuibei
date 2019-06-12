@@ -15,5 +15,5 @@ public class ExpressRecord implements Serializable {
     private String remark;
     private String ship_code;
     private String operator;
-
+    private String img;
 }
