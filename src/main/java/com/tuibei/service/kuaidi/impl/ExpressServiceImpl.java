@@ -83,6 +83,7 @@ public class ExpressServiceImpl implements ExpressService {
      */
     @Override
     public ResultObject traceDetail(TraceInfo trackInfo) throws Exception {
+        logger.info("用户：{} 查询单号：{} 的物流信息",trackInfo.getMember_id(),trackInfo.getTraceNum());
         KuaidiCommonExtend commonDetail =new KuaidiCommonExtend();
         ExpressRecord record =new ExpressRecord();
         record.setMember_id(trackInfo.getMember_id());
