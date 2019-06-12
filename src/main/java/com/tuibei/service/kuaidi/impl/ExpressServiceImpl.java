@@ -64,7 +64,7 @@ public class ExpressServiceImpl implements ExpressService {
             //return ResultObject.build(Constant.TRACK_NUM_ERROR,Constant.TRACK_NUM_ERROR_MESSAGE,commonDetail);
             commonDetail.setShip_code(Constant.COMMON.UNKNOW);//未知
             commonDetail.setOperator(Constant.COMMON.UNKNOW);//未知
-            return ResultObject.success(commonDetail);
+            return ResultObject.build(Constant.TRACK_NUM_ERROR,Constant.TRACK_NUM_ERROR_MESSAGE,commonDetail);
         }
         //快递公司code
         String shipperCode = kdnTraceScan.getShippers().get(0).getShipperCode();
