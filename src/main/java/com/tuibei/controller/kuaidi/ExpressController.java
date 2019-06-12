@@ -67,7 +67,7 @@ public class ExpressController {
             logger.error("快递单号为空");
             return ResultObject.build(Constant.TRACE_NUM_NULL,Constant.TRACE_NUM_NULL_MESSAGE,null);
         }
-        logger.info("开始查询快递单号为：{} 的信息",trackNum);
+        logger.info("开始查询快递单号为：{} 的物流信息",trackNum);
         try {
             ResultObject result = express.traceDetail(trackInfo);
             return  result;
