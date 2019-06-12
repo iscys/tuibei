@@ -14,8 +14,8 @@
     <if test="member_id !=null  and member_id != '' ">
         and member_id=#{member_id}
     </if>
-        <if test="trace_num !=null  and trace_num != '' ">
-            and trace_num=#{trace_num}
+        <if test="traceNum !=null  and traceNum != '' ">
+            and trace_num=#{traceNum}
         </if>
         limit 1
     </select>
