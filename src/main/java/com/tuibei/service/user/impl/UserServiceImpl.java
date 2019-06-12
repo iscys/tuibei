@@ -93,7 +93,14 @@ public class UserServiceImpl implements UserService {
         }
          String openid = wxsmallInfo.getOpenid();
          String unionid = wxsmallInfo.getUnionid();
-
+         User openidExist =new User();
+         openidExist.setOpenid(openid);
+         User isOpenidExist=userMapper.getUserInfo(openidExist);
+         openidExist =null;
+        if(null!=isOpenidExist){
+            logger.error("用户openid ：{} 已经被注册" ,openid);
+            return ResultObject.build(Constant.PHONE_EXIST,Constant.PHONE_EXIST_MESSAGE,null);
+        }
         user.setOpenid(openid);
         user.setUnionid(StringUtils.isEmpty(unionid)?"":unionid);
 
