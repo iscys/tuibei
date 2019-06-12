@@ -6,7 +6,7 @@
 
     <select id="getExpressRecord" parameterType="com.tuibei.model.ExpressRecord" resultType="com.tuibei.model.ExpressRecord">
 
-    select id ,member_id,trace_num,operation_time,operation_type,
+    select id ,member_id,trace_num as traceNum,operation_time,operation_type,
     remark,ship_code
     from
     sdb_tuibei_kuaidi_record

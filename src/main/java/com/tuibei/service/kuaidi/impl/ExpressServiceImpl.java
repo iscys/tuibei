@@ -87,7 +87,7 @@ public class ExpressServiceImpl implements ExpressService {
         KuaidiCommonExtend commonDetail =new KuaidiCommonExtend();
         ExpressRecord record =new ExpressRecord();
         record.setMember_id(trackInfo.getMember_id());
-        record.setTrace_num(trackInfo.getTraceNum());
+        record.setTraceNum(trackInfo.getTraceNum());
         commonDetail.setOperator(trackInfo.getOperator());
         ExpressRecord expressRecord=expressMapper.getExpressRecord(record);
         record=null;

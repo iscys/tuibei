@@ -34,7 +34,7 @@
     select count(1)
     from (
 
-        select id ,member_id,trace_num,operation_time,operation_type,
+        select id ,member_id,trace_num as traceNum,operation_time,operation_type,
         remark,ship_code
         from
         sdb_tuibei_kuaidi_record
@@ -56,7 +56,7 @@
 
     <select id="getRecordList" parameterType="java.util.HashMap" resultType="com.tuibei.model.ExpressRecord">
 
-    select id ,member_id,trace_num,operation_time,operation_type,
+    select id ,member_id,trace_num as traceNum,operation_time,operation_type,
     remark,ship_code,operator
     from
     sdb_tuibei_kuaidi_record
@@ -64,8 +64,8 @@
         <if test="member_id !=null  and member_id != '' ">
             and member_id=#{member_id}
         </if>
-        <if test="trace_num !=null  and trace_num != '' ">
-            and trace_num=#{trace_num}
+        <if test="traceNum !=null  and traceNum != '' ">
+            and trace_num=#{traceNum}
         </if>
 
         <if test="operation_type !=null  and operation_type != '' ">
@@ -77,7 +77,7 @@
 
 
     <select id="getExpressInfo" parameterType="com.tuibei.model.ExpressRecord" resultType="com.tuibei.model.ExpressRecord">
-         select id ,member_id,trace_num,operation_time,operation_type,
+         select id ,member_id,trace_num as traceNum,operation_time,operation_type,
         remark,ship_code
         from
         sdb_tuibei_kuaidi_record
@@ -85,20 +85,20 @@
         <if test="member_id !=null  and member_id != '' ">
             and member_id=#{member_id}
         </if>
-        <if test="trace_num !=null  and trace_num != '' ">
-            and trace_num=#{trace_num}
+        <if test="traceNum !=null  and traceNum != '' ">
+            and trace_num=#{traceNum}
         </if>
         limit 1
     </select>
 
-    <insert id="addTagExpressType" parameterType="com.tuibei.model.ExpressRecord">
+    <insert id="addTagExpressType" parameterType="java.util.Map">
         insert into
         sdb_tuibei_kuaidi_record
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="member_id != null  and member_id != '' ">
                 member_id,
             </if>
-            <if test="trace_num != null  and trace_num != '' ">
+            <if test="traceNum != null  and traceNum != '' ">
                 trace_num,
             </if>
             <if test="operation_type != null  and operation_type != '' ">
@@ -119,8 +119,8 @@
             <if test="member_id != null  and member_id != '' ">
                 #{member_id},
             </if>
-            <if test="trace_num != null  and trace_num != '' ">
-                #{trace_num},
+            <if test="traceNum != null  and traceNum != '' ">
+                #{traceNum},
             </if>
             <if test="operation_type != null  and operation_type != '' ">
                 #{operation_type},
@@ -137,7 +137,7 @@
         </trim>
     </insert>
 
-    <update id="tagExpressType"  parameterType="com.tuibei.model.ExpressRecord">
+    <update id="tagExpressType"  parameterType="java.util.Map">
         update
         sdb_tuibei_kuaidi_record
         <trim prefix="SET"  suffixOverrides=",">
@@ -150,7 +150,7 @@
             </if>
         </trim>
         where member_id=#{member_id}
-        and trace_num=#{trace_num}
+        and trace_num=#{traceNum}
 
     </update>
 
