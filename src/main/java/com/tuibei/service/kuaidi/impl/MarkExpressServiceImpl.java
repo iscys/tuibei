@@ -1,6 +1,7 @@
 package com.tuibei.service.kuaidi.impl;
 
 import com.tuibei.mapper.kuaidi.MarkExpressMapper;
+import com.tuibei.mapper.user.UserMapper;
 import com.tuibei.model.ExpressRecord;
 import com.tuibei.model.constant.Constant;
 import com.tuibei.model.user.User;
@@ -25,6 +26,8 @@ public class MarkExpressServiceImpl implements MarkExpressService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private MarkExpressMapper markExpressMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      * 记录列表
@@ -66,6 +69,12 @@ public class MarkExpressServiceImpl implements MarkExpressService {
         logger.info("快递打标记");
         String trace_num = pd.get("trace_num").toString();
         String member_id = pd.get("member_id").toString();
+        User user =new User();
+        user.setMember_id(member_id);
+        User userInfo = userMapper.getUserInfo(user);
+        if(null==userInfo){
+            return ResultObject.build(Constant.MEMBER_XXX_NULL,Constant.MEMBER_XXX_NULL_MESSAGE,null);
+        }
         ExpressRecord exp =new ExpressRecord();
         exp.setMember_id(member_id);
         exp.setTrace_num(trace_num);
