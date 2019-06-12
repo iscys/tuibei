@@ -67,7 +67,7 @@ public class MarkExpressServiceImpl implements MarkExpressService {
     @Override
     public ResultObject tagExpressType(PageData pd) {
         logger.info("快递打标记");
-        String trace_num = pd.get("trace_num").toString();
+        String trace_num = pd.get("traceNum").toString();
         String member_id = pd.get("member_id").toString();
         User user =new User();
         user.setMember_id(member_id);
@@ -77,7 +77,7 @@ public class MarkExpressServiceImpl implements MarkExpressService {
         }
         ExpressRecord exp =new ExpressRecord();
         exp.setMember_id(member_id);
-        exp.setTrace_num(trace_num);
+        exp.setTraceNum(trace_num);
         ExpressRecord expRecord=markExpressMapper.getExpressInfo(exp);
         if(null !=expRecord) {
             logger.info("已有快递单号打标记");

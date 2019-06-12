@@ -46,7 +46,7 @@ public class MarkExpressController extends BaseController {
         PageData pd = this.getPageData();
         Object member_id = pd.get("member_id");
         Object operation_type = pd.get("operation_type");
-        Object trace_num = pd.get("trace_num");
+        Object trace_num = pd.get("traceNum");
         Object ship_code = pd.get("ship_code");
         Object operator = pd.get("operator");
         if(StringUtils.isEmpty(member_id)){

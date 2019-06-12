@@ -9,7 +9,7 @@ public class ExpressRecord implements Serializable {
 
 
     private String member_id;
-    private String trace_num;
+    private String traceNum;
     private String operation_time;
     private Integer operation_type;
     private String remark;
