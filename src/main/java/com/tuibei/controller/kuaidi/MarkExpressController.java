@@ -47,6 +47,8 @@ public class MarkExpressController extends BaseController {
         Object member_id = pd.get("member_id");
         Object operation_type = pd.get("operation_type");
         Object trace_num = pd.get("trace_num");
+        Object ship_code = pd.get("ship_code");
+        Object operator = pd.get("operator");
         if(StringUtils.isEmpty(member_id)){
             return ResultObject.build(Constant.MEMBER_NULL,Constant.MEMBER_NULL_MESSAGE,null);
         }
@@ -55,6 +57,12 @@ public class MarkExpressController extends BaseController {
         }
         if(StringUtils.isEmpty(trace_num)){
             return ResultObject.build(Constant.TRACE_NUM_NULL,Constant.TRACE_NUM_NULL_MESSAGE,null);
+        }
+        if(StringUtils.isEmpty(ship_code)){
+            return ResultObject.build(Constant.SHIP_CODE_NULL,Constant.SHIP_CODE_NULL_MESSAGE,null);
+        }
+        if(StringUtils.isEmpty(operator)){
+            return ResultObject.build(Constant.SHIP_OPERATOR_NULL,Constant.SHIP_OPERATOR_NULL_MESSAGE,null);
         }
         ResultObject result = markService.tagExpressType(pd);
         return result;
