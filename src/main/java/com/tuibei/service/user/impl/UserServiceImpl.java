@@ -147,7 +147,8 @@ public class UserServiceImpl implements UserService {
             logger.error("用户手机 ：{} 尚未被注册" ,user.getPhone());
             return ResultObject.build(Constant.MEMBER_XXX_NULL,Constant.MEMBER_XXX_NULL_MESSAGE,null);
         }
-
+        checkUser=null;
+        isExist=null;
         //step 3: 验证手机验证码
         Integer phone_code = Integer.valueOf(user.getPhone_code());
         PhoneCode phone =new PhoneCode();
@@ -158,6 +159,7 @@ public class UserServiceImpl implements UserService {
             logger.warn("无效手机验证码：{}",user.getPhone());
             return ResultObject.build(Constant.EXPIRE_PHONE_CODE,Constant.EXPIRE_PHONE_CODE_MESSAGE,null);
         }
+        userMapper.modifyUser(user);
 
         return null;
     }

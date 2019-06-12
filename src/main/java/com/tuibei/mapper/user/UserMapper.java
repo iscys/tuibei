@@ -8,4 +8,6 @@ public interface UserMapper {
     void saveNewUser(User user);
 
     void saveInitVipInfo(User user);
+
+    void modifyUser(User user);
 }

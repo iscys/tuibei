@@ -147,4 +147,32 @@
 
     </insert>
 
+
+    <update id="modifyUser" parameterType="com.tuibei.model.user.User">
+        update
+        sdb_tuibei_user
+        <trim prefix="SET"  suffixOverrides=",">
+
+            <if test="password != null  and password != '' ">
+                password=  #{password},
+            </if>
+            <if test="nickname != null  and nickname != '' ">
+                nickname= #{nickname},
+            </if>
+            <if test="headimgurl != null  and headimgurl != '' ">
+                headimgurl= #{headimgurl},
+            </if>
+            <if test="sex != null  and sex != '' ">
+                sex= #{sex},
+            </if>
+        </trim>
+        where 1=1
+        <if test="member_id != null  and member_id != '' ">
+            and member_id=#{member_id}
+        </if>
+        <if test="phone != null  and phone != '' ">
+            and phone=#{phone}
+        </if>
+    </update>
+
 </mapper>
