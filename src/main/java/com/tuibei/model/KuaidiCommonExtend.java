@@ -12,4 +12,5 @@ public class KuaidiCommonExtend extends KuaidiCommonTemplateDetail {
     private String member_id;//操作人ID
 
     private String remark;
+
 }

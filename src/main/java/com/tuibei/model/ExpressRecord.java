@@ -14,6 +14,6 @@ public class ExpressRecord implements Serializable {
     private Integer operation_type;
     private String remark;
     private String ship_code;
-    private String shiper;
+    private String operator;
 
 }
