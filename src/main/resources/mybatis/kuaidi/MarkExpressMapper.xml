@@ -57,7 +57,7 @@
     <select id="getRecordList" parameterType="java.util.HashMap" resultType="com.tuibei.model.ExpressRecord">
 
     select id ,member_id,trace_num,operation_time,operation_type,
-    remark,ship_code
+    remark,ship_code,operator
     from
     sdb_tuibei_kuaidi_record
     where 1=1
@@ -110,6 +110,9 @@
             <if test="ship_code != null  and ship_code != '' ">
                 ship_code,
             </if>
+            <if test="operator != null  and operator != '' ">
+                operator,
+            </if>
 
         </trim>
         <trim prefix="values(" suffix=")"  suffixOverrides=",">
@@ -127,6 +130,9 @@
             </if>
             <if test="ship_code != null  and ship_code != '' ">
                 #{ship_code},
+            </if>
+            <if test="operator != null  and operator != '' ">
+                #{operator},
             </if>
         </trim>
     </insert>
