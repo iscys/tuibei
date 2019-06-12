@@ -87,6 +87,7 @@ public class ExpressServiceImpl implements ExpressService {
         ExpressRecord record =new ExpressRecord();
         record.setMember_id(trackInfo.getMember_id());
         record.setTrace_num(trackInfo.getTraceNum());
+        commonDetail.setOperator(trackInfo.getOperator());
         ExpressRecord expressRecord=expressMapper.getExpressRecord(record);
         record=null;
         if(null!=expressRecord){
