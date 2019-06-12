@@ -24,6 +24,7 @@ public class KuaidiCommonTemplateDetail implements Serializable {
     private String traceNum;//快递单号
     private String ship_code;//公司code
     private String time;//查询时间
+    private String img;//快递图片
 
 
 
