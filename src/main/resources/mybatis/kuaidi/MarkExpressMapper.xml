@@ -131,4 +131,21 @@
         </trim>
     </insert>
 
+    <update id="tagExpressType"  parameterType="com.tuibei.model.ExpressRecord">
+        update
+        sdb_tuibei_kuaidi_record
+        <trim prefix="SET"  suffixOverrides=",">
+
+            <if test="operation_type != null  and operation_type != '' ">
+                operation_type=  #{operation_type},
+            </if>
+            <if test="remark != null  and remark != '' ">
+                remark= #{remark},
+            </if>
+        </trim>
+        where member_id=#{member_id}
+        and trace_num=#{trace_num}
+
+    </update>
+
 </mapper>
