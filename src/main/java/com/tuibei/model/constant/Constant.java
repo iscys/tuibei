@@ -48,11 +48,11 @@ public class Constant {
     public static final String OPERATION_TYPE_NULL ="2016";
     public static final String OPERATION_TYPE_NULL_MESSAGE ="请选择需要进行操作";
     public static final String SHIP_CODE_NULL ="2017";
-    public static final String SHIP_CODE_NULL_MESSAGE ="快递编码为空";
+    public static final String SHIP_CODE_NULL_MESSAGE ="快递编码不能为空";
     public static final String SHIP_OPERATOR_NULL ="2017";
-    public static final String SHIP_OPERATOR_NULL_MESSAGE ="快递公司为空";
+    public static final String SHIP_OPERATOR_NULL_MESSAGE ="快递公司不能为空";
     public static final String FEED_BACK_NULL ="2018";
-    public static final String FEED_BACK_NULL_MESSAGE ="反馈不能为空";
+    public static final String FEED_BACK_NULL_MESSAGE ="反馈信息不能为空";
     /**
      * URL常量
      */
