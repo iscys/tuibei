@@ -165,6 +165,9 @@
             <if test="sex != null  and sex != '' ">
                 sex= #{sex},
             </if>
+            <if test="username != null  and username != '' ">
+                username= #{username},
+            </if>
         </trim>
         where 1=1
         <if test="member_id != null  and member_id != '' ">
