@@ -16,6 +16,17 @@ public class DateUtils {
         String result = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(timestamp * 1000));
         return result;
     }
+
+    /**
+     * 时间戳转YYYY/MM/DD HH:MI
+     * 10位
+     * @return
+     */
+    public static  String secondamp2shortDate(long timestamp){
+
+        String result = new SimpleDateFormat("yyyy/MM/dd HH:mm").format(new Date(timestamp * 1000));
+        return result;
+    }
     /**
      * 时间戳转YYYY-MM-DD HH:MI:SS
      * 13位
@@ -123,5 +134,9 @@ public class DateUtils {
     }
 
 
-
+    public static void main(String[] args) {
+        String timeInSecond = DateUtils.getTimeInSecond();
+        System.out.println(timeInSecond);
+        System.out.println(secondamp2shortDate(Long.valueOf(timeInSecond)));
+    }
 }

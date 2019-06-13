@@ -114,11 +114,14 @@ public class UserServiceImpl implements UserService {
         user.setTime(DateUtils.getTimeInSecond());
         user.setNickname(Constant.COMMON.DEFAAULTNICKNAME);//使用默认昵称
         user.setHeadimgurl(Constant.COMMON.DEFAAUL_HEADIMGURL);//使用默认头像
-        user.setVip_expire_time(DateUtils.getTimeInSecond());
+        String timeInSecond = DateUtils.getTimeInSecond();
+        String shortTimeStr = DateUtils.secondamp2shortDate(Long.valueOf(timeInSecond));
+        user.setVip_expire_time(timeInSecond);
         userMapper.saveNewUser(user);//保存新用户
         userMapper.saveInitVipInfo(user);//保存新用户vip 初始化信息
         logger.info("用户member_id：{} 注册成功",user.getMember_id());
         user.setPassword("************");
+        user.setVip_expire_time(shortTimeStr);
         return ResultObject.success(user);
     }
 
