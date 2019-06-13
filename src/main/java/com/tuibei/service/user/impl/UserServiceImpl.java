@@ -140,6 +140,7 @@ public class UserServiceImpl implements UserService {
         if(null==userInfo){
             return ResultObject.build(Constant.VALIDATE_MEMBER_ERROR_CODE,Constant.VALIDATE_MEMBER_ERROR_CODE_MESSAGE,null);
         }
+        logger.info("得到账号：{} 信息：{}",user.getPhone(),userInfo.toString());
         userInfo.setPassword("***********");
         logger.info("获取账号：{} vip信息",user.getPhone());
         VipModel vip=userMapper.getVipInfo(userInfo);
