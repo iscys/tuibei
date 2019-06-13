@@ -82,4 +82,7 @@ public class ToolsUtils {
 
     }
 
+    public static void main(String[] args) {
+        System.out.println(ToolsUtils.getMD5String("123456"));
+    }
 }

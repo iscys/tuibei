@@ -7,6 +7,7 @@ import com.tuibei.mapper.user.UserMapper;
 import com.tuibei.model.constant.Constant;
 import com.tuibei.model.sms.PhoneCode;
 import com.tuibei.model.user.User;
+import com.tuibei.model.user.VipModel;
 import com.tuibei.service.user.UserService;
 import com.tuibei.utils.DateUtils;
 import com.tuibei.utils.ResultObject;
@@ -140,6 +141,10 @@ public class UserServiceImpl implements UserService {
             return ResultObject.build(Constant.VALIDATE_MEMBER_ERROR_CODE,Constant.VALIDATE_MEMBER_ERROR_CODE_MESSAGE,null);
         }
         userInfo.setPassword("***********");
+        VipModel vip=userMapper.getVipInfo(userInfo);
+        userInfo.setLevel_id(vip.getLevel_id());
+        userInfo.setVip_expire_time(vip.getVip_expire_time());
+        userInfo.setAccount(vip.getAccount());
         return ResultObject.success(userInfo);
     }
 

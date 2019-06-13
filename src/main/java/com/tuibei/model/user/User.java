@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
 @Data
 @ToString
 public class User implements Serializable {
@@ -47,5 +49,6 @@ public class User implements Serializable {
     private String time;
     //vip 失效时间
     private  String vip_expire_time;
-
+    //账户余额
+    private BigDecimal account=new BigDecimal(0.00);
 }

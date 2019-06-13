@@ -148,6 +148,17 @@
     </insert>
 
 
+    <select id="getVipInfo" parameterType="com.tuibei.model.user.User" resultType="com.tuibei.model.user.VipModel">
+    select FROM_UNIXTIME(vip_expire_time,'%Y/%m/%d %H:%i') as vip_expire_time,
+    level_id, use_free,update_time,account
+     from sdb_tuibei_user_vip
+     where 1=1
+        <if test="member_id != null  and member_id != '' ">
+            and member_id= #{member_id}
+        </if>
+    </select>
+
+
     <update id="modifyUser" parameterType="com.tuibei.model.user.User">
         update
         sdb_tuibei_user

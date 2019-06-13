@@ -1,6 +1,7 @@
 package com.tuibei.mapper.user;
 
 import com.tuibei.model.user.User;
+import com.tuibei.model.user.VipModel;
 
 public interface UserMapper {
     User getUserInfo(User invit);
@@ -10,4 +11,6 @@ public interface UserMapper {
     void saveInitVipInfo(User user);
 
     void modifyUser(User user);
+
+    VipModel getVipInfo(User userInfo);
 }
