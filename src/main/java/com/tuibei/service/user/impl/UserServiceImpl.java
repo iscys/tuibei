@@ -161,10 +161,13 @@ public class UserServiceImpl implements UserService {
             logger.warn("无效手机验证码：{}",user.getPhone());
             return ResultObject.build(Constant.EXPIRE_PHONE_CODE,Constant.EXPIRE_PHONE_CODE_MESSAGE,null);
         }
+        user.setPassword(ToolsUtils.getMD5String(user.getPassword()));
         userMapper.modifyUser(user);
 
         return ResultObject.success(null);
     }
+
+
 
 
 }
