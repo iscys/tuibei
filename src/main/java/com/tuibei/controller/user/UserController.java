@@ -78,7 +78,13 @@ public class UserController {
 
     }
 
-    @PostMapping("/modify")
+    /**
+     *修改用户密码
+     * --使用验证码
+     * @param user
+     * @return
+     */
+    @PostMapping("/modifyPassword")
     public ResultObject modify(User user){
         if(StringUtils.isEmpty(user.getPhone())){
             return  ResultObject.build(Constant.PHONE_NULL,Constant.PHONE_NULL_MESSAGE,null);
@@ -95,6 +101,36 @@ public class UserController {
 
         try{
             ResultObject result = userService.toModify(user);
+            return result;
+
+        }catch(Exception e){
+            logger.error("登录异常：{}" ,e.getMessage());
+            return ResultObject.error(null);
+        }
+
+    }
+
+    /**
+     * 修改用户个人资料信息
+     * @param user
+     * @return
+     */
+    @PostMapping("/modifySelf")
+    public ResultObject modifySelf(User user){
+
+
+        if(StringUtils.isEmpty(user.getMember_id())){
+            return  ResultObject.build(Constant.MEMBER_NULL,Constant.MEMBER_NULL_MESSAGE,null);
+        }
+        if(StringUtils.isEmpty(user.getNickname())){
+            return  ResultObject.build(Constant.MEMBER_NICKNAME_NULL,Constant.MEMBER_NICKNAME_NULL_MESSAGE,null);
+        }
+        if(StringUtils.isEmpty(user.getHeadimgurl())){
+            return  ResultObject.build(Constant.MEMBER_HEADIMGURL_NULL,Constant.MEMBER_HEADIMGURL_NULL_MESSAGE,null);
+        }
+
+        try{
+            ResultObject result = userService.toModifySelf(user);
             return result;
 
         }catch(Exception e){

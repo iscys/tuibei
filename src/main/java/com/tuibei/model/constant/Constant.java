@@ -15,6 +15,11 @@ public class Constant {
     public static final String TRACK_TRACES_ERROR ="1003";
     public static final String TRACK_TRACES_ERROR_MESSAGE ="查询不到快递物流信息";
 
+
+    public static final String MEMBER_HEADIMGURL_NULL ="1997";
+    public static final String MEMBER_HEADIMGURL_NULL_MESSAGE ="用户头像不能为空";
+    public static final String MEMBER_NICKNAME_NULL ="1998";
+    public static final String MEMBER_NICKNAME_NULL_MESSAGE ="用户昵称不能为空";
     public static final String MEMBER_XXX_NULL ="1999";
     public static final String MEMBER_XXX_NULL_MESSAGE ="无效的用户";
     public static final String MEMBER_NULL ="2000";

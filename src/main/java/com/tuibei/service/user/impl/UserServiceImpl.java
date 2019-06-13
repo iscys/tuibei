@@ -167,7 +167,12 @@ public class UserServiceImpl implements UserService {
         return ResultObject.success(null);
     }
 
+    @Override
+    public ResultObject toModifySelf(User user) throws Exception {
 
+        userMapper.modifyUser(user);
+        return ResultObject.success(null);
+    }
 
 
 }

@@ -9,4 +9,6 @@ public interface UserService {
     ResultObject toLogin(User user)throws Exception;
 
     ResultObject toModify(User user) throws Exception;
+
+    ResultObject toModifySelf(User user) throws Exception;
 }
