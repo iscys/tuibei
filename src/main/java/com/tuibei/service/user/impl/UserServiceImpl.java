@@ -113,6 +113,7 @@ public class UserServiceImpl implements UserService {
         user.setMember_id(ToolsUtils.idGenerate());
         user.setTime(DateUtils.getTimeInSecond());
         user.setNickname(Constant.COMMON.DEFAAULTNICKNAME);//使用默认昵称
+        user.setHeadimgurl(Constant.COMMON.DEFAAUL_HEADIMGURL);//使用默认头像
         user.setVip_expire_time(DateUtils.getTimeInSecond());
         userMapper.saveNewUser(user);//保存新用户
         userMapper.saveInitVipInfo(user);//保存新用户vip 初始化信息
