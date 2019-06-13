@@ -34,7 +34,9 @@
     select count(1)
     from (
 
-        select id ,member_id,trace_num as traceNum,operation_time,operation_type,
+        select id ,member_id,
+        trace_num as traceNum,
+        operation_type,
         remark,ship_code
         from
         sdb_tuibei_kuaidi_record
@@ -56,7 +58,9 @@
 
     <select id="getRecordList" parameterType="java.util.HashMap" resultType="com.tuibei.model.ExpressRecord">
 
-    select id ,member_id,trace_num as traceNum,operation_time,operation_type,
+    select id ,member_id,trace_num as traceNum,
+    date_format(operation_time,'%Y-%m-%d %H:%i:%s') as operation_time,
+    operation_type,
     remark,ship_code,operator
     from
     sdb_tuibei_kuaidi_record
@@ -71,7 +75,7 @@
         <if test="operation_type !=null  and operation_type != '' ">
             and operation_type=#{operation_type}
         </if>
-
+        order by operation_time desc
       limit #{startIndex},#{pageSize}
     </select>
 
