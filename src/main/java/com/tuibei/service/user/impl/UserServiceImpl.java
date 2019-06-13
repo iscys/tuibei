@@ -141,10 +141,12 @@ public class UserServiceImpl implements UserService {
             return ResultObject.build(Constant.VALIDATE_MEMBER_ERROR_CODE,Constant.VALIDATE_MEMBER_ERROR_CODE_MESSAGE,null);
         }
         userInfo.setPassword("***********");
+        logger.info("获取账号：{} vip信息",user.getPhone());
         VipModel vip=userMapper.getVipInfo(userInfo);
         userInfo.setLevel_id(vip.getLevel_id());
         userInfo.setVip_expire_time(vip.getVip_expire_time());
         userInfo.setAccount(vip.getAccount());
+        logger.info("得到账号：{} vip信息：{}",user.getPhone(),vip.toString());
         return ResultObject.success(userInfo);
     }
 
