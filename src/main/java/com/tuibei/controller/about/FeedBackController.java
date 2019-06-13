@@ -30,7 +30,7 @@ public class FeedBackController extends BaseController {
         if(StringUtils.isEmpty(feedback.getFeedback())){
             return ResultObject.build(Constant.FEED_BACK_NULL,Constant.FEED_BACK_NULL_MESSAGE,null);
         }
-        logger.info("开始保存用户：{}反馈信息",feedback.getMember_id());
+        logger.info("开始保存用户：{}反馈feedback信息",feedback.getMember_id());
 
         return feedBackService.saveFeedBack(feedback);
     }
