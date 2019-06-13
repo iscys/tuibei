@@ -51,4 +51,5 @@ public class User implements Serializable {
     private  String vip_expire_time;
     //账户余额
     private BigDecimal account=new BigDecimal(0.00);
+
 }
