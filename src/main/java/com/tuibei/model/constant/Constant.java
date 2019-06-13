@@ -84,6 +84,7 @@ public class Constant {
 
     public static class COMMON{
         public static final String UNKNOW ="UNKNOW";
+        public static final String DEFAAULTNICKNAME ="退呗科技";
         public static final Integer PAGESIZE=20;
         public static final List<String> TYPES= Arrays.asList(new String[]{"0","1","2","3"});
     }

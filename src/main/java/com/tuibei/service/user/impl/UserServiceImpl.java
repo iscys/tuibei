@@ -112,6 +112,7 @@ public class UserServiceImpl implements UserService {
         //用户member_id
         user.setMember_id(ToolsUtils.idGenerate());
         user.setTime(DateUtils.getTimeInSecond());
+        user.setNickname(Constant.COMMON.DEFAAULTNICKNAME);//使用默认昵称
         user.setVip_expire_time(DateUtils.getTimeInSecond());
         userMapper.saveNewUser(user);//保存新用户
         userMapper.saveInitVipInfo(user);//保存新用户vip 初始化信息
@@ -128,7 +129,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public ResultObject toLogin(User user) throws Exception {
-        
+        logger.info("用户手机：{} 开始进行登录",user.getPhone());
         user.setPassword(ToolsUtils.getMD5String(user.getPassword()));
         User userInfo = userMapper.getUserInfo(user);
         if(null==userInfo){
