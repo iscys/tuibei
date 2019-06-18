@@ -26,7 +26,7 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping("/regist")
+    @PostMapping("/regist")
     public ResultObject registry(User user,HttpServletRequest request){
 
         String ip= ToolsUtils.getClientIp(request);
