@@ -9,6 +9,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -32,6 +33,7 @@ public class KuaidiCommonTemplateDetail implements Serializable {
         this.traces =new ArrayList<KuaidiCommonTemplate>();
         List<KDNTraces> kdnTraces = kdnTracesDetail.getTraces();
         if(!CollectionUtils.isEmpty(kdnTraces)){
+            Collections.reverse(kdnTraces);
             for(KDNTraces trace :kdnTraces){
                 KuaidiCommonTemplate tem =new KuaidiCommonTemplate();
                 tem.setAccept_location(trace.getAcceptStation());
