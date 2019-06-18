@@ -76,28 +76,29 @@ public class MarkExpressServiceImpl implements MarkExpressService {
         logger.info("快递打标记");
         String trace_num = pd.get("traceNum").toString();
         String member_id = pd.get("member_id").toString();
-        User user =new User();
+        User user = new User();
         user.setMember_id(member_id);
         User userInfo = userMapper.getUserInfo(user);
-        if(null==userInfo){
-            return ResultObject.build(Constant.MEMBER_XXX_NULL,Constant.MEMBER_XXX_NULL_MESSAGE,null);
+        if (null == userInfo) {
+            return ResultObject.build(Constant.MEMBER_XXX_NULL, Constant.MEMBER_XXX_NULL_MESSAGE, null);
         }
-        ExpressRecord exp =new ExpressRecord();
+        ExpressRecord exp = new ExpressRecord();
         exp.setTraceNum(trace_num);
-        ExpressRecord expRecord=markExpressMapper.getExpressInfo(exp);
-        exp=null;
-        if(null !=expRecord) {
-            String leader =expRecord.getMember_id();
-            logger.info("判断快递单号所属人：{}与目前操作人：{}是否一致 {}",leader,member_id,leader.equals(member_id));
-            if(!leader.equals(member_id)){
-                return ResultObject.build(Constant.NO_AUTH_NULL,Constant.NO_AUTH_NULL_MESSAGE,null);
+        synchronized (this) {
+            ExpressRecord expRecord = markExpressMapper.getExpressInfo(exp);
+            exp = null;
+            if (null != expRecord) {
+                String leader = expRecord.getMember_id();
+                logger.info("判断快递单号所属人：{}与目前操作人：{}是否一致 {}", leader, member_id, leader.equals(member_id));
+                if (!leader.equals(member_id)) {
+                    return ResultObject.build(Constant.NO_AUTH_NULL, Constant.NO_AUTH_NULL_MESSAGE, null);
+                }
+                markExpressMapper.tagExpressType(pd);
+            } else {
+                logger.info("添加新的快递标记信息");
+                markExpressMapper.addTagExpressType(pd);
             }
-            markExpressMapper.tagExpressType(pd);
-        }else{
-            logger.info("添加新的快递标记信息");
-            markExpressMapper.addTagExpressType(pd);
+            return ResultObject.success(null);
         }
-        return ResultObject.success(null);
     }
-
 }
