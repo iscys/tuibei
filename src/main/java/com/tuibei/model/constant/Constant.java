@@ -93,7 +93,7 @@ public class Constant {
         public static final String DOMAIN="https://tuibei.alexpy.cn";
         public static final String UNKNOW ="UNKNOW";
         public static final String DEFAAULTNICKNAME ="退呗科技";
-        public static final String DEFAAUL_HEADIMGURL =DOMAIN+"";
+        public static final String DEFAAUL_HEADIMGURL =DOMAIN+"/imgs/defaultHeadImg.jpg";
         public static final Integer PAGESIZE=20;
         public static final List<String> TYPES= Arrays.asList(new String[]{"0","1","2","3"});
     }
