@@ -90,15 +90,16 @@ public class ExpressServiceImpl implements ExpressService {
         record.setTraceNum(trackInfo.getTraceNum());
         commonDetail.setOperator(trackInfo.getOperator());
         ExpressRecord expressRecord=expressMapper.getExpressRecord(record);
+        commonDetail.setMember_id(trackInfo.getMember_id());
         record=null;
         if(null!=expressRecord){
             commonDetail.setOperation_type(expressRecord.getOperation_type());
             commonDetail.setTime(expressRecord.getOperation_time());
             commonDetail.setRemark(expressRecord.getRemark());
+            commonDetail.setMember_id(expressRecord.getMember_id());
         }
 
 
-        commonDetail.setMember_id(trackInfo.getMember_id());
         String traceNum =trackInfo.getTraceNum();
         //获取单号运营商信息
         String shipperCode = trackInfo.getShip_code();
