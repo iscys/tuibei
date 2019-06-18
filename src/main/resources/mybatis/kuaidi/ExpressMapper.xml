@@ -11,9 +11,6 @@
     from
     sdb_tuibei_kuaidi_record
     where 1=1
-    <if test="member_id !=null  and member_id != '' ">
-        and member_id=#{member_id}
-    </if>
         <if test="traceNum !=null  and traceNum != '' ">
             and trace_num=#{traceNum}
         </if>
