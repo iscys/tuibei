@@ -65,6 +65,12 @@ public class MarkExpressServiceImpl implements MarkExpressService {
         return ResultObject.success(res);
     }
 
+    /**
+     * 快递标签
+     * 1.一个快递单号只可以归属一个人，其他人无权操作，只可以进行查看
+     * @param pd
+     * @return
+     */
     @Override
     public ResultObject tagExpressType(PageData pd) {
         logger.info("快递打标记");
@@ -77,11 +83,15 @@ public class MarkExpressServiceImpl implements MarkExpressService {
             return ResultObject.build(Constant.MEMBER_XXX_NULL,Constant.MEMBER_XXX_NULL_MESSAGE,null);
         }
         ExpressRecord exp =new ExpressRecord();
-        exp.setMember_id(member_id);
         exp.setTraceNum(trace_num);
         ExpressRecord expRecord=markExpressMapper.getExpressInfo(exp);
+        exp=null;
         if(null !=expRecord) {
-            logger.info("已有快递单号打标记");
+            String leader =expRecord.getMember_id();
+            logger.info("判断快递单号所属人：{}与目前操作人：{}是否一致 {}",leader,member_id,leader.equals(member_id));
+            if(!leader.equals(member_id)){
+                return ResultObject.build(Constant.NO_AUTH_NULL,Constant.NO_AUTH_NULL_MESSAGE,null);
+            }
             markExpressMapper.tagExpressType(pd);
         }else{
             logger.info("添加新的快递标记信息");

@@ -61,6 +61,8 @@ public class Constant {
     public static final String SHIP_OPERATOR_NULL_MESSAGE ="快递公司不能为空";
     public static final String FEED_BACK_NULL ="2018";
     public static final String FEED_BACK_NULL_MESSAGE ="反馈信息不能为空";
+    public static final String NO_AUTH_NULL ="2019";
+    public static final String NO_AUTH_NULL_MESSAGE ="没有权限操作";
     /**
      * URL常量
      */
