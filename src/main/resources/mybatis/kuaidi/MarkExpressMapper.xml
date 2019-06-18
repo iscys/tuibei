@@ -12,6 +12,9 @@
        select  DATE_FORMAT(operation_time,'%Y-%m')
        as time from sdb_tuibei_kuaidi_record
        where member_id=#{member_id}
+        <if test="operation_type !=null  and operation_type != '' ">
+            and operation_type=#{operation_type}
+        </if>
         )a
       where a.time =#{month}
     </select>
@@ -23,6 +26,9 @@
        select  DATE_FORMAT(operation_time,'%Y-%m-%d')
        as time from sdb_tuibei_kuaidi_record
        where member_id=#{member_id}
+        <if test="operation_type !=null  and operation_type != '' ">
+            and operation_type=#{operation_type}
+        </if>
         )a
       where a.time =#{day}
     </select>
