@@ -73,6 +73,12 @@
             <if test="time != null  and time != '' ">
                 time,
             </if>
+            <if test="last_ip != null  and last_ip != '' ">
+                last_ip,
+            </if>
+            <if test="last_login != null  and last_login != '' ">
+                last_login,
+            </if>
         </trim>
 
         <trim prefix="values(" suffix=")"  suffixOverrides=",">
@@ -112,6 +118,12 @@
             </if>
             <if test="time != null  and time != '' ">
                 #{time},
+            </if>
+            <if test="last_ip != null  and last_ip != '' ">
+                #{last_ip},
+            </if>
+            <if test="last_login != null  and last_login != '' ">
+                #{last_login},
             </if>
 
         </trim>
@@ -178,6 +190,12 @@
             </if>
             <if test="username != null  and username != '' ">
                 username= #{username},
+            </if>
+            <if test="last_ip != null  and last_ip != '' ">
+                last_ip= #{last_ip},
+            </if>
+            <if test="last_login != null  and last_login != '' ">
+                last_login= #{last_login},
             </if>
         </trim>
         where 1=1

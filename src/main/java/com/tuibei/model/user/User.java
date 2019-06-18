@@ -51,5 +51,9 @@ public class User implements Serializable {
     private  String vip_expire_time;
     //账户余额
     private BigDecimal account=new BigDecimal(0.00);
+    //用户最后一次登录的ip
+    private String last_ip;
+    //用户最后一次登录时间
+    private String last_login;
 
 }

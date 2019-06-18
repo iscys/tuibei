@@ -9,10 +9,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 
 @RestController
@@ -24,9 +26,12 @@ public class UserController {
     private UserService userService;
 
 
-    @PostMapping("/regist")
-    public ResultObject registry(User user){
+    @GetMapping("/regist")
+    public ResultObject registry(User user,HttpServletRequest request){
 
+        String ip= ToolsUtils.getClientIp(request);
+        logger.info("用户ip 为：{}" ,ip);
+        user.setLast_ip(ip);
         if(StringUtils.isEmpty(user.getPhone())){
           return  ResultObject.build(Constant.PHONE_NULL,Constant.PHONE_NULL_MESSAGE,null);
         }
@@ -58,7 +63,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResultObject login(User user){
+    public ResultObject login(User user,HttpServletRequest request){
+        String ip= ToolsUtils.getClientIp(request);
+        logger.info("用户ip 为：{}" ,ip);
+        user.setLast_ip(ip);
         if(StringUtils.isEmpty(user.getPhone())){
             return  ResultObject.build(Constant.PHONE_NULL,Constant.PHONE_NULL_MESSAGE,null);
         }

@@ -118,6 +118,7 @@ public class UserServiceImpl implements UserService {
         String timeInSecond = DateUtils.getTimeInSecond();
         String shortTimeStr = DateUtils.secondamp2shortDate(Long.valueOf(timeInSecond));
         user.setVip_expire_time(timeInSecond);
+        user.setLast_login(DateUtils.getTimeInSecond());
         userMapper.saveNewUser(user);//保存新用户
         userMapper.saveInitVipInfo(user);//保存新用户vip 初始化信息
         logger.info("用户member_id：{} 注册成功",user.getMember_id());
@@ -148,6 +149,8 @@ public class UserServiceImpl implements UserService {
         userInfo.setVip_expire_time(vip.getVip_expire_time());
         userInfo.setAccount(vip.getAccount());
         logger.info("得到账号：{} vip信息：{}",user.getPhone(),vip.toString());
+        user.setLast_login(DateUtils.getTimeInSecond());
+        userMapper.modifyUser(user);
         return ResultObject.success(userInfo);
     }
 
