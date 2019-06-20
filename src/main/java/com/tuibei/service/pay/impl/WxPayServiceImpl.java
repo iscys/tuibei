@@ -1,5 +1,6 @@
 package com.tuibei.service.pay.impl;
 
+import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
 import com.github.binarywang.wxpay.bean.request.BaseWxPayRequest;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
@@ -9,6 +10,7 @@ import com.tuibei.mapper.user.UserMapper;
 import com.tuibei.model.constant.Constant;
 import com.tuibei.model.order.Order;
 import com.tuibei.model.user.User;
+import com.tuibei.model.user.VipModel;
 import com.tuibei.service.pay.WxPayService;
 import com.tuibei.utils.DateUtils;
 import com.tuibei.utils.ResultObject;
@@ -76,6 +78,53 @@ public class WxPayServiceImpl implements WxPayService {
             return ResultObject.build(Constant.WX_PAY_EXCEPTION,Constant.WX_PAY_EXCEPTION_MESSAGE,e.getMessage());
         }
         return ResultObject.success(wxPackage);
+
+    }
+
+    @Override
+    public void payNotify(WxPayOrderNotifyResult notifyResult) {
+
+        String outTradeNo = notifyResult.getOutTradeNo();
+        Integer wxFee = notifyResult.getTotalFee();
+        Order order =new Order();
+        order.setOrder_sn(outTradeNo);
+        Order orderInfo = orderMapper.getOrderInfo(order);
+        if(null==orderInfo) return;
+        String price = orderInfo.getPrice();
+        Integer dbFee = BaseWxPayRequest.yuanToFen(price);
+        if(wxFee.equals(dbFee)){
+            //更新订单
+            order.setStatus(1);
+            order.setPay_time(DateUtils.getTimeInSecond_long());
+
+
+            //更新用户vip 信息
+            String member_id = orderInfo.getMember_id();
+            User user =new User();
+            user.setMember_id(member_id);
+            VipModel vipInfo = userMapper.getVipInfo(user);
+            long vip_expire_time = Long.valueOf(vipInfo.getVip_expire_time());
+            long current_time =DateUtils.getTimeInSecond_long();
+            long exp;
+            long addTime=0;
+            if(orderInfo.getGoods_id().equals("1")){
+                user.setLevel_id("1");
+                addTime=30*24*60*60;
+            }else if(orderInfo.getGoods_id().equals("2")){
+                user.setLevel_id("2");
+                addTime=365*24*60*60;
+            }else{
+                user.setLevel_id("0");
+            }
+
+            if(vip_expire_time<current_time){
+                exp=current_time+addTime;
+            }else{
+                exp =vip_expire_time+addTime;
+            }
+            user.setVip_expire_time(String.valueOf(exp));
+            userMapper.updateVipInfo(user);
+        }
 
     }
 }
