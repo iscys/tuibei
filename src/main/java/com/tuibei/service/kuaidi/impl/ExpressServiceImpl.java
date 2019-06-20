@@ -47,7 +47,7 @@ public class ExpressServiceImpl implements ExpressService {
     @Override
     public ResultObject orderScan(TraceInfo trackInfo)throws Exception {
         try {
-            //计入统计redis,不影响业务执行
+            //计入统计redis,不影响业务执行 redis  setnx 不存在插入的操作
             template.opsForValue().setIfAbsent(Constant.COMMON.TBKJSUMSCANORDER, "0");
             template.opsForValue().increment(Constant.COMMON.TBKJSUMSCANORDER);
         }catch (Exception e){
