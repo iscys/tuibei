@@ -85,6 +85,8 @@ public class Constant {
     public static final String ORDER_NULL_MESSAGE ="订单为空";
     public static final String WX_PAY_EXCEPTION ="4003";
     public static final String WX_PAY_EXCEPTION_MESSAGE ="微信下单异常";
+    public static final String WX_PAY_TYPE_NULL ="4004";
+    public static final String WX_PAY_TYPE_NULL_MESSAGE ="微信支付类型不能为空";
 
     /**
      * URL常量

@@ -35,6 +35,9 @@ private com.github.binarywang.wxpay.service.WxPayService wxPayService;
         if(StringUtils.isEmpty(order.getOrder_sn())){
             return ResultObject.build(Constant.ORDER_NULL,Constant.ORDER_NULL_MESSAGE,null);
         }
+        if(StringUtils.isEmpty(order.getPay_type())){
+            return ResultObject.build(Constant.WX_PAY_TYPE_NULL,Constant.WX_PAY_TYPE_NULL_MESSAGE,null);
+        }
         String clientIp = ToolsUtils.getClientIp(request);
         order.setClientIp(clientIp);
         try {

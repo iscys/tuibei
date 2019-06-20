@@ -60,7 +60,9 @@ public class WxPayServiceImpl implements WxPayService {
 
         WxPayUnifiedOrderRequest payOrder =new WxPayUnifiedOrderRequest();
         payOrder.setSpbillCreateIp(order.getClientIp());
-        payOrder.setTradeType(WxPayConstants.TradeType.JSAPI);//小程序公众号支付
+        if(order.getPay_type().equals("1")) {
+            payOrder.setTradeType(WxPayConstants.TradeType.JSAPI);//小程序公众号支付
+        }
         payOrder.setOutTradeNo(order.getOrder_sn());
         payOrder.setOpenid(openid);
         payOrder.setNotifyUrl(Constant.COMMON.DOMAIN+"/pay/notify");

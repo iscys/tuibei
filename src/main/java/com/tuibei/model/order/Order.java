@@ -25,5 +25,6 @@ public class Order {
    private String is_account;//是否使用余额支付，Y是 N否',
    private int origin;
    private String clientIp;//支付ip
+    private String pay_type;//支付类型 1 jsapi 2 app 3 h5 4 扫码
 
 }
