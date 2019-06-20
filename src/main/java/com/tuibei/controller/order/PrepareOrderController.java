@@ -71,6 +71,7 @@ public class PrepareOrderController {
             ResultObject result = prepare.freeDay(user);
             return result;
         }catch (Exception e){
+            logger.error("用户：{}使用免费次数异常：{}",member_id,e.getMessage());
             return ResultObject.error(null);
         }
 
