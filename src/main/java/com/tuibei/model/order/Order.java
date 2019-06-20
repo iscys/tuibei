@@ -6,15 +6,16 @@ import lombok.ToString;
 @Data
 @ToString
 public class Order {
+    private long id;
     private String member_id;//用户ID
     private String order_sn;//订单号
-    private int goods_id;//商品ID
+    private String goods_id;//商品ID
     private String account;//余额
     private String price;
     private int  status;
     private String remarks;
    private long time;//下单时间
-   private String  goods_num;//商品数量
+   private int  goods_num=1;//商品数量
    private String goods_name;//商品名
    private long pay_time;//支付时间
    private long confirm_time;//确认时间

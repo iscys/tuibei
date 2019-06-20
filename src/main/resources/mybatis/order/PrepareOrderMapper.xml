@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tuibei.mapper.order.PrepareOrderMapper">
+
+
+
+    <insert id="saveOrder" parameterType="com.tuibei.model.order.Order">
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert  into
+        sdb_tuibei_order
+        <trim prefix="(" suffix=")"  suffixOverrides=",">
+
+            <if test="member_id != null  and member_id != '' ">
+                member_id,
+            </if>
+            <if test="order_sn != null  and order_sn != '' ">
+                order_sn,
+            </if>
+            <if test="goods_id != null  and goods_id != '' ">
+                goods_id,
+            </if>
+            <if test="account != null  and account != '' ">
+                account,
+            </if>
+            <if test="price != null  and price != '' ">
+                price,
+            </if>
+            <if test="status != null  and status != '' ">
+                status,
+            </if>
+            <if test="remarks != null  and remarks != '' ">
+                remarks,
+            </if>
+            <if test="time != null  and time != '' ">
+                time,
+            </if>
+            <if test="goods_num != null  and goods_num != '' ">
+                goods_num,
+            </if>
+            <if test="goods_name != null  and goods_name != '' ">
+                goods_name,
+            </if>
+            <if test="pay_time != null  and pay_time != '' ">
+                pay_time,
+            </if>
+            <if test="confirm_time != null  and confirm_time != '' ">
+                confirm_time,
+            </if>
+            <if test="refund_time != null  and refund_time != '' ">
+                refund_time,
+            </if>
+            <if test="cancel_time != null  and cancel_time != '' ">
+                cancel_time,
+            </if>
+            <if test="pay_method != null  and pay_method != '' ">
+                pay_method,
+            </if>
+            <if test="origin != null  and origin != '' ">
+                origin,
+            </if>
+        </trim>
+
+        <trim prefix="values(" suffix=")"  suffixOverrides=",">
+
+
+            <if test="member_id != null  and member_id != '' ">
+                #{member_id},
+            </if>
+            <if test="order_sn != null  and order_sn != '' ">
+                #{order_sn},
+            </if>
+            <if test="goods_id != null  and goods_id != '' ">
+                #{goods_id},
+            </if>
+            <if test="account != null  and account != '' ">
+                #{account},
+            </if>
+            <if test="price != null  and price != '' ">
+                #{price},
+            </if>
+            <if test="status != null  and status != '' ">
+                #{status},
+            </if>
+            <if test="remarks != null  and remarks != '' ">
+                #{remarks},
+            </if>
+            <if test="time != null  and time != '' ">
+                #{time},
+            </if>
+            <if test="goods_num != null  and goods_num != '' ">
+                #{goods_num},
+            </if>
+            <if test="goods_name != null  and goods_name != '' ">
+                #{goods_name},
+            </if>
+            <if test="pay_time != null  and pay_time != '' ">
+                #{pay_time},
+            </if>
+            <if test="confirm_time != null  and confirm_time != '' ">
+                #{confirm_time},
+            </if>
+            <if test="refund_time != null  and refund_time != '' ">
+                #{refund_time},
+            </if>
+            <if test="cancel_time != null  and cancel_time != '' ">
+                #{cancel_time},
+            </if>
+            <if test="pay_method != null  and pay_method != '' ">
+                #{pay_method},
+            </if>
+            <if test="origin != null  and origin != '' ">
+                #{origin},
+            </if>
+
+        </trim>
+
+
+    </insert>
+
+
+    <select id="getOrderInfo" parameterType="com.tuibei.model.order.Order" resultType="com.tuibei.model.order.Order">
+    select *
+     from sdb_tuibei_order
+     where 1=1
+        <if test="member_id != null  and member_id != '' ">
+            and member_id= #{member_id}
+        </if>
+        <if test="order_sn != null  and order_sn != '' ">
+            and order_sn= #{order_sn}
+        </if>
+    </select>
+
+
+    <update id="updateOrder" parameterType="com.tuibei.model.user.User">
+        update
+        sdb_tuibei_user
+        <trim prefix="SET"  suffixOverrides=",">
+
+            <if test="password != null  and password != '' ">
+                password=  #{password},
+            </if>
+            <if test="nickname != null  and nickname != '' ">
+                nickname= #{nickname},
+            </if>
+            <if test="headimgurl != null  and headimgurl != '' ">
+                headimgurl= #{headimgurl},
+            </if>
+            <if test="sex != null  and sex != '' ">
+                sex= #{sex},
+            </if>
+            <if test="username != null  and username != '' ">
+                username= #{username},
+            </if>
+            <if test="last_ip != null  and last_ip != '' ">
+                last_ip= #{last_ip},
+            </if>
+            <if test="last_login != null  and last_login != '' ">
+                last_login= #{last_login},
+            </if>
+        </trim>
+        where 1=1
+        <if test="member_id != null  and member_id != '' ">
+            and member_id=#{member_id}
+        </if>
+        <if test="phone != null  and phone != '' ">
+            and phone=#{phone}
+        </if>
+    </update>
+
+</mapper>

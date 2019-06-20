@@ -22,7 +22,7 @@ public class WxsmallPayConfig {
      * 微信小程序服务支付
      */
     @Bean
-    public WxPayService miniProgram(){
+    public WxPayService wxpay(){
         WxPayConfig payConfig = new WxPayConfig();
         payConfig.setAppId(appid);
         payConfig.setMchId(mchId);

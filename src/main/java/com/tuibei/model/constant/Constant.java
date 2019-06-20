@@ -63,6 +63,19 @@ public class Constant {
     public static final String FEED_BACK_NULL_MESSAGE ="反馈信息不能为空";
     public static final String NO_AUTH_NULL ="2019";
     public static final String NO_AUTH_NULL_MESSAGE ="没有权限操作";
+
+
+
+
+    public static final String GOODS_PRICE_NULL ="3000";
+    public static final String GOODS_PRICE_NULL_MESSAGE ="商品价钱不能为空";
+    public static final String GOODS_PRICE__ERROR ="3001";
+    public static final String GOODS_PRICE__ERROR_MESSAGE ="商品价钱错误";
+    public static final String GOODS_ID_NULL ="3002";
+    public static final String GOODS_ID_NULL_MESSAGE ="商品ID 不能为空";
+
+
+
     /**
      * URL常量
      */
