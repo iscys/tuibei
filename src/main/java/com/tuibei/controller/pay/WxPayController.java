@@ -3,6 +3,7 @@ package com.tuibei.controller.pay;
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.config.WxPayConfig;
+import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.impl.WxPayServiceImpl;
 import com.tuibei.model.constant.Constant;
 import com.tuibei.model.order.Order;
@@ -52,12 +53,29 @@ private com.github.binarywang.wxpay.service.WxPayService wxPayService;
     }
 
     @PostMapping("/notify")
-    public String notify(@RequestBody String xmlData) throws Exception{
+    public String notify(@RequestBody String xmlData) {
 
         logger.info("时间：{}接收到微信支付回调通知", DateUtils.stableTime());
-        WxPayOrderNotifyResult notifyResult = wxPayService.parseOrderNotifyResult(xmlData);
-        logger.info("处理微信回调,订单号:{} ",notifyResult.getOutTradeNo());
-        return "SUCCESS";
+        WxPayOrderNotifyResult notifyResult =null;
+        try {
+            notifyResult= wxPayService.parseOrderNotifyResult(xmlData);
+        }catch (WxPayException py){
+            logger.error("接收微信回调错误：{}",py.getMessage());
+            return returnXML("FAIL");
+        }
+
+        logger.info("开始处理微信回调,订单号:{} ",notifyResult.getOutTradeNo());
+
+        return returnXML(notifyResult.getResultCode());
+    }
+
+    private String returnXML(String return_code) {
+
+        return "<xml><return_code><![CDATA["
+
+                + return_code
+
+                + "]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>";
     }
 
 
