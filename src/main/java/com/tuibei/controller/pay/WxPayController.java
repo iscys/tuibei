@@ -60,11 +60,12 @@ private com.github.binarywang.wxpay.service.WxPayService wxPayService;
         try {
             notifyResult= wxPayService.parseOrderNotifyResult(xmlData);
         }catch (WxPayException py){
-            logger.error("接收微信回调错误：{}",py.getMessage());
+            logger.error("签名错误：{}",py.getMessage());
             return returnXML("FAIL");
         }
 
         logger.info("开始处理微信回调,订单号:{} ",notifyResult.getOutTradeNo());
+        payService.payNotify(notifyResult);
 
         return returnXML(notifyResult.getResultCode());
     }
