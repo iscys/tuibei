@@ -54,7 +54,6 @@ public class ExpressServiceImpl implements ExpressService {
             template.opsForValue().setIfAbsent(Constant.COMMON.TBKJSUMSCANORDER, "0");
             template.opsForValue().increment(Constant.COMMON.TBKJSUMSCANORDER);
             String result = template.opsForValue().get(traceNum);
-            System.out.println(result);
             if(StringUtils.isNotEmpty(result)) {
                 logger.info("redis 里获取数据缓存：{}",result);
                 KuaidiCommonTemplateDetail commonDetail = GsonUtils.fromJson(result, KuaidiCommonTemplateDetail.class);
