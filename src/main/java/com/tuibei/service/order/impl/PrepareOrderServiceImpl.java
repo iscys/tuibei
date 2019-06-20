@@ -11,12 +11,16 @@ import com.tuibei.service.order.PrepareOrderService;
 import com.tuibei.utils.DateUtils;
 import com.tuibei.utils.ResultObject;
 import com.tuibei.utils.ToolsUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PrepareOrderServiceImpl implements PrepareOrderService {
+
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private PrepareOrderMapper orderMapper;
@@ -72,9 +76,11 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
             return ResultObject.build(Constant.HAS_USE_FREE_DAY,Constant.HAS_USE_FREE_DAY_MESSAGE,null);
         }
         user.setUse_free(1);
-        long exp=DateUtils.getTimeInSecond_long()+7*24*60*60;
+        int freeDay=Constant.COMMON.FREEDAY;
+        long exp=DateUtils.getTimeInSecond_long()+freeDay*24*60*60;
         user.setVip_expire_time(String.valueOf(exp));
         userMapper.updateVipInfo(user);
+        logger.info("用户：{} 获取了免费使用天数，截止日期：{}",vipInfo.getMember_id(),exp);
         return ResultObject.success(null);
     }
 

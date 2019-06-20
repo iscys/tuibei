@@ -113,7 +113,7 @@ public class Constant {
     }
 
     public static class COMMON{
-
+        public static final Integer FREEDAY=7;
         public static final String TBKJSUMSCANORDER="TBKJ:SUMSCANORDER";
         public static final String DOMAIN="https://tuibei.alexpy.cn";
         public static final String UNKNOW ="UNKNOW";
