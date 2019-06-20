@@ -32,6 +32,7 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
         order.setOrder_sn(order_sn);
         order.setTime(time);
         order.setOrigin(1);//来自小程序的订单
+        order.setPay_method(1);
         order.setGoods_name("vip 充值");
         orderMapper.saveOrder(order);
         OrderVO retOrder =new OrderVO();
