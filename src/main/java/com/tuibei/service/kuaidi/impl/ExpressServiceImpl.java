@@ -12,6 +12,7 @@ import com.tuibei.utils.DateUtils;
 import com.tuibei.utils.GsonUtils;
 import com.tuibei.utils.KudiNiaoMD5Utils;
 import com.tuibei.utils.ResultObject;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class ExpressServiceImpl implements ExpressService {
@@ -46,15 +48,22 @@ public class ExpressServiceImpl implements ExpressService {
      */
     @Override
     public ResultObject orderScan(TraceInfo trackInfo)throws Exception {
+        String traceNum = trackInfo.getTraceNum();
         try {
             //计入统计redis,不影响业务执行 redis  setnx 不存在插入的操作
             template.opsForValue().setIfAbsent(Constant.COMMON.TBKJSUMSCANORDER, "0");
             template.opsForValue().increment(Constant.COMMON.TBKJSUMSCANORDER);
+            String result = template.opsForValue().get(traceNum);
+            if(StringUtils.isNotEmpty(result)) {
+                logger.info("redis 里获取数据缓存：{}",result);
+                KuaidiCommonTemplateDetail commonDetail = GsonUtils.fromJson(result, KuaidiCommonTemplateDetail.class);
+                return ResultObject.success(commonDetail);
+            }
+
         }catch (Exception e){
             logger.error("redis 错误：{}",e.getMessage());
         }
 
-        String traceNum = trackInfo.getTraceNum();
         logger.info("开始查询快递单号识别：{} ",traceNum);
         String requestData= "{'LogisticCode':'" + traceNum + "'}";
         HashMap<String, String> params = new HashMap<String, String>();
@@ -85,6 +94,11 @@ public class ExpressServiceImpl implements ExpressService {
         String shipperName = kdnTraceScan.getShippers().get(0).getShipperName();
         commonDetail.setShip_code(shipperCode);
         commonDetail.setOperator(shipperName);
+        try {
+            template.opsForValue().set(traceNum, GsonUtils.toJson(commonDetail), 6, TimeUnit.MINUTES);
+        }catch (Exception e){
+            logger.error("redis 错误：{}",e.getMessage());
+        }
         return ResultObject.success(commonDetail);
     }
 
