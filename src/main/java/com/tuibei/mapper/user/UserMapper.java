@@ -13,4 +13,6 @@ public interface UserMapper {
     void modifyUser(User user);
 
     VipModel getVipInfo(User userInfo);
+
+    void updateVipInfo(User user);
 }

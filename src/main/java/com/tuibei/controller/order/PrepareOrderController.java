@@ -2,6 +2,7 @@ package com.tuibei.controller.order;
 
 import com.tuibei.model.constant.Constant;
 import com.tuibei.model.order.Order;
+import com.tuibei.model.user.User;
 import com.tuibei.service.order.PrepareOrderService;
 import com.tuibei.utils.ResultObject;
 import org.slf4j.Logger;
@@ -47,6 +48,31 @@ public class PrepareOrderController {
     }catch (Exception e){
         return ResultObject.error(null);
     }
+
+    }
+
+    /**
+     * 新用户免费天数使用
+     * @param user
+     * @return
+     */
+
+    @PostMapping("/free")
+    public ResultObject prepareOrder(User user){
+        String member_id = user.getMember_id();
+
+        if(StringUtils.isEmpty(member_id)){
+            return ResultObject.build(Constant.MEMBER_XXX_NULL,Constant.MEMBER_XXX_NULL_MESSAGE,null);
+        }
+
+
+        try {
+
+            ResultObject result = prepare.freeDay(user);
+            return result;
+        }catch (Exception e){
+            return ResultObject.error(null);
+        }
 
     }
 }

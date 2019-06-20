@@ -63,7 +63,8 @@ public class Constant {
     public static final String FEED_BACK_NULL_MESSAGE ="反馈信息不能为空";
     public static final String NO_AUTH_NULL ="2019";
     public static final String NO_AUTH_NULL_MESSAGE ="没有权限操作";
-
+    public static final String HAS_USE_FREE_DAY ="2020";
+    public static final String HAS_USE_FREE_DAY_MESSAGE ="免费天数已经使用";
 
 
 
@@ -75,6 +76,15 @@ public class Constant {
     public static final String GOODS_ID_NULL_MESSAGE ="商品ID 不能为空";
 
 
+
+    public static final String ORDERINFO_NULL ="4000";
+    public static final String ORDERINFO_NULL_MESSAGE ="无此订单";
+    public static final String ORDER_STATUS_ERROR ="4001";
+    public static final String ORDER_STATUS_ERROR_MESSAGE ="订单状态错误";
+    public static final String ORDER_NULL ="4002";
+    public static final String ORDER_NULL_MESSAGE ="订单为空";
+    public static final String WX_PAY_EXCEPTION ="4003";
+    public static final String WX_PAY_EXCEPTION_MESSAGE ="微信下单异常";
 
     /**
      * URL常量
@@ -103,6 +113,8 @@ public class Constant {
     }
 
     public static class COMMON{
+
+        public static final String TBKJSUMSCANORDER="TBKJ:SUMSCANORDER";
         public static final String DOMAIN="https://tuibei.alexpy.cn";
         public static final String UNKNOW ="UNKNOW";
         public static final String DEFAAULTNICKNAME ="退呗科技";

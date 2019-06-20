@@ -148,6 +148,7 @@ public class UserServiceImpl implements UserService {
         userInfo.setLevel_id(vip.getLevel_id());
         userInfo.setVip_expire_time(vip.getVip_expire_time());
         userInfo.setAccount(vip.getAccount());
+        userInfo.setUse_free(vip.getUse_free());
         logger.info("得到账号：{} vip信息：{}",user.getPhone(),vip.toString());
         user.setLast_login(DateUtils.getTimeInSecond());
         userMapper.modifyUser(user);
