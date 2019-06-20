@@ -51,7 +51,7 @@ public class ExpressServiceImpl implements ExpressService {
             template.opsForValue().setIfAbsent(Constant.COMMON.TBKJSUMSCANORDER, "0");
             template.opsForValue().increment(Constant.COMMON.TBKJSUMSCANORDER);
         }catch (Exception e){
-            logger.error("redis 错误：{}",e.getLocalizedMessage());
+            logger.error("redis 错误：{}",e.getMessage());
         }
 
         String traceNum = trackInfo.getTraceNum();
