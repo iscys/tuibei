@@ -170,6 +170,22 @@
         </if>
     </select>
 
+    <update id="updateVipInfo" parameterType="com.tuibei.model.user.User">
+        update
+        sdb_tuibei_user_vip
+        <trim prefix="SET"  suffixOverrides=",">
+
+        <if test="use_free != null  and use_free != '' ">
+            use_free=  #{use_free},
+        </if>
+        <if test="vip_expire_time != null  and vip_expire_time != '' ">
+            vip_expire_time= #{vip_expire_time},
+        </if>
+        </trim>
+        where  member_id= #{member_id}
+
+    </update>
+
 
     <update id="modifyUser" parameterType="com.tuibei.model.user.User">
         update
