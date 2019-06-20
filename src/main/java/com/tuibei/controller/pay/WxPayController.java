@@ -4,6 +4,7 @@ import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.config.WxPayConfig;
 import com.github.binarywang.wxpay.service.WxPayService;
 import com.github.binarywang.wxpay.service.impl.WxPayServiceImpl;
+import com.tuibei.model.constant.Constant;
 import com.tuibei.model.order.Order;
 import com.tuibei.utils.ToolsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @RestController
 @RequestMapping("/wx")
@@ -25,10 +28,14 @@ private StringRedisTemplate template;
     @GetMapping("/pay")
     public String pay(Order order,HttpServletRequest request){
 
-        String clientIp = ToolsUtils.getClientIp(request);
 
-        template.opsForSet().add("1","1");
-        return "success";
+
+        String clientIp = ToolsUtils.getClientIp(request);
+        order.setClientIp(clientIp);
+
+        Boolean aBoolean = template.opsForValue().setIfAbsent(Constant.COMMON.TBKJSUMSCANORDER, "0");
+        System.out.println(aBoolean);
+        return  String.valueOf(template.opsForValue().increment(Constant.COMMON.TBKJSUMSCANORDER));
     }
 
 
