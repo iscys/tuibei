@@ -54,6 +54,7 @@ public class ExpressServiceImpl implements ExpressService {
             template.opsForValue().setIfAbsent(Constant.COMMON.TBKJSUMSCANORDER, "0");
             template.opsForValue().increment(Constant.COMMON.TBKJSUMSCANORDER);
             String result = template.opsForValue().get(traceNum);
+            System.out.println(result);
             if(StringUtils.isNotEmpty(result)) {
                 logger.info("redis 里获取数据缓存：{}",result);
                 KuaidiCommonTemplateDetail commonDetail = GsonUtils.fromJson(result, KuaidiCommonTemplateDetail.class);
@@ -95,6 +96,7 @@ public class ExpressServiceImpl implements ExpressService {
         commonDetail.setShip_code(shipperCode);
         commonDetail.setOperator(shipperName);
         try {
+            logger.info("快递数据存入redis 缓存中");
             template.opsForValue().set(traceNum, GsonUtils.toJson(commonDetail), 6, TimeUnit.MINUTES);
         }catch (Exception e){
             logger.error("redis 错误：{}",e.getMessage());
