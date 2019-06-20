@@ -24,5 +24,6 @@ public class Order {
    private int pay_method;// '支付方式   \n0：支付宝\n  1：微信  2：账户余额  3：西安银行',
    private String is_account;//是否使用余额支付，Y是 N否',
    private int origin;
+   private String clientIp;//支付ip
 
 }
