@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -33,6 +34,10 @@ public class ExpressServiceImpl implements ExpressService {
     @Value("${kuaidiniao.AppKey}")
     private String AppKey;
 
+
+    @Autowired
+    private StringRedisTemplate template;
+
     /**
      * 物流快递公司信息
      * @param trackInfo
@@ -41,6 +46,14 @@ public class ExpressServiceImpl implements ExpressService {
      */
     @Override
     public ResultObject orderScan(TraceInfo trackInfo)throws Exception {
+        try {
+            //计入统计redis,不影响业务执行
+            template.opsForValue().setIfAbsent(Constant.COMMON.TBKJSUMSCANORDER, "0");
+            template.opsForValue().increment(Constant.COMMON.TBKJSUMSCANORDER);
+        }catch (Exception e){
+            logger.error("redis 错误：{}",e.getLocalizedMessage());
+        }
+
         String traceNum = trackInfo.getTraceNum();
         logger.info("开始查询快递单号识别：{} ",traceNum);
         String requestData= "{'LogisticCode':'" + traceNum + "'}";
