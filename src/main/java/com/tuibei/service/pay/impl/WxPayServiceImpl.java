@@ -94,12 +94,13 @@ public class WxPayServiceImpl implements WxPayService {
         Integer dbFee = BaseWxPayRequest.yuanToFen(price);
         if(wxFee.equals(dbFee)){
             //更新订单
+            logger.info("更新订单:{}支付状态为：{}",outTradeNo,1);
             order.setStatus(1);
             order.setPay_time(DateUtils.getTimeInSecond_long());
-
-
+            orderMapper.updateOrder(order);
             //更新用户vip 信息
             String member_id = orderInfo.getMember_id();
+            logger.info("更新用户:{}vip等级过期时间",member_id);
             User user =new User();
             user.setMember_id(member_id);
             VipModel vipInfo = userMapper.getVipInfo(user);
