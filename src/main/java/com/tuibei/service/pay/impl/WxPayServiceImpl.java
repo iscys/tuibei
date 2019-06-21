@@ -82,7 +82,7 @@ public class WxPayServiceImpl implements WxPayService {
     }
 
     @Override
-    public void payNotify(WxPayOrderNotifyResult notifyResult) {
+    public void payNotify(WxPayOrderNotifyResult notifyResult)throws Exception {
 
         String outTradeNo = notifyResult.getOutTradeNo();
         Integer wxFee = notifyResult.getTotalFee();
@@ -124,6 +124,8 @@ public class WxPayServiceImpl implements WxPayService {
             }
             user.setVip_expire_time(String.valueOf(exp));
             userMapper.updateVipInfo(user);
+        }else{
+            logger.error("订单：{} 金额与数据库不一致",notifyResult.toString());
         }
 
     }

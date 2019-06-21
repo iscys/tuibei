@@ -7,5 +7,5 @@ import com.tuibei.utils.ResultObject;
 public interface WxPayService {
     ResultObject createPay(Order order) throws Exception;
 
-    void payNotify(WxPayOrderNotifyResult notifyResult);
+    void payNotify(WxPayOrderNotifyResult notifyResult)throws Exception;
 }
