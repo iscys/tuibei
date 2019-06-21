@@ -86,6 +86,12 @@ public class ExpressServiceImpl implements ExpressService {
             //return ResultObject.build(Constant.TRACK_NUM_ERROR,Constant.TRACK_NUM_ERROR_MESSAGE,commonDetail);
             commonDetail.setShip_code(Constant.COMMON.UNKNOW);//未知
             commonDetail.setOperator(Constant.COMMON.UNKNOW);//未知
+            try {
+                logger.info("快递数据存入redis 缓存中");
+                template.opsForValue().set(traceNum, GsonUtils.toJson(commonDetail), 6, TimeUnit.MINUTES);
+            }catch (Exception e){
+                logger.error("redis 错误：{}",e.getMessage());
+            }
             return ResultObject.build(Constant.TRACK_NUM_ERROR,Constant.TRACK_NUM_ERROR_MESSAGE,commonDetail);
         }
         //快递公司code
