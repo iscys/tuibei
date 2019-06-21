@@ -7,4 +7,6 @@ public interface PrepareOrderMapper {
 
     void saveOrder(Order order);
     Order getOrderInfo(Order order);
+
+    void updateOrder(Order order);
 }

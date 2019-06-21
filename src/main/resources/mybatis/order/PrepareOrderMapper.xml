@@ -133,40 +133,33 @@
     </select>
 
 
-    <update id="updateOrder" parameterType="com.tuibei.model.user.User">
+    <update id="updateOrder" parameterType="com.tuibei.model.order.Order">
         update
         sdb_tuibei_user
         <trim prefix="SET"  suffixOverrides=",">
 
-            <if test="password != null  and password != '' ">
-                password=  #{password},
+            <if test="status != null  and status != '' ">
+                status=  #{status},
             </if>
-            <if test="nickname != null  and nickname != '' ">
-                nickname= #{nickname},
+            <if test="pay_time != null  and pay_time != '' ">
+                pay_time= #{pay_time},
             </if>
-            <if test="headimgurl != null  and headimgurl != '' ">
-                headimgurl= #{headimgurl},
+            <if test="pay_method != null  and pay_method != '' ">
+                pay_method= #{pay_method},
             </if>
-            <if test="sex != null  and sex != '' ">
-                sex= #{sex},
+            <if test="refund_time != null  and refund_time != '' ">
+                refund_time= #{refund_time},
             </if>
-            <if test="username != null  and username != '' ">
-                username= #{username},
-            </if>
-            <if test="last_ip != null  and last_ip != '' ">
-                last_ip= #{last_ip},
-            </if>
-            <if test="last_login != null  and last_login != '' ">
-                last_login= #{last_login},
-            </if>
+
         </trim>
         where 1=1
         <if test="member_id != null  and member_id != '' ">
             and member_id=#{member_id}
         </if>
-        <if test="phone != null  and phone != '' ">
-            and phone=#{phone}
+        <if test="order_sn != null  and order_sn != '' ">
+            and order_sn=#{order_sn}
         </if>
     </update>
+
 
 </mapper>
