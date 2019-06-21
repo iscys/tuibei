@@ -3,6 +3,7 @@ package com.tuibei.controller.pay;
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.config.WxPayConfig;
+import com.github.binarywang.wxpay.constant.WxPayConstants;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.impl.WxPayServiceImpl;
 import com.tuibei.model.constant.Constant;
@@ -102,7 +103,7 @@ private com.github.binarywang.wxpay.service.WxPayService wxPayService;
         orderRequest.setNotifyUrl("https://admin.chaojibuyers.com/pay/notify");
         orderRequest.setTotalFee(1234);
         orderRequest.setSpbillCreateIp("114.116.8.180");
-        orderRequest.setTradeType("JSAPI");
+        orderRequest.setTradeType(WxPayConstants.TradeType.JSAPI);
         Object order = wxPayService.createOrder(orderRequest);
 
     }
