@@ -181,6 +181,9 @@
         <if test="vip_expire_time != null  and vip_expire_time != '' ">
             vip_expire_time= #{vip_expire_time},
         </if>
+            <if test="level_id != null  and level_id != '' ">
+                level_id= #{level_id},
+            </if>
         </trim>
         where  member_id= #{member_id}
 
