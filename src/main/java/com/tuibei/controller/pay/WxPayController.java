@@ -66,8 +66,11 @@ private com.github.binarywang.wxpay.service.WxPayService wxPayService;
         }
 
         logger.info("开始处理微信回调,订单号:{} ",notifyResult.getOutTradeNo());
-        payService.payNotify(notifyResult);
-
+        try {
+            payService.payNotify(notifyResult);
+        }catch (Exception e){
+            logger.error("处理回调异常：{},数据包：{}",e.getMessage(),xmlData);
+        }
         return returnXML(notifyResult.getResultCode());
     }
 
