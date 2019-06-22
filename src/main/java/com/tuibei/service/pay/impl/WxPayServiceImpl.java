@@ -98,6 +98,8 @@ public class WxPayServiceImpl implements WxPayService {
             order.setStatus(1);
             order.setPay_time(DateUtils.getTimeInSecond_long());
             orderMapper.updateOrder(order);
+
+            order=null;
             //更新用户vip 信息
             String member_id = orderInfo.getMember_id();
             logger.info("更新用户:{}vip等级过期时间",member_id);
