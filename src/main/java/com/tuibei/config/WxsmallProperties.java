@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = WxsmallProperties.WXSMALL_PREFIX)
 @Data
 public class WxsmallProperties {
-
+    /**
+     *
+     */
     public static final String WXSMALL_PREFIX = "wxsmall";
 
 
