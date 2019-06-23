@@ -87,7 +87,8 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
         }
         user.setVip_expire_time(String.valueOf(exp));
         userMapper.updateVipInfo(user);
-        logger.info("用户：{} 获取了免费使用天数，截止日期：{}",vipInfo.getMember_id(),exp);
+        logger.info("用户：{} 获取了免费使用天数，截止日期：{}",vipInfo.getMember_id(),DateUtils.secondamp2date(exp));
+        vipInfo=null;
         return ResultObject.success(null);
     }
 
