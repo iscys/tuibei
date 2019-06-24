@@ -71,9 +71,9 @@ public class WxPayServiceImpl implements WxPayService {
         payOrder.setOutTradeNo(order.getOrder_sn());
         payOrder.setOpenid(openid);
         payOrder.setNotifyUrl(Constant.COMMON.DOMAIN+"/wx/notify");
-        if(goods_id.equals(1)) {
+        if(goods_id.equals("1")) {
             payOrder.setBody("月卡");
-        }else if(goods_id.equals(2)){
+        }else if(goods_id.equals("2")){
             payOrder.setBody("年卡");
         }else{
             payOrder.setBody("vip 充值");
