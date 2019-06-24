@@ -73,10 +73,11 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
         }
 
         if(vipInfo.getUse_free()==1){
+            logger.warn("用户：{} 已经使用过了免费天数",user.getMember_id());
             return ResultObject.build(Constant.HAS_USE_FREE_DAY,Constant.HAS_USE_FREE_DAY_MESSAGE,null);
         }
         long exp;
-        long vip_expire_time = Long.valueOf(vipInfo.getVip_expire_time());
+        long vip_expire_time = vipInfo.getVip_expire_time_long();
         long current_time =DateUtils.getTimeInSecond_long();
         user.setUse_free(1);
         int freeDay=Constant.COMMON.FREEDAY;
@@ -87,7 +88,7 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
         }
         user.setVip_expire_time(String.valueOf(exp));
         userMapper.updateVipInfo(user);
-        logger.info("用户：{} 获取了免费使用天数，截止日期：{}",vipInfo.getMember_id(),DateUtils.secondamp2date(exp));
+        logger.info("用户：{} 获取了免费使用天数，截止日期：{}",user.getMember_id(),DateUtils.secondamp2date(exp));
         vipInfo=null;
         return ResultObject.success(null);
     }

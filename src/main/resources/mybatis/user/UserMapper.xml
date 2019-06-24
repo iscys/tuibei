@@ -161,7 +161,7 @@
 
 
     <select id="getVipInfo" parameterType="com.tuibei.model.user.User" resultType="com.tuibei.model.user.VipModel">
-    select FROM_UNIXTIME(vip_expire_time,'%Y/%m/%d %H:%i') as vip_expire_time,
+    select FROM_UNIXTIME(vip_expire_time,'%Y/%m/%d %H:%i') as vip_expire_time, vip_expire_time as vip_expire_time_long,
     level_id, use_free,update_time,account
      from sdb_tuibei_user_vip
      where 1=1

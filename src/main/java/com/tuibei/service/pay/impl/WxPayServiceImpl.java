@@ -18,8 +18,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class WxPayServiceImpl implements WxPayService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -58,6 +60,7 @@ public class WxPayServiceImpl implements WxPayService {
         user=null;
         String openid =userInfo.getOpenid();
         String order_sn = orderInfo.getOrder_sn();
+        String goods_id = orderInfo.getGoods_id();
         logger.info("订单：{} 开始组装微信支付信息",order_sn);
 
         WxPayUnifiedOrderRequest payOrder =new WxPayUnifiedOrderRequest();
@@ -67,8 +70,15 @@ public class WxPayServiceImpl implements WxPayService {
         }
         payOrder.setOutTradeNo(order.getOrder_sn());
         payOrder.setOpenid(openid);
-        payOrder.setNotifyUrl(Constant.COMMON.DOMAIN+"/pay/notify");
-        payOrder.setBody("vip 充值");
+        payOrder.setNotifyUrl(Constant.COMMON.DOMAIN+"/wx/notify");
+        if(goods_id.equals(1)) {
+            payOrder.setBody("月卡");
+        }else if(goods_id.equals(2)){
+            payOrder.setBody("年卡");
+        }else{
+            payOrder.setBody("vip 充值");
+        }
+        payOrder.setAttach(goods_id);
         payOrder.setTotalFee(BaseWxPayRequest.yuanToFen(orderInfo.getPrice()));
         Object wxPackage = null;
         try {
@@ -106,7 +116,7 @@ public class WxPayServiceImpl implements WxPayService {
             User user =new User();
             user.setMember_id(member_id);
             VipModel vipInfo = userMapper.getVipInfo(user);
-            long vip_expire_time = Long.valueOf(vipInfo.getVip_expire_time());
+            long vip_expire_time = vipInfo.getVip_expire_time_long();
             long current_time =DateUtils.getTimeInSecond_long();
             long exp;
             long addTime=0;
@@ -127,6 +137,7 @@ public class WxPayServiceImpl implements WxPayService {
             }
             user.setVip_expire_time(String.valueOf(exp));
             userMapper.updateVipInfo(user);
+            logger.info("用户：{}  充值成功，有效期截止：{}",member_id,DateUtils.secondamp2date(exp));
         }else{
             logger.error("订单：{} 金额与数据库不一致",notifyResult.toString());
         }

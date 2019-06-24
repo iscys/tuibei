@@ -135,7 +135,7 @@
 
     <update id="updateOrder" parameterType="com.tuibei.model.order.Order">
         update
-        sdb_tuibei_user
+        sdb_tuibei_order
         <trim prefix="SET"  suffixOverrides=",">
 
             <if test="status != null  and status != '' ">
