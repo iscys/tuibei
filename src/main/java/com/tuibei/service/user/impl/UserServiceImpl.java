@@ -192,8 +192,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResultObject getUserInfo(User user) {
 
+        User result=userMapper.getUserInfoAndVipInfo(user);
 
-        return null;
+        return ResultObject.success(result);
     }
 
 

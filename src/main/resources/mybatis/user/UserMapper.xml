@@ -226,4 +226,23 @@
         </if>
     </update>
 
+
+    <select id="getUserInfoAndVipInfo" parameterType="com.tuibei.model.user.User" resultType="com.tuibei.model.user.User">
+
+        select FROM_UNIXTIME(v.vip_expire_time,'%Y/%m/%d %H:%i') as vip_expire_time,
+        u.member_id,u.phone,u.time,u.openid,u.unionid,u.master,u.invite_code,u.nickname,
+        u.headimgurl,u.origin,u.invite_code_url,v.level_id,v.account,v.use_free
+        from
+        sdb_tuibei_user  u
+        left join sdb_tuibei_user_vip v
+        on u.member_id =v.member_id
+        where 1=1
+        <if test="member_id !=null and member_id !='' ">
+            and u.member_id=#{member_id}
+        </if>
+        <if test="phone !=null and phone !='' ">
+            and u.phone=#{phone}
+        </if>
+    </select>
+
 </mapper>

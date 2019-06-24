@@ -15,4 +15,6 @@ public interface UserMapper {
     VipModel getVipInfo(User userInfo);
 
     void updateVipInfo(User user);
+
+    User getUserInfoAndVipInfo(User user);
 }
