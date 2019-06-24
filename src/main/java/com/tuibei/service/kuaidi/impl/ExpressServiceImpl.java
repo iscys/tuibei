@@ -57,7 +57,11 @@ public class ExpressServiceImpl implements ExpressService {
             if(StringUtils.isNotEmpty(result)) {
                 logger.info("redis 里获取数据缓存：{}",result);
                 KuaidiCommonTemplateDetail commonDetail = GsonUtils.fromJson(result, KuaidiCommonTemplateDetail.class);
-                return ResultObject.success(commonDetail);
+                if(!commonDetail.getShip_code().equals(Constant.COMMON.UNKNOW)) {
+                    return ResultObject.success(commonDetail);
+                }else {
+                    return ResultObject.build(Constant.TRACK_NUM_ERROR,Constant.TRACK_NUM_ERROR_MESSAGE,commonDetail);
+                }
             }
 
         }catch (Exception e){
