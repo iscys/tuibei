@@ -11,4 +11,6 @@ public interface UserService {
     ResultObject toModify(User user) throws Exception;
 
     ResultObject toModifySelf(User user) throws Exception;
+
+    ResultObject getUserInfo(User user);
 }

@@ -189,5 +189,12 @@ public class UserServiceImpl implements UserService {
         return ResultObject.success(null);
     }
 
+    @Override
+    public ResultObject getUserInfo(User user) {
+
+
+        return null;
+    }
+
 
 }

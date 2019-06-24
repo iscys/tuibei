@@ -149,4 +149,23 @@ public class UserController {
         }
 
     }
+
+
+    @PostMapping("/info")
+    public ResultObject info(User user,HttpServletRequest request){
+
+        if(StringUtils.isEmpty(user.getMember_id())){
+            return  ResultObject.build(Constant.MEMBER_NULL,Constant.MEMBER_NULL_MESSAGE,null);
+        }
+
+        try{
+            ResultObject result = userService.getUserInfo(user);
+            return result;
+
+        }catch(Exception e){
+            logger.error("获取用户信息异常：{}" ,e.getMessage());
+            return ResultObject.error(null);
+        }
+
+    }
 }
