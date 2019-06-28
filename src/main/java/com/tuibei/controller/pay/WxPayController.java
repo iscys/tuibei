@@ -61,7 +61,7 @@ private com.github.binarywang.wxpay.service.WxPayService wxPayService;
         try {
             notifyResult= wxPayService.parseOrderNotifyResult(xmlData);
         }catch (WxPayException py){
-            logger.error("签名错误：{}",py.getMessage());
+            logger.error("签名错误：{}",xmlData);
             return returnXML("FAIL");
         }
 
