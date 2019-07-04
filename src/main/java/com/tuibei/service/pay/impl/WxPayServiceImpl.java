@@ -2,6 +2,8 @@ package com.tuibei.service.pay.impl;
 
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
 import com.github.binarywang.wxpay.bean.request.BaseWxPayRequest;
+import com.github.binarywang.wxpay.bean.request.WxPayRefundQueryRequest;
+import com.github.binarywang.wxpay.bean.request.WxPayRefundRequest;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
 import com.github.binarywang.wxpay.exception.WxPayException;
@@ -14,6 +16,7 @@ import com.tuibei.model.user.VipModel;
 import com.tuibei.service.pay.WxPayService;
 import com.tuibei.utils.DateUtils;
 import com.tuibei.utils.ResultObject;
+import com.tuibei.utils.ToolsUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +90,7 @@ public class WxPayServiceImpl implements WxPayService {
             logger.error("时间：{} ,订单号：{}微信统一下单失败,reason:{}", DateUtils.stableTime(),order_sn,e.getMessage());
             return ResultObject.build(Constant.WX_PAY_EXCEPTION,Constant.WX_PAY_EXCEPTION_MESSAGE,e.getMessage());
         }
+
         return ResultObject.success(wxPackage);
 
     }
@@ -138,6 +142,24 @@ public class WxPayServiceImpl implements WxPayService {
             user.setVip_expire_time(String.valueOf(exp));
             userMapper.updateVipInfo(user);
             logger.info("用户：{}  充值成功，有效期截止：{}",member_id,DateUtils.secondamp2date(exp));
+
+            /**
+             * 退款测试
+
+            try {
+                logger.info("---微信退款--");
+                WxPayRefundRequest refund = new WxPayRefundRequest();
+                refund.setOutTradeNo(outTradeNo);
+                refund.setTotalFee(dbFee);
+                refund.setRefundFee(dbFee);
+                refund.setOutRefundNo(DateUtils.getTimeInMillis()+ ToolsUtils.sixCode());
+                wxPay.refund(refund);
+            }catch (Exception e){
+                logger.error("--退款异常--：{}",outTradeNo);
+            }
+
+
+**/
         }else{
             logger.error("订单：{} 金额与数据库不一致",notifyResult.toString());
         }

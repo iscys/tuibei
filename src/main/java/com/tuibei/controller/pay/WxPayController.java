@@ -1,5 +1,6 @@
 package com.tuibei.controller.pay;
 
+import com.github.binarywang.wxpay.bean.notify.WxPayNotifyResponse;
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.config.WxPayConfig;
@@ -62,7 +63,8 @@ private com.github.binarywang.wxpay.service.WxPayService wxPayService;
             notifyResult= wxPayService.parseOrderNotifyResult(xmlData);
         }catch (WxPayException py){
             logger.error("签名错误：{}",xmlData);
-            return returnXML("FAIL");
+            return WxPayNotifyResponse.fail(py.getMessage());
+
         }
 
         logger.info("开始处理微信回调,订单号:{} ",notifyResult.getOutTradeNo());
@@ -70,8 +72,11 @@ private com.github.binarywang.wxpay.service.WxPayService wxPayService;
             payService.payNotify(notifyResult);
         }catch (Exception e){
             logger.error("处理回调异常：{},数据包：{}",e.getMessage(),xmlData);
+
+            return WxPayNotifyResponse.fail(e.getMessage());
+
         }
-        return returnXML(notifyResult.getResultCode());
+        return WxPayNotifyResponse.success("处理成功");
     }
 
     private String returnXML(String return_code) {

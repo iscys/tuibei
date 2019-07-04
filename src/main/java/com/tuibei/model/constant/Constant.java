@@ -117,7 +117,7 @@ public class Constant {
     public static class COMMON{
         public static final Integer FREEDAY=7;
         public static final String TBKJSUMSCANORDER="TBKJ:SUMSCANORDER";
-        public static final String DOMAIN="https://tuibei.alexpy.cn";
+        public static final String DOMAIN="https://www.tuibeivip.com";
         public static final String UNKNOW ="UNKNOW";
         public static final String DEFAAULTNICKNAME ="退呗科技";
         public static final String DEFAAUL_HEADIMGURL =DOMAIN+"/imgs/defaultHeadImg.jpg";

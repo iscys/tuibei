@@ -23,6 +23,7 @@ public class WxsmallPayConfig {
         payConfig.setAppId(properties.getAppid());
         payConfig.setMchId(properties.getMchId());
         payConfig.setMchKey(properties.getMchKey());
+        //payConfig.setKeyPath();
         WxPayService wxPayService = new WxPayServiceImpl();
         wxPayService.setConfig(payConfig);
         return wxPayService;
