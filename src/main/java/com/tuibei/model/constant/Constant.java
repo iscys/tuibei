@@ -65,7 +65,8 @@ public class Constant {
     public static final String NO_AUTH_NULL_MESSAGE ="没有权限操作";
     public static final String HAS_USE_FREE_DAY ="2020";
     public static final String HAS_USE_FREE_DAY_MESSAGE ="免费天数已经使用";
-
+    public static final String SMS_ERROR ="2021";
+    public static final String SMS_ERROR_MESSAGE ="发送短信失败";
 
 
     public static final String GOODS_PRICE_NULL ="3000";
@@ -110,8 +111,8 @@ public class Constant {
     }
 
     public static class SMS{
-        public static final String PRODUCT ="2002";
-        public static final String DOMAIN ="1002";
+        public static final String PRODUCT ="Dysmsapi";
+        public static final String DOMAIN ="dysmsapi.aliyuncs.com";
     }
 
     public static class COMMON{

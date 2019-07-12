@@ -75,11 +75,18 @@ public class AliSmsServiceImpl implements AliSmsService {
         SmsContent content =new SmsContent();
         content.setPhone(phone);
         content.setTemplateCode(AliSmsUtils.getInstance().getPropertiesValue("alibaba.sms.templateLogin"));
-        content.setSignName("退呗");
+        content.setSignName("退呗验证码");
         HashMap<String,Integer> map =new HashMap<>();
         map.put("code",code);
         content.setTemplateParam(GsonUtils.toJson(map));
-        AliSmsUtils.getInstance().sendSms(content);
+
+
+        String resultCode = AliSmsUtils.getInstance().sendSms(content);
+        System.out.println(resultCode);
+        if(!resultCode.equals("OK")){
+            logger.error("发送手机验证码失败，手机:{}",phone);
+            return ResultObject.build(Constant.SMS_ERROR,Constant.SMS_ERROR_MESSAGE,null);
+        }
         phoneInfo.setCode(code);
         phoneInfo.setStart_time(DateUtils.getTimeInSecond_long());
         //有效期间为30分钟
