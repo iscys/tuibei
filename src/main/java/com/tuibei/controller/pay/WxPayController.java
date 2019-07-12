@@ -1,11 +1,16 @@
 package com.tuibei.controller.pay;
 
+import com.github.binarywang.wxpay.bean.entpay.EntPayRequest;
+import com.github.binarywang.wxpay.bean.entpay.EntPayResult;
 import com.github.binarywang.wxpay.bean.notify.WxPayNotifyResponse;
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
+import com.github.binarywang.wxpay.bean.request.WxPaySendRedpackRequest;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
+import com.github.binarywang.wxpay.bean.result.WxPaySendRedpackResult;
 import com.github.binarywang.wxpay.config.WxPayConfig;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
 import com.github.binarywang.wxpay.exception.WxPayException;
+import com.github.binarywang.wxpay.service.EntPayService;
 import com.github.binarywang.wxpay.service.impl.WxPayServiceImpl;
 import com.tuibei.model.constant.Constant;
 import com.tuibei.model.order.Order;
@@ -64,7 +69,6 @@ private com.github.binarywang.wxpay.service.WxPayService wxPayService;
         }catch (WxPayException py){
             logger.error("签名错误：{}",xmlData);
             return WxPayNotifyResponse.fail(py.getMessage());
-
         }
 
         logger.info("开始处理微信回调,订单号:{} ",notifyResult.getOutTradeNo());
@@ -96,6 +100,7 @@ private com.github.binarywang.wxpay.service.WxPayService wxPayService;
     public static void main(String[] args) throws Exception {
         WxPayConfig payConfig = new WxPayConfig();
         payConfig.setAppId("wx01c2d4e39bcb87a7");
+        payConfig.setKeyPath("classpath:apiclient_cert.p12");
         //
         payConfig.setMchId("1540591511");
         // payConfig.setMchId("1520553391");
@@ -105,7 +110,8 @@ private com.github.binarywang.wxpay.service.WxPayService wxPayService;
         //组装微信下单接口数据
         WxPayUnifiedOrderRequest orderRequest = new WxPayUnifiedOrderRequest();
         //openid 用户opened
-        orderRequest.setOpenid("ojx9a5KcU8T2Xr6fwoJVQ4mHoP94");
+        /**
+        orderRequest.setOpenid("a8ace824227a4ad2b4890222c94a45b9");
         orderRequest.setBody("test supersellers");
         orderRequest.setOutTradeNo("1546997230392");
         orderRequest.setNotifyUrl("https://admin.chaojibuyers.com/pay/notify");
@@ -113,6 +119,18 @@ private com.github.binarywang.wxpay.service.WxPayService wxPayService;
         orderRequest.setSpbillCreateIp("114.116.8.180");
         orderRequest.setTradeType(WxPayConstants.TradeType.JSAPI);
         Object order = wxPayService.createOrder(orderRequest);
+**/
+
+        EntPayService entPayService = wxPayService.getEntPayService();
+        EntPayRequest request=new EntPayRequest();
+        request.setAmount(10);
+        request.setOpenid("ojx9a5Aj6uXIzSdFam2KbKZ3netw");
+        request.setSpbillCreateIp("39.100.101.99");
+        request.setPartnerTradeNo(DateUtils.getTimeInMillis());
+        request.setCheckName("NO_CHECK");
+        request.setDescription("余额提现");
+        EntPayResult entPayResult = entPayService.entPay(request);
+
 
     }
 

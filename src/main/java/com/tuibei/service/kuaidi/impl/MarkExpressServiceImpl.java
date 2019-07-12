@@ -50,10 +50,11 @@ public class MarkExpressServiceImpl implements MarkExpressService {
         List<ExpressRecord > expressList = markExpressMapper.getRecordList(pd);
         if(pageNum.equals("1")) {
             pd.put("operation_type","1");//退款type
-            pd.put("month", DateUtils.stableMonth());
-            Integer monthRecord=markExpressMapper.getMonthRecord(pd);
-            pd.put("day", DateUtils.stableDay());
-            Integer dayRecord= markExpressMapper.getDayRecord(pd);
+            //pd.put("month", DateUtils.stableMonth());
+            Integer monthRecord=markExpressMapper.getRecordListCount(pd);
+           // pd.put("day", DateUtils.stableDay());
+            pd.put("operation_type","");//全部记录
+            Integer dayRecord= markExpressMapper.getRecordListCount(pd);
             pd.put("operation_type","2");//异常type
             Integer exception=markExpressMapper.getRecordListCount(pd);
             res.put("monthRecord", monthRecord);//月记录

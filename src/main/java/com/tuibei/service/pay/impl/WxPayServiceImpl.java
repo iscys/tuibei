@@ -65,7 +65,6 @@ public class WxPayServiceImpl implements WxPayService {
         String order_sn = orderInfo.getOrder_sn();
         String goods_id = orderInfo.getGoods_id();
         logger.info("订单：{} 开始组装微信支付信息",order_sn);
-
         WxPayUnifiedOrderRequest payOrder =new WxPayUnifiedOrderRequest();
         payOrder.setSpbillCreateIp(order.getClientIp());
         if(order.getPay_type().equals("1")) {
