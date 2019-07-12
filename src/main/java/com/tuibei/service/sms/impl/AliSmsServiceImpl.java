@@ -4,16 +4,17 @@ import com.tuibei.mapper.sms.AliSmsMapper;
 import com.tuibei.mapper.user.UserMapper;
 import com.tuibei.model.constant.Constant;
 import com.tuibei.model.sms.PhoneCode;
+import com.tuibei.model.sms.SmsContent;
 import com.tuibei.model.user.User;
 import com.tuibei.service.sms.AliSmsService;
-import com.tuibei.utils.DateUtils;
-import com.tuibei.utils.ResultObject;
-import com.tuibei.utils.ToolsUtils;
+import com.tuibei.utils.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
 
 @Service
 @Transactional
@@ -71,10 +72,18 @@ public class AliSmsServiceImpl implements AliSmsService {
         }
         int code = ToolsUtils.fourCode();
         //phoneInfo.setCode(code);
-        phoneInfo.setCode(1234);
+        SmsContent content =new SmsContent();
+        content.setPhone(phone);
+        content.setTemplateCode(AliSmsUtils.getInstance().getPropertiesValue("alibaba.sms.templateLogin"));
+        content.setSignName("退呗");
+        HashMap<String,Integer> map =new HashMap<>();
+        map.put("code",code);
+        content.setTemplateParam(GsonUtils.toJson(map));
+        AliSmsUtils.getInstance().sendSms(content);
+        phoneInfo.setCode(code);
         phoneInfo.setStart_time(DateUtils.getTimeInSecond_long());
         //有效期间为30分钟
-        phoneInfo.setExpire_time(DateUtils.getTimeInSecond_long()+30*60);
+        phoneInfo.setExpire_time(DateUtils.getTimeInSecond_long()+15*60);
         smsMapper.saveSmsCode(phoneInfo);
         logger.info("用户: {} 发送验证码结束",phone);
         return ResultObject.success(null);

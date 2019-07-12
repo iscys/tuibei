@@ -142,8 +142,7 @@ public class WxPayServiceImpl implements WxPayService {
             userMapper.updateVipInfo(user);
             logger.info("用户：{}  充值成功，有效期截止：{}",member_id,DateUtils.secondamp2date(exp));
 
-            /**
-             * 退款测试
+            //退款测试
 
             try {
                 logger.info("---微信退款--");
@@ -158,7 +157,7 @@ public class WxPayServiceImpl implements WxPayService {
             }
 
 
-**/
+
         }else{
             logger.error("订单：{} 金额与数据库不一致",notifyResult.toString());
         }

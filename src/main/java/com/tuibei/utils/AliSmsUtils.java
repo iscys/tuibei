@@ -10,21 +10,59 @@ import com.tuibei.model.constant.Constant;
 import com.tuibei.model.sms.SmsContent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import sun.security.jca.GetInstance;
+
+import java.util.Properties;
 
 @Component
 public class AliSmsUtils {
 
-    @Value("${alibaba.sms.accessKeyId}")
-    private String accessKeyId;
-    @Value("${alibaba.sms.accessKeySecret}")
-    private String accessKeySecret;
-    @Value("${alibaba.sms.templateLogin}")
-    private String templateLogin;
+    private   Properties properties;
+
+    private AliSmsUtils(){}
+
+    public static AliSmsUtils  getInstance(){
+        return Instance.getInsatnce();
+    }
+
+    /**
+     * 加载外部classpath:sms.properties 装配到properties
+     */
+    static  class  Instance {
+        private static  AliSmsUtils utils =new AliSmsUtils();
+
+        public static  AliSmsUtils getInsatnce(){
+            utils.properties =ResourceUtils.loadSingleProperties("sms.properties");
+            return utils;
+        }
+    }
+
+    /**
+     * 获取properties
+     */
+    public Properties getProperties(){
+        return properties;
+    }
+
+
+    /**
+     * 获取properties value
+     */
+
+    public String getPropertiesValue(String key){
+        Properties properties = getProperties();
+        String property = properties.getProperty(key);
+        return property;
+    }
+
+
     /**
      * 发送短信验证码
      * 具体查看阿里云验证码demo以及sdk；
      */
     public  String sendSms(SmsContent content)throws Exception {
+        String accessKeyId=getPropertiesValue("alibaba.sms.accessKeyId");
+        String accessKeySecret=getPropertiesValue("alibaba.sms.accessKeySecret");
         String phone = content.getPhone();
         String product = Constant.SMS.PRODUCT;
         String domain = Constant.SMS.DOMAIN;
@@ -59,5 +97,8 @@ public class AliSmsUtils {
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
         return sendSmsResponse.getCode();
     }
+
+
+
 
 }
