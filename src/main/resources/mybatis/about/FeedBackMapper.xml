@@ -14,11 +14,11 @@
                 <if test="feedback != null  and feedback != '' ">
                     feedback,
                 </if>
-                <if test="qq != null  and qq != '' ">
-                    qq,
+                <if test="name != null  and name != '' ">
+                    name,
                 </if>
-                <if test="wx != null  and wx != '' ">
-                    wx,
+                <if test="phone != null  and phone != '' ">
+                    phone,
                 </if>
             </trim>
 
@@ -29,11 +29,11 @@
             <if test="feedback != null  and feedback != '' ">
                 #{feedback},
             </if>
-            <if test="qq != null  and qq != '' ">
-                #{qq},
+            <if test="name != null  and name != '' ">
+                #{name},
             </if>
-            <if test="wx != null  and wx != '' ">
-                #{wx},
+            <if test="phone != null  and phone != '' ">
+                #{phone},
             </if>
         </trim>
     </insert>

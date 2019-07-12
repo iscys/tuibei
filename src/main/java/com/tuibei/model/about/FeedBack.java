@@ -9,7 +9,7 @@ import java.io.Serializable;
 @ToString
 public class FeedBack implements Serializable {
     private String member_id;
-    private String wx;
-    private String qq;
+    private String name;
+    private String phone;
     private String feedback;
 }
