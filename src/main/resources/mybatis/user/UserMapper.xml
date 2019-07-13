@@ -161,7 +161,7 @@
 
 
     <select id="getVipInfo" parameterType="com.tuibei.model.user.User" resultType="com.tuibei.model.user.VipModel">
-    select member_id,FROM_UNIXTIME(vip_expire_time,'%Y/%m/%d %H:%i') as vip_expire_time, vip_expire_time as vip_expire_time_long,
+    select member_id,FROM_UNIXTIME(vip_expire_time,'%Y-%m-%d') as vip_expire_time, vip_expire_time as vip_expire_time_long,
     level_id, use_free,update_time,account
      from sdb_tuibei_user_vip
      where 1=1
@@ -229,7 +229,7 @@
 
     <select id="getUserInfoAndVipInfo" parameterType="com.tuibei.model.user.User" resultType="com.tuibei.model.user.User">
 
-        select FROM_UNIXTIME(v.vip_expire_time,'%Y/%m/%d %H:%i') as vip_expire_time,
+        select FROM_UNIXTIME(v.vip_expire_time,'%Y-%m-%d') as vip_expire_time,
         u.member_id,u.phone,u.time,u.openid,u.unionid,u.master,u.invite_code,u.nickname,
         u.headimgurl,u.origin,u.invite_code_url,v.level_id,v.account,v.use_free
         from
