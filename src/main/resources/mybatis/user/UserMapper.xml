@@ -260,6 +260,9 @@
             <if test="vip_end != null  and vip_end != '' ">
                 vip_end,
             </if>
+            <if test="goods_id != null  and goods_id != '' ">
+                goods_id,
+            </if>
 
         </trim>
 
@@ -273,6 +276,9 @@
             </if>
             <if test="vip_end != null  and vip_end != '' ">
                 #{vip_end},
+            </if>
+            <if test="goods_id != null  and goods_id != '' ">
+                #{goods_id},
             </if>
 
         </trim>

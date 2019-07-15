@@ -125,14 +125,14 @@ public class WxPayServiceImpl implements WxPayService {
             long start=0;
             long exp;
             long addTime=0;
-
-            if(orderInfo.getGoods_id().equals("1")){
+            String goods_id =orderInfo.getGoods_id();
+            if(goods_id.equals("1")){
                 user.setLevel_id("1");
                 addTime=30*24*60*60;
-            }else if(orderInfo.getGoods_id().equals("2")){
+            }else if(goods_id.equals("2")){
                 user.setLevel_id("2");
                 addTime=365*24*60*60;
-            }else if(orderInfo.getGoods_id().equals("0")){
+            }else if(goods_id.equals("0")){
                 //1元购买，每人限制一次
                 addTime=30*24*60*60;
                 user.setUse_free(1);//标记此人已经使用了免费1元的次数
@@ -157,6 +157,7 @@ public class WxPayServiceImpl implements WxPayService {
             log.setMember_id(member_id);
             log.setVip_start(String.valueOf(start));
             log.setVip_end(end);
+            log.setGoods_id(goods_id);
             userMapper.saveVipLog(log);
 
             userMapper.updateVipInfo(user);
