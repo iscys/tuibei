@@ -2,11 +2,14 @@ package com.tuibei.service.kuaidi.impl;
 
 import com.tuibei.http.KDNHttp;
 import com.tuibei.mapper.kuaidi.ExpressMapper;
+import com.tuibei.mapper.user.UserMapper;
 import com.tuibei.model.ExpressRecord;
 import com.tuibei.model.KuaidiCommonExtend;
 import com.tuibei.model.KuaidiCommonTemplateDetail;
 import com.tuibei.model.constant.Constant;
 import com.tuibei.model.kdn.*;
+import com.tuibei.model.user.User;
+import com.tuibei.model.user.VipModel;
 import com.tuibei.service.kuaidi.ExpressService;
 import com.tuibei.utils.DateUtils;
 import com.tuibei.utils.GsonUtils;
@@ -40,6 +43,9 @@ public class ExpressServiceImpl implements ExpressService {
     @Autowired
     private StringRedisTemplate template;
 
+    @Autowired
+    private UserMapper userMapper;
+
     /**
      * 物流快递公司信息
      * @param trackInfo
@@ -48,6 +54,16 @@ public class ExpressServiceImpl implements ExpressService {
      */
     @Override
     public ResultObject orderScan(TraceInfo trackInfo)throws Exception {
+    /**
+        String member_id=trackInfo.getMember_id();
+        User user =new User();
+        user.setMember_id(member_id);
+        VipModel vipInfo = userMapper.getVipInfo(user);
+        long vip_expire_time_long = vipInfo.getVip_expire_time_long();
+        if(vip_expire_time_long<DateUtils.getTimeInSecond_long()){
+            return ResultObject.build(Constant.VIP_EXPIRE,Constant.VIP_EXPIRE_MESSAGE,null);
+        }
+      **/
         String traceNum = trackInfo.getTraceNum();
         try {
             //计入统计redis,不影响业务执行 redis  setnx 不存在插入的操作
@@ -121,7 +137,18 @@ public class ExpressServiceImpl implements ExpressService {
      */
     @Override
     public ResultObject traceDetail(TraceInfo trackInfo) throws Exception {
-        logger.info("用户：{} 查询单号：{} 的物流信息",trackInfo.getMember_id(),trackInfo.getTraceNum());
+        String member_id=trackInfo.getMember_id();
+        logger.debug("校验用户:{} vip 是否有效",member_id);
+        User user =new User();
+        user.setMember_id(member_id);
+        VipModel vipInfo = userMapper.getVipInfo(user);
+        long vip_expire_time_long = vipInfo.getVip_expire_time_long();
+        if(vip_expire_time_long<DateUtils.getTimeInSecond_long()){
+            return ResultObject.build(Constant.VIP_EXPIRE,Constant.VIP_EXPIRE_MESSAGE,null);
+        }
+        logger.debug("vip 有效");
+
+        logger.debug("用户：{} 查询单号：{} 的物流信息",member_id,trackInfo.getTraceNum());
         KuaidiCommonExtend commonDetail =new KuaidiCommonExtend();
         ExpressRecord record =new ExpressRecord();
         record.setMember_id(trackInfo.getMember_id());
