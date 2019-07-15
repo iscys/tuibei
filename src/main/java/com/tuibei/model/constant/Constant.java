@@ -68,6 +68,9 @@ public class Constant {
     public static final String SMS_ERROR ="2021";
     public static final String SMS_ERROR_MESSAGE ="发送短信失败";
 
+    public static final String HAS_USE_PRIVILEGE ="2022";
+    public static final String HAS_USE_PRIVILEGE_MESSAGE ="已经使用了优惠";
+
 
     public static final String GOODS_PRICE_NULL ="3000";
     public static final String GOODS_PRICE_NULL_MESSAGE ="商品价钱不能为空";

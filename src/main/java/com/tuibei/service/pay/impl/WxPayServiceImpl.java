@@ -73,7 +73,7 @@ public class WxPayServiceImpl implements WxPayService {
         payOrder.setOutTradeNo(order.getOrder_sn());
         payOrder.setOpenid(openid);
         payOrder.setNotifyUrl(Constant.COMMON.DOMAIN+"/wx/notify");
-        if(goods_id.equals("1")) {
+        if(goods_id.equals("1")||goods_id.equals("0")) {
             payOrder.setBody("月卡");
         }else if(goods_id.equals("2")){
             payOrder.setBody("年卡");
@@ -123,12 +123,18 @@ public class WxPayServiceImpl implements WxPayService {
             long current_time =DateUtils.getTimeInSecond_long();
             long exp;
             long addTime=0;
+
             if(orderInfo.getGoods_id().equals("1")){
                 user.setLevel_id("1");
                 addTime=30*24*60*60;
             }else if(orderInfo.getGoods_id().equals("2")){
                 user.setLevel_id("2");
                 addTime=365*24*60*60;
+            }else if(orderInfo.getGoods_id().equals("0")){
+                //1元购买，每人限制一次
+                addTime=30*24*60*60;
+                user.setUse_free(1);//标记此人已经使用了免费1元的次数
+
             }else{
                 user.setLevel_id("0");
             }

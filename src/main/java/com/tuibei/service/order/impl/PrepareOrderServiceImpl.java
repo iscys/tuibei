@@ -43,8 +43,25 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
         order.setOrigin(1);//来自小程序的订单
         order.setPay_method(1);
         order.setGoods_name("vip 充值");
+
+        User user =new User();
+        user.setMember_id(order.getMember_id());
+        if(order.getGoods_id().equals("0")){
+
+            VipModel vipInfo = userMapper.getVipInfo(user);
+            if(vipInfo.getUse_free()==1){
+                logger.warn("用户：{} 已经使用过了免费体验",user.getMember_id());
+                return ResultObject.build(Constant.HAS_USE_PRIVILEGE,Constant.HAS_USE_PRIVILEGE_MESSAGE,null);
+            }
+
+        }
+
+
         //测试数据
-        if(order.getGoods_id().equals("1")) {
+        if(order.getGoods_id().equals("0")){
+            order.setGoods_name("月卡充值");
+
+        }else if(order.getGoods_id().equals("1")) {
             order.setGoods_name("月卡充值");
             order.setPrice("0.01");
         }

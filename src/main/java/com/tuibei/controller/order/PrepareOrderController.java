@@ -5,6 +5,7 @@ import com.tuibei.model.order.Order;
 import com.tuibei.model.user.User;
 import com.tuibei.service.order.PrepareOrderService;
 import com.tuibei.utils.ResultObject;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,9 +59,9 @@ public class PrepareOrderController {
      */
 
     @PostMapping("/free")
+    @Deprecated
     public ResultObject prepareOrder(User user){
         String member_id = user.getMember_id();
-
         if(StringUtils.isEmpty(member_id)){
             return ResultObject.build(Constant.MEMBER_XXX_NULL,Constant.MEMBER_XXX_NULL_MESSAGE,null);
         }
