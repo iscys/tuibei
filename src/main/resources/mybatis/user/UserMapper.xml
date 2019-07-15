@@ -245,4 +245,39 @@
         </if>
     </select>
 
+
+    <insert id="saveVipLog" parameterType="com.tuibei.model.user.VipLog">
+        insert  into
+        sdb_tuibei_vip_log
+        <trim prefix="(" suffix=")"  suffixOverrides=",">
+
+            <if test="member_id != null  and member_id != '' ">
+                member_id,
+            </if>
+            <if test="vip_start != null  and vip_start != '' ">
+                vip_start,
+            </if>
+            <if test="vip_end != null  and vip_end != '' ">
+                vip_end,
+            </if>
+
+        </trim>
+
+        <trim prefix="values(" suffix=")"  suffixOverrides=",">
+
+            <if test="member_id != null  and member_id != '' ">
+                #{member_id},
+            </if>
+            <if test="vip_start != null  and vip_start != '' ">
+                #{vip_start},
+            </if>
+            <if test="vip_end != null  and vip_end != '' ">
+                #{vip_end},
+            </if>
+
+        </trim>
+
+
+    </insert>
+
 </mapper>

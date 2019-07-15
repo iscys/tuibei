@@ -12,6 +12,7 @@ import com.tuibei.mapper.user.UserMapper;
 import com.tuibei.model.constant.Constant;
 import com.tuibei.model.order.Order;
 import com.tuibei.model.user.User;
+import com.tuibei.model.user.VipLog;
 import com.tuibei.model.user.VipModel;
 import com.tuibei.service.pay.WxPayService;
 import com.tuibei.utils.DateUtils;
@@ -121,6 +122,7 @@ public class WxPayServiceImpl implements WxPayService {
             VipModel vipInfo = userMapper.getVipInfo(user);
             long vip_expire_time = vipInfo.getVip_expire_time_long();
             long current_time =DateUtils.getTimeInSecond_long();
+            long start=0;
             long exp;
             long addTime=0;
 
@@ -140,11 +142,23 @@ public class WxPayServiceImpl implements WxPayService {
             }
 
             if(vip_expire_time<current_time){
+                start =current_time;
                 exp=current_time+addTime;
             }else{
+                start =vip_expire_time;
+
                 exp =vip_expire_time+addTime;
             }
-            user.setVip_expire_time(String.valueOf(exp));
+            String end= String.valueOf(exp);
+            user.setVip_expire_time(end);
+
+            //保存vip 充值日志
+            VipLog log =new VipLog();
+            log.setMember_id(member_id);
+            log.setVip_start(String.valueOf(start));
+            log.setVip_end(end);
+            userMapper.saveVipLog(log);
+
             userMapper.updateVipInfo(user);
             logger.info("用户：{}  充值成功，有效期截止：{}",member_id,DateUtils.secondamp2date(exp));
 
