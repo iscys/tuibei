@@ -1,8 +1,10 @@
 package com.tuibei.model.rule;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class Rule {
 
     private int min_count;

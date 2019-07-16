@@ -4,26 +4,28 @@
 
     <select id="getUserInfo" parameterType="com.tuibei.model.user.User" resultType="com.tuibei.model.user.User">
 
-        select * from
-        sdb_tuibei_user
+        select a.*
+        ,(select count(1) from sdb_tuibei_user b where a.member_id=b.master) as invit_count
+        from
+        sdb_tuibei_user a
         where 1=1
         <if test="phone !=null  and phone != '' ">
-            and phone=#{phone}
+            and a.phone=#{phone}
         </if>
         <if test="openid !=null  and openid != '' ">
-            and openid=#{openid}
+            and a.openid=#{openid}
         </if>
         <if test="unionid !=null  and unionid != '' ">
-            and unionid=#{unionid}
+            and a.unionid=#{unionid}
         </if>
         <if test="invite_code !=null  and invite_code != '' ">
-            and invite_code=#{invite_code}
+            and a.invite_code=#{invite_code}
         </if>
         <if test="password !=null  and password != '' ">
-            and password=#{password}
+            and a.password=#{password}
         </if>
         <if test="member_id !=null  and member_id != '' ">
-            and member_id=#{member_id}
+            and a.member_id=#{member_id}
         </if>
         limit 1
     </select>
