@@ -12,6 +12,8 @@ public class Rule {
     private String rule_start_time;
     private String rule_end_time;
     private String create_time;
+    private String flag;
+
 
 
 }

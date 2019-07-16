@@ -1,19 +1,25 @@
 package com.tuibei.service.pay.impl;
 
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
+import com.tuibei.mapper.rule.RuleMapper;
 import com.tuibei.mapper.user.UserMapper;
 import com.tuibei.model.order.Order;
+import com.tuibei.model.rule.Rule;
 import com.tuibei.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class TuiGuangRule {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private RuleMapper ruleMapper;
 
     /**
      * 推广利润分成
@@ -37,6 +43,11 @@ public class TuiGuangRule {
 
     }
 
+
+    public void rule(){
+        Rule rule =new Rule();
+       List<Rule> allRule= ruleMapper.getAllRule(rule);
+    }
 
 
 }

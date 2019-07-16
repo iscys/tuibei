@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tuibei.mapper.rule.RuleMapper">
+
+    <select id="getAllRule" resultType="com.tuibei.model.rule.Rule" parameterType="com.tuibei.model.rule.Rule">
+
+       select min_count,max_count,discount,price,
+        DATE_FORMAT(rule_start_time,'%Y-%m-%d') as rule_start_time,
+        DATE_FORMAT(rule_end_time,'%Y-%m-%d') as rule_end_time
+        from
+        sdb_tuibei_rule
+        where 1=1
+        and now() &lt;= rule_end_time
+
+    </select>
+
+</mapper>
