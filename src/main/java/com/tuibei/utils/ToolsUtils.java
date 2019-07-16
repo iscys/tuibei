@@ -110,8 +110,5 @@ public class ToolsUtils {
         }
 
 
-    public static void main(String[] args) {
-        String md5String = getMD5String("123123");
-        System.out.println(md5String);
-    }
+
 }

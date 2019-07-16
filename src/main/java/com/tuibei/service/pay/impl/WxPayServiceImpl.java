@@ -17,12 +17,16 @@ import com.tuibei.model.user.VipModel;
 import com.tuibei.service.pay.WxPayService;
 import com.tuibei.utils.DateUtils;
 import com.tuibei.utils.ResultObject;
+import com.tuibei.utils.ThreadPool;
 import com.tuibei.utils.ToolsUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+
+import java.util.concurrent.ExecutorService;
 
 @Service
 @Transactional
@@ -35,6 +39,8 @@ public class WxPayServiceImpl implements WxPayService {
     private PrepareOrderMapper orderMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private TuiGuangRule rule;
     /**
      * 微信统一平台下单
      * 1.查看订单是否是未支付状态
@@ -126,6 +132,8 @@ public class WxPayServiceImpl implements WxPayService {
             long exp;
             long addTime=0;
             String goods_id =orderInfo.getGoods_id();
+
+
             if(goods_id.equals("1")){
                 user.setLevel_id("1");
                 addTime=30*24*60*60;
@@ -149,6 +157,8 @@ public class WxPayServiceImpl implements WxPayService {
 
                 exp =vip_expire_time+addTime;
             }
+
+
             String end= String.valueOf(exp);
             user.setVip_expire_time(end);
 
@@ -163,6 +173,16 @@ public class WxPayServiceImpl implements WxPayService {
             userMapper.updateVipInfo(user);
             logger.info("用户：{}  充值成功，有效期截止：{}",member_id,DateUtils.secondamp2date(exp));
 
+
+            //推广结算
+            ExecutorService threadPool = ThreadPool.getThreadPool();
+            threadPool.submit(new Runnable() {
+                @Override
+                public void run() {
+                    rule.tuiguang(notifyResult,orderInfo);
+
+                }
+            });
             //退款测试
 
             try {
@@ -184,4 +204,5 @@ public class WxPayServiceImpl implements WxPayService {
         }
 
     }
+
 }
