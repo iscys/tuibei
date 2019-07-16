@@ -59,6 +59,8 @@ public class TuiGuangRule {
      * @return
      */
     public Rule rule(User user){
+        logger.info("获取用户推广利润规则:{}",user.toString());
+
         Rule mainRule =new Rule();
 
         int invite_count = user.getInvit_count();
@@ -71,6 +73,7 @@ public class TuiGuangRule {
                 mainRule =r;
                 break;
            }
+
        }
        
 
