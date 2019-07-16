@@ -44,6 +44,7 @@ public class TuiGuangRule {
         if(!StringUtils.isEmpty(master)){
             //如果有master的话，就查找mater 邀请了多少人
             User masterUser =new User();
+            masterUser.setMember_id(master);
             User masterUserInfo = userMapper.getUserInfo(masterUser);
             Rule rule = rule(masterUserInfo);
             logger.info("获取到匹配到规则：{}",rule.toString());
