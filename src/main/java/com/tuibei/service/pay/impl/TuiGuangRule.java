@@ -20,8 +20,11 @@ public class TuiGuangRule {
      * @param notifyResult
      */
     public void tuiguang(WxPayOrderNotifyResult notifyResult, Order orderInfo) {
+        String goods_id = orderInfo.getGoods_id();//商品ID
+        if(goods_id.equals("0"))return;
         String member_id=orderInfo.getMember_id();
         String order_sn =orderInfo.getOrder_sn();
+        String price = orderInfo.getPrice();//价钱
         User user =new User();
         user.setMember_id(member_id);
         User userInfo = userMapper.getUserInfo(user);
