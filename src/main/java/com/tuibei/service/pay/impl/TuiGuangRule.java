@@ -1,8 +1,10 @@
 package com.tuibei.service.pay.impl;
 
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
+import com.tuibei.mapper.earning.EarningMapper;
 import com.tuibei.mapper.rule.RuleMapper;
 import com.tuibei.mapper.user.UserMapper;
+import com.tuibei.model.earning.Earning;
 import com.tuibei.model.order.Order;
 import com.tuibei.model.rule.Rule;
 import com.tuibei.model.user.User;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -24,6 +27,8 @@ public class TuiGuangRule {
     private UserMapper userMapper;
     @Autowired
     private RuleMapper ruleMapper;
+    @Autowired
+    private EarningMapper earningMapper;
 
     /**
      * 推广利润分成
@@ -48,6 +53,26 @@ public class TuiGuangRule {
             User masterUserInfo = userMapper.getUserInfo(masterUser);
             Rule rule = rule(masterUserInfo);
             logger.info("获取到匹配到规则：{}",rule.toString());
+            String discount = rule.getDiscount();
+            if(!StringUtils.isEmpty(discount)){
+                double dis = Double.valueOf(discount);
+                BigDecimal deci_discount=new BigDecimal(dis/100);
+                BigDecimal deci_price=new BigDecimal(price);
+                BigDecimal multiply = deci_price.multiply(deci_discount);
+                //给予到的分成利润
+                double earnings = multiply.doubleValue();
+                Earning ng =new Earning();
+                ng.setEarning(earnings);
+                ng.setEarning_member_id(master);
+                ng.setOrder_sn(order_sn);
+                ng.setOrder_member_id(member_id);
+                ng.setGoods_id(goods_id);
+                //保存分成记录日志
+                earningMapper.saveEarningLog(ng);
+
+
+
+            }
 
         }
 
@@ -80,6 +105,8 @@ public class TuiGuangRule {
 
         return mainRule;
     }
+
+
 
 
 }
