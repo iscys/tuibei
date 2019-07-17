@@ -5,6 +5,7 @@ import com.tuibei.mapper.earning.EarningMapper;
 import com.tuibei.mapper.rule.RuleMapper;
 import com.tuibei.mapper.user.UserMapper;
 import com.tuibei.model.earning.Earning;
+import com.tuibei.model.earning.Income;
 import com.tuibei.model.order.Order;
 import com.tuibei.model.rule.Rule;
 import com.tuibei.model.user.User;
@@ -68,10 +69,21 @@ public class TuiGuangRule {
                 ng.setOrder_sn(order_sn);
                 ng.setOrder_member_id(member_id);
                 ng.setGoods_id(goods_id);
+                //保存用户收益支出信息
+                logger.info("保存用户：{}收益支出信息",master);
+                Income income =new Income();
+                income.setMember_id(master);
+                income.setOrder_sn(order_sn);
+                income.setPrice(earnings);
+                income.setType(0);
+                earningMapper.saveIncomeInfo(income);
+                logger.info("保存收益支出成功");
+
+
                 //保存分成记录日志
                 earningMapper.saveEarningLog(ng);
-
                 logger.info("保存利润成功");
+
 
 
 

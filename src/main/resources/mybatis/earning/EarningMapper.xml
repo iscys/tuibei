@@ -46,4 +46,45 @@
 
    </insert>
 
+
+    <insert id="saveIncomeInfo" parameterType="com.tuibei.model.earning.Income">
+
+        insert into
+        sdb_tuibei_income_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="member_id !=null  and member_id != '' ">
+                member_id,
+            </if>
+            <if test="price !=null  and price != '' ">
+                price,
+            </if>
+            <if test="type !=null  and type != '' ">
+                type,
+            </if>
+            <if test="order_sn !=null  and order_sn != '' ">
+                order_sn,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="member_id !=null  and member_id != '' ">
+                #{member_id},
+            </if>
+            <if test="price !=null  and price != '' ">
+                #{price},
+            </if>
+            <if test="type !=null  and type != '' ">
+                #{type},
+            </if>
+            <if test="order_sn !=null  and order_sn != '' ">
+                #{order_sn},
+            </if>
+            <if test="order_sn !=null  and order_sn != '' ">
+                #{order_sn},
+            </if>
+        </trim>
+
+
+
+    </insert>
+
 </mapper>
