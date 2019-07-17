@@ -29,7 +29,7 @@
               #{earning},
            </if>
            <if test="earning_member_id !=null  and earning_member_id != '' ">
-              {earning_member_id},
+               #{earning_member_id},
            </if>
            <if test="order_member_id !=null  and order_member_id != '' ">
               #{order_member_id},

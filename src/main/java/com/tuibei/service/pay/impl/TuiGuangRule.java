@@ -71,6 +71,8 @@ public class TuiGuangRule {
                 //保存分成记录日志
                 earningMapper.saveEarningLog(ng);
 
+                logger.info("保存利润成功");
+
 
 
             }
@@ -96,7 +98,7 @@ public class TuiGuangRule {
        for(Rule r:allRule){
            int max_count = r.getMax_count();
            int min_count =r.getMin_count();
-           if(invite_count>min_count&&invite_count<max_count){
+           if(invite_count>min_count&&invite_count<=max_count){
                 mainRule =r;
                 break;
            }
