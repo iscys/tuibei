@@ -76,6 +76,9 @@ public class TuiGuangRule {
                 income.setOrder_sn(order_sn);
                 income.setPrice(earnings);
                 income.setOrder_member_id(member_id);
+                income.setType(0);
+                earningMapper.saveIncomeInfo(income);
+                logger.info("保存收益支出成功");
 
                 //更新用户账户
                 User upVipAccount =new User();
@@ -83,9 +86,7 @@ public class TuiGuangRule {
                 upVipAccount.setAccount(earnings);
                 userMapper.updateVipInfo(upVipAccount);
 
-                income.setType(0);
-                earningMapper.saveIncomeInfo(income);
-                logger.info("保存收益支出成功");
+
 
 
                 //保存分成记录日志
