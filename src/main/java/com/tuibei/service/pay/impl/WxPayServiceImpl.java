@@ -179,7 +179,7 @@ public class WxPayServiceImpl implements WxPayService {
             threadPool.submit(new Runnable() {
                 @Override
                 public void run() {
-                    rule.tuiguang(notifyResult,orderInfo);
+                    rule.tuiguang(notifyResult,orderInfo,vipInfo, null,1);
 
                 }
             });

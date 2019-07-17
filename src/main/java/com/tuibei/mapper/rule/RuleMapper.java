@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface RuleMapper {
 
-    List<Rule> getAllRule(Rule rule);
+    Rule getAllRule();
 }

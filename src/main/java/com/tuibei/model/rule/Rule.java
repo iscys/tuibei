@@ -7,13 +7,11 @@ import lombok.ToString;
 @ToString
 public class Rule {
 
-    private int min_count;
-    private int max_count;
-    private String discount;
-    private String price;
-    private String rule_start_time;
+    private String first_discount;
+    private String second_discount;
+    private String third_discount;
     private String rule_end_time;
-    private String create_time;
+    private int  total_times;
     private String flag;
 
 
