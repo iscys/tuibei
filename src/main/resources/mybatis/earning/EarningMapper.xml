@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tuibei.mapper.earning.EarningMapper">
+
+
+   <insert id="saveEarningLog" parameterType="com.tuibei.model.earning.Earning">
+
+       insert into
+       sdb_tuibei_account_log
+       <trim prefix="(" suffix=")" suffixOverrides=",">
+           <if test="earning !=null  and earning != '' ">
+               earning,
+           </if>
+           <if test="earning_member_id !=null  and earning_member_id != '' ">
+               earning_member_id,
+           </if>
+           <if test="order_member_id !=null  and order_member_id != '' ">
+               order_member_id,
+           </if>
+           <if test="order_sn !=null  and order_sn != '' ">
+               order_sn,
+           </if>
+           <if test="goods_id !=null  and goods_id != '' ">
+               goods_id,
+           </if>
+       </trim>
+       <trim prefix="values(" suffix=")" suffixOverrides=",">
+           <if test="earning !=null  and earning != '' ">
+              #{earning},
+           </if>
+           <if test="earning_member_id !=null  and earning_member_id != '' ">
+              {earning_member_id},
+           </if>
+           <if test="order_member_id !=null  and order_member_id != '' ">
+              #{order_member_id},
+           </if>
+           <if test="order_sn !=null  and order_sn != '' ">
+              #{order_sn},
+           </if>
+           <if test="goods_id !=null  and goods_id != '' ">
+              #{goods_id},
+           </if>
+       </trim>
+
+
+
+   </insert>
+
+</mapper>
