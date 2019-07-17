@@ -6,7 +6,7 @@
    <insert id="saveEarningLog" parameterType="com.tuibei.model.earning.Earning">
 
        insert into
-       sdb_tuibei_account_log
+       sdb_tuibei_earning
        <trim prefix="(" suffix=")" suffixOverrides=",">
            <if test="earning !=null  and earning != '' ">
                earning,
