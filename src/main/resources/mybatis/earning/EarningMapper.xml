@@ -78,9 +78,6 @@
             <if test="order_sn !=null  and order_sn != '' ">
                 #{order_sn},
             </if>
-            <if test="order_sn !=null  and order_sn != '' ">
-                #{order_sn},
-            </if>
         </trim>
 
 
