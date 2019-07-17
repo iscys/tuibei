@@ -61,6 +61,7 @@ public class TuiGuangRule {
                 BigDecimal multiply = deci_price.multiply(deci_discount);
                 //给予到的分成利润
                 double earnings = multiply.doubleValue();
+                logger.info("用户：{} 获取利润：{}",master,earnings);
                 Earning ng =new Earning();
                 ng.setEarning(earnings);
                 ng.setEarning_member_id(master);
