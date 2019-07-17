@@ -186,6 +186,9 @@
             <if test="level_id != null  and level_id != '' ">
                 level_id= #{level_id},
             </if>
+            <if test="account != null  and account != '' ">
+                account= account+${account},
+            </if>
         </trim>
         where  member_id= #{member_id}
 

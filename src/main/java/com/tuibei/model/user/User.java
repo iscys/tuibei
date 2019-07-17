@@ -50,7 +50,7 @@ public class User implements Serializable {
     //vip 失效时间
     private  String vip_expire_time;
     //账户余额
-    private BigDecimal account=new BigDecimal(0.00);
+    private double account=0.00;
     //用户最后一次登录的ip
     private String last_ip;
     //用户最后一次登录时间
