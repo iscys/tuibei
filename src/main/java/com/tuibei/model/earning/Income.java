@@ -11,6 +11,8 @@ public class Income {
     private double price;
     private int  type;
     private String order_sn;
+    private String order_member_id;
+
 
 
 }

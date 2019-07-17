@@ -75,6 +75,8 @@ public class TuiGuangRule {
                 income.setMember_id(master);
                 income.setOrder_sn(order_sn);
                 income.setPrice(earnings);
+                income.setOrder_member_id(member_id);
+
                 income.setType(0);
                 earningMapper.saveIncomeInfo(income);
                 logger.info("保存收益支出成功");

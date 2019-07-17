@@ -64,6 +64,9 @@
             <if test="order_sn !=null  and order_sn != '' ">
                 order_sn,
             </if>
+            <if test="order_member_id !=null  and order_member_id != '' ">
+                order_member_id,
+            </if>
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
             <if test="member_id !=null  and member_id != '' ">
@@ -77,6 +80,9 @@
             </if>
             <if test="order_sn !=null  and order_sn != '' ">
                 #{order_sn},
+            </if>
+            <if test="order_member_id !=null  and order_member_id != '' ">
+                #{order_member_id},
             </if>
         </trim>
 
