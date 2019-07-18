@@ -236,7 +236,8 @@
 
         select FROM_UNIXTIME(v.vip_expire_time,'%Y-%m-%d') as vip_expire_time,
         u.member_id,u.phone,u.time,u.openid,u.unionid,u.master,u.invite_code,u.nickname,
-        u.headimgurl,u.origin,u.invite_code_url,v.level_id,v.account,v.use_free
+        u.headimgurl,u.origin,u.invite_code_url,v.level_id,v.account,v.use_free,
+        (select count(1) from sdb_tuibei_user b where u.member_id=b.master) as invit_count
         from
         sdb_tuibei_user  u
         left join sdb_tuibei_user_vip v
