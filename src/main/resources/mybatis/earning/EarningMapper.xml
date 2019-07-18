@@ -9,10 +9,10 @@
     sdb_tuibei_income_log
     where 1=1
         <if test="member_id !=null  and member_id != '' ">
-            and member_id =#{member_id},
+            and member_id =#{member_id}
         </if>
         <if test="type !=null  and type != '' ">
-            and type =#{type},
+            and type =#{type}
         </if>
 
     </select>
@@ -24,10 +24,10 @@
           sdb_tuibei_income_log
         where 1=1
         <if test="member_id !=null  and member_id != '' ">
-           and  member_id =#{member_id},
+           and  member_id =#{member_id}
         </if>
         <if test="type !=null  and type != '' ">
-            and type =#{type},
+            and type =#{type}
         </if>
 
     </select>
