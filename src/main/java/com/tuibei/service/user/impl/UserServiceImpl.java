@@ -220,10 +220,6 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public static void main(String[] args) {
-        long start=1563130000;
-        Long end = DateUtils.getTimeInSecond_long();
-        System.out.println((start-end)/(24*60*60));
-    }
+
 
 }
