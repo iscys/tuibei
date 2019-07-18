@@ -168,4 +168,22 @@ public class UserController {
         }
 
     }
+
+    @PostMapping("/expire")
+    public ResultObject expire(User user,HttpServletRequest request){
+
+        if(StringUtils.isEmpty(user.getMember_id())){
+            return  ResultObject.build(Constant.MEMBER_NULL,Constant.MEMBER_NULL_MESSAGE,null);
+        }
+
+        try{
+            ResultObject result = userService.getExpireTime(user);
+            return result;
+
+        }catch(Exception e){
+            logger.error("获取用户失效日期异常：{}" ,e.getMessage());
+            return ResultObject.error(null);
+        }
+
+    }
 }

@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Service
 @Transactional
@@ -196,6 +197,19 @@ public class UserServiceImpl implements UserService {
         User result=userMapper.getUserInfoAndVipInfo(user);
 
         return ResultObject.success(result);
+    }
+
+    
+    @Override
+    public ResultObject getExpireTime(User user)throws Exception {
+
+        VipModel vipInfo = userMapper.getVipInfo(user);
+        long timeInSecond = DateUtils.getTimeInSecond_long();
+        long vip_expire_time_long = vipInfo.getVip_expire_time_long();
+        if(timeInSecond>vip_expire_time_long){
+            vipInfo.setExpire(1);
+        }
+        return ResultObject.success(vipInfo);
     }
 
 

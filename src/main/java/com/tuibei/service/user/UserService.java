@@ -13,4 +13,6 @@ public interface UserService {
     ResultObject toModifySelf(User user) throws Exception;
 
     ResultObject getUserInfo(User user);
+
+    ResultObject getExpireTime(User user) throws Exception;
 }
