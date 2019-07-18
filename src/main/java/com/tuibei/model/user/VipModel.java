@@ -17,5 +17,7 @@ public class VipModel {
     private int use_free;//是否使用了免费的天数
     private double account;//余额
     private int expire;//是否过期 1已经过期 0未过期
+    private int expireDay;//是否过期 1已经过期 0未过期
+
 
 }

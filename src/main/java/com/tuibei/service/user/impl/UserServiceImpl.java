@@ -208,9 +208,22 @@ public class UserServiceImpl implements UserService {
         long vip_expire_time_long = vipInfo.getVip_expire_time_long();
         if(timeInSecond>vip_expire_time_long){
             vipInfo.setExpire(1);
+        }else{
+            vipInfo.setExpire(0);
+            long diff = vip_expire_time_long - timeInSecond;
+            int day =(int) (diff / (24 * 60 * 60));
+            vipInfo.setExpireDay(day); //失效时间
+
         }
+        
         return ResultObject.success(vipInfo);
     }
 
+
+    public static void main(String[] args) {
+        long start=1563130000;
+        Long end = DateUtils.getTimeInSecond_long();
+        System.out.println((start-end)/(24*60*60));
+    }
 
 }
