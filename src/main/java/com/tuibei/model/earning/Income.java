@@ -12,6 +12,8 @@ public class Income {
     private int  type;
     private String order_sn;
     private String order_member_id;
+    private String create_time;
+
 
 
 

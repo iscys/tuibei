@@ -3,6 +3,41 @@
 <mapper namespace="com.tuibei.mapper.earning.EarningMapper">
 
 
+    <select id="getIncomeListCount" parameterType="com.tuibei.utils.PageData" resultType="java.lang.Integer">
+    select count(1)
+    from
+    sdb_tuibei_income_log
+    where 1=1
+        <if test="member_id !=null  and member_id != '' ">
+            member_id =#{member_id},
+        </if>
+        <if test="member_id !=null  and member_id != '' ">
+            member_id =#{member_id},
+        </if>
+        <if test="type !=null  and type != '' ">
+            type =#{type},
+        </if>
+
+    </select>
+
+    <select id="getIncomeList" parameterType="com.tuibei.utils.PageData" resultType="com.tuibei.model.earning.Income">
+          select member_id,price,type,order_sn,order_member_id,
+          DATE_FORMAT(create_time,'%Y-%m-%d') as create_time
+          from
+          sdb_tuibei_income_log
+        where 1=1
+        <if test="member_id !=null  and member_id != '' ">
+            member_id =#{member_id},
+        </if>
+        <if test="member_id !=null  and member_id != '' ">
+            member_id =#{member_id},
+        </if>
+        <if test="type !=null  and type != '' ">
+            type =#{type},
+        </if>
+
+    </select>
+
    <insert id="saveEarningLog" parameterType="com.tuibei.model.earning.Earning">
 
        insert into
