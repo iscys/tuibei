@@ -18,13 +18,13 @@ public class DateUtils {
     }
 
     /**
-     * 时间戳转YYYY/MM/DD HH:MI
+     * 时间戳转YYYY-MM-DD
      * 10位
      * @return
      */
     public static  String secondamp2shortDate(long timestamp){
 
-        String result = new SimpleDateFormat("yyyy/MM/dd HH:mm").format(new Date(timestamp * 1000));
+        String result = new SimpleDateFormat("yyyy-MM-dd").format(new Date(timestamp * 1000));
         return result;
     }
     /**
