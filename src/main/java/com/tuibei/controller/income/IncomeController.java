@@ -9,6 +9,7 @@ import com.tuibei.utils.PageData;
 import com.tuibei.utils.ResultObject;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class IncomeController extends BaseController {
     @Autowired
     private IncomeService incomeService;
 
-    @RequestMapping("/list")
+    @PostMapping("/list")
     public ResultObject incomeList(){
         PageData pd = this.getPageData();
         String member_id = pd.getString("member_id");
