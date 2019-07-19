@@ -85,7 +85,7 @@ public class WxPayServiceImpl implements WxPayService {
             payOrder.setBody("季卡");
         }else if(goods_id.equals("2")){
             payOrder.setBody("年卡");
-        }else if(goods_id.equals("0")){
+        }else if(goods_id.equals("3")){
             payOrder.setBody("月卡");
         }
         payOrder.setAttach(goods_id);
@@ -136,16 +136,18 @@ public class WxPayServiceImpl implements WxPayService {
 
 
             if(goods_id.equals("1")){
+                //季卡
                 user.setLevel_id("1");
                 addTime=90*24*60*60;
             }else if(goods_id.equals("2")){
+                //年卡
                 user.setLevel_id("2");
                 addTime=365*24*60*60;
-            }else if(goods_id.equals("0")){
+            }else if(goods_id.equals("3")){
                 user.setLevel_id("3");
                 //月卡
                 addTime=30*24*60*60;
-                user.setUse_free(1);//标记此人已经使用了免费的次数
+               // user.setUse_free(1);//标记此人已经使用了免费的次数
 
             }else{
                 user.setLevel_id("0");
