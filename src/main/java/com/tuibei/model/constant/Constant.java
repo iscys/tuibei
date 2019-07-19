@@ -64,7 +64,7 @@ public class Constant {
     public static final String NO_AUTH_NULL ="2019";
     public static final String NO_AUTH_NULL_MESSAGE ="没有权限操作";
     public static final String HAS_USE_FREE_DAY ="2020";
-    public static final String HAS_USE_FREE_DAY_MESSAGE ="免费天数已经使用";
+    public static final String HAS_USE_FREE_DAY_MESSAGE ="已经领取";
     public static final String SMS_ERROR ="2021";
     public static final String SMS_ERROR_MESSAGE ="发送短信失败";
 
@@ -80,7 +80,7 @@ public class Constant {
     public static final String GOODS_PRICE__ERROR ="3001";
     public static final String GOODS_PRICE__ERROR_MESSAGE ="商品价钱错误";
     public static final String GOODS_ID_NULL ="3002";
-    public static final String GOODS_ID_NULL_MESSAGE ="商品ID 不能为空";
+    public static final String GOODS_ID_NULL_MESSAGE ="商品ID不能为空";
 
 
 
