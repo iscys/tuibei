@@ -93,7 +93,7 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
         }
 
         if(vipInfo.getUse_free()==1){
-            logger.warn("用户：{} 已经使用过了免费天数",user.getMember_id());
+            logger.warn("用户：{} 已经使用过了免费优惠",user.getMember_id());
             return ResultObject.build(Constant.HAS_USE_FREE_DAY,Constant.HAS_USE_FREE_DAY_MESSAGE,null);
         }
         long exp;
