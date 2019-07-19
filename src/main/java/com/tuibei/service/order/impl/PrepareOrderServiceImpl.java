@@ -57,8 +57,8 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
         }
 
 
-        
-        if(order.getGoods_id().equals("0")){
+
+        if(order.getGoods_id().equals("3")){
             order.setGoods_name("月卡充值");
 
         }else if(order.getGoods_id().equals("1")) {
