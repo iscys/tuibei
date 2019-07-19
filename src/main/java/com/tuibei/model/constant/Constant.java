@@ -64,7 +64,7 @@ public class Constant {
     public static final String NO_AUTH_NULL ="2019";
     public static final String NO_AUTH_NULL_MESSAGE ="没有权限操作";
     public static final String HAS_USE_FREE_DAY ="2020";
-    public static final String HAS_USE_FREE_DAY_MESSAGE ="已经领取";
+    public static final String HAS_USE_FREE_DAY_MESSAGE ="已经使用了优惠";
     public static final String SMS_ERROR ="2021";
     public static final String SMS_ERROR_MESSAGE ="发送短信失败";
 
@@ -122,7 +122,7 @@ public class Constant {
     }
 
     public static class COMMON{
-        public static final Integer FREEDAY=7;
+        public static final Integer FREEDAY=30;
         public static final String TBKJSUMSCANORDER="TBKJ:SUMSCANORDER";
         public static final String DOMAIN="https://www.tuibeivip.com";
         public static final String UNKNOW ="UNKNOW";
