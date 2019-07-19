@@ -109,7 +109,7 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
             exp=vip_expire_time +freeDay * 24 * 60 * 60;
         }
         user.setVip_expire_time(String.valueOf(exp));
-        user.setLevel_id("1");
+        user.setLevel_id("3");
         userMapper.updateVipInfo(user);
         logger.info("用户：{} 获取了免费使用天数，截止日期：{}",user.getMember_id(),DateUtils.secondamp2date(exp));
         vipInfo=null;
