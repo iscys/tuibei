@@ -35,6 +35,16 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
     @Override
     public ResultObject createOrder(Order order) throws Exception {
 
+        if(order.getGoods_id().equals("0")){
+            User user =new User();
+            user.setMember_id(order.getMember_id());
+
+            VipModel vipInfo = userMapper.getVipInfo(user);
+            return freeDay(user);
+
+        }
+
+
         //生成订单号
         String order_sn=DateUtils.getTimeInMillis()+ ToolsUtils.sixCode();
         Long time =DateUtils.getTimeInSecond_long();
@@ -43,18 +53,6 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
         order.setOrigin(1);//来自小程序的订单
         order.setPay_method(1);
         order.setGoods_name("vip 充值");
-
-        User user =new User();
-        user.setMember_id(order.getMember_id());
-        if(order.getGoods_id().equals("0")){
-
-            VipModel vipInfo = userMapper.getVipInfo(user);
-            if(vipInfo.getUse_free()==1){
-                logger.warn("用户：{} 已经使用过了免费体验",user.getMember_id());
-                return ResultObject.build(Constant.HAS_USE_PRIVILEGE,Constant.HAS_USE_PRIVILEGE_MESSAGE,null);
-            }
-
-        }
 
 
 
