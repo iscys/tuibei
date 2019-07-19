@@ -184,7 +184,7 @@ public class WxPayServiceImpl implements WxPayService {
                 }
             });
             //退款测试
-
+/**
             try {
                 logger.info("---微信退款--");
                 WxPayRefundRequest refund = new WxPayRefundRequest();
@@ -197,7 +197,7 @@ public class WxPayServiceImpl implements WxPayService {
                 logger.error("--退款异常--：{}",outTradeNo);
             }
 
-
+**/
 
         }else{
             logger.error("订单：{} 金额与数据库不一致",notifyResult.toString());
