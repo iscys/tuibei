@@ -59,10 +59,9 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
         try {
             orderPay.createOrder(order);
         }catch (Exception e){
-            logger.error("订单生成错误,来源 -> {} ,用户：{}",origin,order.getMember_id());
+            logger.error("订单生成错误,错误信息：{} 来源 -> {} ,用户：{}",e.getMessage(),origin,order.getMember_id());
             ResultObject.build(Constant.ORDER_ERROR,Constant.ORDER_ERROR_MESSAGE,null);
         }
-
         if(order.getGoods_id().equals("1")) {
             order.setGoods_name("季卡充值");
         }
