@@ -23,7 +23,7 @@ public class PrepareOrderController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private PrepareOrderService prepare;
+    private PrepareOrderService delegateService;
 
     @PostMapping("/order")
     public ResultObject prepareOrder(Order order){
@@ -44,7 +44,7 @@ public class PrepareOrderController {
 
     try {
 
-        ResultObject result = prepare.createOrder(order);
+        ResultObject result = delegateService.createOrder(order);
         return result;
     }catch (Exception e){
         return ResultObject.error(null);
@@ -69,7 +69,7 @@ public class PrepareOrderController {
 
         try {
 
-            ResultObject result = prepare.freeDay(user);
+            ResultObject result = delegateService.freeDay(user);
             return result;
         }catch (Exception e){
             logger.error("用户：{}使用免费次数异常：{}",member_id,e.getMessage());
