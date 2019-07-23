@@ -74,7 +74,6 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
         }else if(order.getGoods_id().equals("4")){
             order.setGoods_name("半年卡充值");
         }
-        //测试end
 
         orderMapper.saveOrder(order);
         OrderVO retOrder =new OrderVO();

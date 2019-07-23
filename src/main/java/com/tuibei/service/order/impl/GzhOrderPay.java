@@ -32,8 +32,8 @@ public class GzhOrderPay implements OrderPay {
         WxMpOAuth2AccessToken tokenInfo =
                         wxMpService.oauth2getAccessToken(code);
 
-        String open_id = tokenInfo.getOpenId();
-        order.setOpen_id(open_id);
+        String openid = tokenInfo.getOpenId();
+        order.setOpenid(openid);
         return order;
     }
 }

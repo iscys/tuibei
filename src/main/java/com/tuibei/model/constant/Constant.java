@@ -95,6 +95,10 @@ public class Constant {
     public static final String WX_PAY_TYPE_NULL ="4004";
     public static final String WX_PAY_TYPE_NULL_MESSAGE ="微信支付类型不能为空";
 
+    public static final String ORDER_ERROR ="4005";
+    public static final String ORDER_ERROR_MESSAGE ="订单生成错误";
+
+
     /**
      * URL常量
      */

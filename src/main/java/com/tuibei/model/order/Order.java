@@ -14,7 +14,7 @@ public class Order {
     private long id;
     private String member_id;//用户ID
     @JsonIgnore
-    private String open_id;//公众号支付带有open_id
+    private String openid;//公众号支付带有open_id
     @JsonIgnore
     private String code;//微信code
     private String order_sn;//订单号
