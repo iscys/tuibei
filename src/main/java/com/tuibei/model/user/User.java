@@ -1,5 +1,6 @@
 package com.tuibei.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -25,12 +26,14 @@ public class User implements Serializable {
 
     //用户手机
     private String phone;
+    @JsonIgnore
     //用户密码
     private String password;
     //openid
     private String openid;
     //unionid
     private String unionid;
+    @JsonIgnore
     //微信code
     private String code;
     //用户头像
@@ -43,6 +46,7 @@ public class User implements Serializable {
     private String level_id;
     //用户上一级member_id
     private String master;
+    @JsonIgnore
     //手机验证码
     private String phone_code;
     //关注公众号时间
@@ -51,8 +55,10 @@ public class User implements Serializable {
     private  String vip_expire_time;
     //账户余额
     private double account=0.00;
+    @JsonIgnore
     //用户最后一次登录的ip
     private String last_ip;
+    @JsonIgnore
     //用户最后一次登录时间
     private String last_login;
     private int use_free;
