@@ -13,12 +13,12 @@ import org.springframework.stereotype.Service;
  * 微信公众号支付生成订单
  */
 @Service
-public class GzhOrderPay implements OrderPay {
-    @Autowired
-    private WxMpService wxMpService;
+public class WxsmallOrderPay implements OrderPay {
+
 
     @Override
     public Order createOrder(Order order) throws Exception {
+
         //生成订单号
         String order_sn= DateUtils.getTimeInMillis()+ ToolsUtils.sixCode();
         Long time =DateUtils.getTimeInSecond_long();
@@ -27,13 +27,6 @@ public class GzhOrderPay implements OrderPay {
         order.setPay_method(1);
         order.setGoods_name("vip 充值");
 
-        String code = order.getCode();
-
-        WxMpOAuth2AccessToken tokenInfo =
-                        wxMpService.oauth2getAccessToken(code);
-
-        String open_id = tokenInfo.getOpenId();
-        order.setOpen_id(open_id);
         return order;
     }
 }

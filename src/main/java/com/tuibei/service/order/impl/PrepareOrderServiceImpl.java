@@ -30,6 +30,10 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
     private PrepareOrderMapper orderMapper;
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private GzhOrderPay gzhOrderPay;
+    @Autowired
+    private WxsmallOrderPay WxsmallOrderPay;
 
     private HashMap<Integer, OrderPay> orderPayHashMap;
     /**
@@ -50,15 +54,14 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
 
         }
 
+        int origin = order.getOrigin();
+        OrderPay orderPay = orderPayHashMap.get(origin);
+        try {
+            orderPay.createOrder(order);
+        }catch (Exception e){
 
+        }
 
-        //生成订单号
-        String order_sn=DateUtils.getTimeInMillis()+ ToolsUtils.sixCode();
-        Long time =DateUtils.getTimeInSecond_long();
-        order.setOrder_sn(order_sn);
-        order.setTime(time);
-        order.setPay_method(1);
-        order.setGoods_name("vip 充值");
 
 
 
@@ -123,7 +126,7 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
     @Override
     public void afterPropertiesSet() throws Exception {
         orderPayHashMap =new HashMap<Integer, OrderPay>();
-
-
+        orderPayHashMap.put(0,WxsmallOrderPay);//小程序支付
+        orderPayHashMap.put(2,gzhOrderPay);//公众号支付
     }
 }
