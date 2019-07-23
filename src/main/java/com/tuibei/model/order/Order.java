@@ -1,5 +1,10 @@
 package com.tuibei.model.order;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.ToString;
 
@@ -8,6 +13,10 @@ import lombok.ToString;
 public class Order {
     private long id;
     private String member_id;//用户ID
+    @JsonIgnore
+    private String open_id;//公众号支付带有open_id
+    @JsonIgnore
+    private String code;//微信code
     private String order_sn;//订单号
     private String goods_id;//商品ID
     private String account;//余额
@@ -23,8 +32,17 @@ public class Order {
    private long cancel_time;//取消订单时间
    private int pay_method;// '支付方式   \n0：支付宝\n  1：微信  2：账户余额  3：西安银行',
    private String is_account;//是否使用余额支付，Y是 N否',
-   private int origin;
+   private int origin =1;
+   @JsonIgnore
    private String clientIp;//支付ip
     private String pay_type;//支付类型 1 jsapi 2 app 3 h5 4 扫码
 
+
+    public static void main(String[] args)throws Exception {
+        ObjectMapper objectMapper =new ObjectMapper();
+        Order order =new Order();
+        order.setMember_id("1231313");
+        String s = objectMapper.writeValueAsString(order);
+        System.out.println(s);
+    }
 }

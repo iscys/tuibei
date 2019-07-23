@@ -7,6 +7,7 @@ import com.tuibei.model.order.Order;
 import com.tuibei.model.order.OrderVO;
 import com.tuibei.model.user.User;
 import com.tuibei.model.user.VipModel;
+import com.tuibei.service.order.OrderPay;
 import com.tuibei.service.order.PrepareOrderService;
 import com.tuibei.utils.DateUtils;
 import com.tuibei.utils.ResultObject;
@@ -14,11 +15,14 @@ import com.tuibei.utils.ToolsUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 @Service
-public class PrepareOrderServiceImpl implements PrepareOrderService {
+public class PrepareOrderServiceImpl implements PrepareOrderService, InitializingBean {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -26,6 +30,8 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
     private PrepareOrderMapper orderMapper;
     @Autowired
     private UserMapper userMapper;
+
+    private HashMap<Integer, OrderPay> orderPayHashMap;
     /**
      * 创建订单
      * @param order
@@ -45,12 +51,12 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
         }
 
 
+
         //生成订单号
         String order_sn=DateUtils.getTimeInMillis()+ ToolsUtils.sixCode();
         Long time =DateUtils.getTimeInSecond_long();
         order.setOrder_sn(order_sn);
         order.setTime(time);
-        order.setOrigin(1);//来自小程序的订单
         order.setPay_method(1);
         order.setGoods_name("vip 充值");
 
@@ -64,9 +70,8 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
         }else if(order.getGoods_id().equals("3")){
             order.setGoods_name("月卡充值");
 
-        }else{
-            order.setPrice("999");
-            order.setGoods_name("Vip充值");
+        }else if(order.getGoods_id().equals("4")){
+            order.setGoods_name("半年卡充值");
         }
         //测试end
 
@@ -115,4 +120,10 @@ public class PrepareOrderServiceImpl implements PrepareOrderService {
     }
 
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        orderPayHashMap =new HashMap<Integer, OrderPay>();
+
+
+    }
 }
