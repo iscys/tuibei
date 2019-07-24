@@ -126,6 +126,7 @@ public class UserServiceImpl implements UserService {
         logger.info("用户member_id：{} 注册成功",user.getMember_id());
         user.setPassword("************");
         user.setVip_expire_time(LocalDate.now().toString());
+        user.setLevel_id("0");
         return ResultObject.success(user);
     }
 
