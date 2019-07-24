@@ -45,7 +45,7 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
      */
     @Override
     public ResultObject createOrder(Order order) throws Exception {
-
+/**
         if(order.getGoods_id().equals("1")){
             User user =new User();
             user.setMember_id(order.getMember_id());
@@ -54,7 +54,7 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
             return freeDay(user);
 
         }
-
+**/
         int origin = order.getOrigin();
         OrderPay orderPay = orderPayHashMap.get(origin);
 
