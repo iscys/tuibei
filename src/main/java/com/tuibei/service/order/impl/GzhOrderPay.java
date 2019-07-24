@@ -50,7 +50,6 @@ public class GzhOrderPay implements OrderPay , InitializingBean {
         tmpUser.setPhone(phone);
         User simpleUser =userMapper.getSimpleUserInfo(tmpUser);
         order.setPhone(simpleUser.getPhone());
-        order.setOpenid(simpleUser.getOpenid());
         order.setMember_id(simpleUser.getMember_id());
 
         //生成订单号
