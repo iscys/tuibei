@@ -60,7 +60,8 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
 
         try {
             orderPay.createOrder(order);
-            if(StringUtils.isEmpty(order.getOpenid())){
+            if(StringUtils.isEmpty(order.getOpenid())&&StringUtils.isEmpty(order.getMember_id())
+            &&StringUtils.isEmpty(order.getPhone())){
                 logger.error("获取用户参数信息为空：来源:{} 用户 :member_id={},手机号：{},openid:{}",
                         order.getOrigin(),order.getMember_id(),order.getPhone(),order.getOpenid());
                 return ResultObject.build(Constant.MEMBER_XXX_NULL,Constant.MEMBER_XXX_NULL_MESSAGE,null);
@@ -71,6 +72,22 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
             logger.error("订单生成错误,错误信息：{} 来源 -> {}",e.getMessage(),origin);
             ResultObject.build(Constant.ORDER_ERROR,Constant.ORDER_ERROR_MESSAGE,null);
         }
+
+
+        User check =new User();
+        check.setMember_id(order.getMember_id());
+        VipModel vipInfo = userMapper.getVipInfo(check);
+        long timeInSecond = DateUtils.getTimeInSecond_long();
+        long vip_expire_time_long = vipInfo.getVip_expire_time_long();
+        if(vip_expire_time_long>timeInSecond){
+            long diff = vip_expire_time_long - timeInSecond;
+            int day =(int) (diff / (24 * 60 * 60));
+            if(day>=3){
+                return ResultObject.build(Constant.VIP_NO_EXPIRE,Constant.VIP_NO_EXPIRE_MESSAGE,null);
+            }
+        }
+
+
         if(order.getGoods_id().equals("1")) {
             order.setGoods_name("季卡充值");
         }
