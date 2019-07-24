@@ -68,7 +68,7 @@ public class GzhOrderPay implements OrderPay , InitializingBean {
         String openid = tokenInfo.getOpenId();
         order.setOpenid(openid);
 
-        logger.info("组装来自微信小程序的订单成功，订单：{} ,手机：{},用户:{}"
+        logger.info("组装来自公众号的订单成功，订单：{} ,手机：{},用户:{}"
                 ,order_sn,simpleUser.getPhone(),order.getMember_id());
 
         return order;
