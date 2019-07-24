@@ -64,7 +64,7 @@ public class User implements Serializable {
     private String last_login;
     private int use_free;
 
-    private int invit_count;
+    private int invite_count;
 
 
 }

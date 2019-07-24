@@ -15,4 +15,6 @@ public interface UserService {
     ResultObject getUserInfo(User user);
 
     ResultObject getExpireTime(User user) throws Exception;
+
+    ResultObject getInviteInfo(User user) throws Exception;
 }

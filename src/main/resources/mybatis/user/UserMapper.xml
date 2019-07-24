@@ -5,7 +5,7 @@
     <select id="getUserInfo" parameterType="com.tuibei.model.user.User" resultType="com.tuibei.model.user.User">
 
         select a.*
-        ,(select count(1) from sdb_tuibei_user b where a.member_id=b.master) as invit_count
+        ,(select count(1) from sdb_tuibei_user b where a.member_id=b.master) as invite_count
         from
         sdb_tuibei_user a
         where 1=1

@@ -2,9 +2,11 @@ package com.tuibei.service.user.impl;
 
 import cn.binarywang.wx.miniapp.api.impl.WxMaServiceImpl;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
+import com.tuibei.mapper.earning.EarningMapper;
 import com.tuibei.mapper.sms.AliSmsMapper;
 import com.tuibei.mapper.user.UserMapper;
 import com.tuibei.model.constant.Constant;
+import com.tuibei.model.earning.Earning;
 import com.tuibei.model.sms.PhoneCode;
 import com.tuibei.model.user.User;
 import com.tuibei.model.user.VipModel;
@@ -22,6 +24,7 @@ import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.HashMap;
 
 @Service
 @Transactional
@@ -33,6 +36,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private AliSmsMapper smsMapper;
+    @Autowired
+    private EarningMapper earningMapper;
 
     /**
      *  regist  step:
@@ -220,7 +225,28 @@ public class UserServiceImpl implements UserService {
         return ResultObject.success(vipInfo);
     }
 
+    @Override
+    public ResultObject getInviteInfo(User user) throws Exception{
+        Earning earn =new Earning();
+        earn.setEarning_member_id(user.getMember_id());
 
+        //用户总收益
+        String earning = earningMapper.getSumEarning(earn);
+        if(StringUtils.isEmpty(earning)){
+            earning ="0";
+        }
+        User userInfo = userMapper.getUserInfo(user);
+
+        HashMap<String,Object> sum =new HashMap<String,Object>();
+        sum.put("earning",earning);
+        sum.put("invite_count",userInfo.getInvite_count());
+        sum.put("invite_code",userInfo.getInvite_code());
+        sum.put("invite_count_bak",0);
+
+
+
+        return ResultObject.success(sum);
+    }
 
 
 }

@@ -14,4 +14,6 @@ public interface EarningMapper {
     Integer getIncomeListCount(PageData pd);
 
     List<Income> getIncomeList(PageData pd);
+
+    String getSumEarning(Earning earn);
 }

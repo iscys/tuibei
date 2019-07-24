@@ -74,6 +74,8 @@ public class Constant {
     public static final String VIP_EXPIRE ="2023";
     public static final String VIP_EXPIRE_MESSAGE ="VIP失效,请进行充值";
 
+    public static final String VIP_NO_EXPIRE ="2024";
+    public static final String VIP_NO_EXPIRE_MESSAGE ="您已经是VIP会员啦";
 
     public static final String GOODS_PRICE_NULL ="3000";
     public static final String GOODS_PRICE_NULL_MESSAGE ="商品价钱不能为空";

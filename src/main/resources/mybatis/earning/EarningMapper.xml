@@ -119,4 +119,12 @@
 
     </insert>
 
+
+    <select id="getSumEarning" parameterType="com.tuibei.model.earning.Earning" resultType="java.lang.String">
+          select
+          sum(earning)
+          from sdb_tuibei_earning
+          where earning_member_id =#{earning_member_id}
+    </select>
+
 </mapper>

@@ -45,8 +45,8 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
      */
     @Override
     public ResultObject createOrder(Order order) throws Exception {
-/**
-        if(order.getGoods_id().equals("0")){
+
+        if(order.getGoods_id().equals("1")){
             User user =new User();
             user.setMember_id(order.getMember_id());
 
@@ -54,7 +54,7 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
             return freeDay(user);
 
         }
-**/
+
         int origin = order.getOrigin();
         OrderPay orderPay = orderPayHashMap.get(origin);
 
@@ -89,15 +89,15 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
 
 
         if(order.getGoods_id().equals("1")) {
-            order.setGoods_name("季卡充值");
+            order.setGoods_name("月卡充值");
         }
         else if(order.getGoods_id().equals("2")){
-            order.setGoods_name("年卡充值");
+            order.setGoods_name("季卡充值");
         }else if(order.getGoods_id().equals("3")){
-            order.setGoods_name("月卡充值");
+            order.setGoods_name("半年卡充值");
 
         }else if(order.getGoods_id().equals("4")){
-            order.setGoods_name("半年卡充值");
+            order.setGoods_name("年卡充值");
         }
 
         orderMapper.saveOrder(order);
