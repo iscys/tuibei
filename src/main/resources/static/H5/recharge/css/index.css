@@ -1,0 +1,151 @@
+.phone-title {
+    height: .8rem;
+    line-height: .8rem;
+    color: #5c50f8;
+    font-size: .3rem;
+    font-weight: bold;
+}
+
+.phone-item {
+    width: 6.9rem;
+    height: .9rem;
+    line-height: .9rem;
+    font-size: .28rem;
+    color: #333;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+}
+
+.phone-item span {
+    padding: 0 .2rem;
+}
+
+.phone-item input {
+    height: .8rem;
+    font-size: .3rem;
+}
+
+.topup-title {
+    height: .8rem;
+    line-height: .8rem;
+    font-size: .3rem;
+    color: #666;
+}
+
+.user-box {
+    width: 4.7rem;
+    height: 2.46rem;
+    margin: .4rem auto;
+}
+
+.user-box img {
+    width: 4.7rem;
+    height: 2.46rem;
+    display: none;
+}
+
+.user-box .show {
+    display: block;
+}
+
+.recharge-box {
+    width: 6.9rem;
+    height: 4rem;
+}
+
+.item {
+    float: left;
+    margin-right: .2rem;
+    margin-top: .3rem;
+    width: 3.2rem;
+    height: 1.4rem;
+    border: 1px solid #5c50f8;
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    color: #111;
+}
+
+.recharge-price {
+    margin: 0 .3rem;
+    height: .6rem;
+}
+
+.bor {
+    background: #5c50f8;
+    color: #fff;
+}
+
+.bor .huei,
+.bor .times {
+    color: #fff;
+}
+
+.recharge-price {
+    margin: 0 .3rem;
+}
+
+.price {
+    font-size: .36rem;
+    font-weight: bold;
+}
+
+.huei {
+    color: #999;
+    font-size: .3rem;
+    text-decoration: line-through;
+}
+
+.times {
+    font-size: .28rem;
+    color: #666;
+    margin: .1rem .3rem;
+}
+
+.super {
+    position: absolute;
+    top: .1rem;
+    right: -1.2rem;
+    background: #f7d20a;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    text-align: center;
+    font-size: .24rem;
+    color: #666;
+    width: 3rem;
+    height: .4rem;
+    line-height: .4rem;
+}
+
+.input-box {
+    width: 6.78rem;
+    height: .94rem;
+    line-height: .94rem;
+    margin: .3rem 0;
+    border: 1px solid #E3E3E3;
+    border-radius: 6px;
+}
+
+.input-box span {
+    font-size: .28rem;
+    padding: 0 .3rem;
+    color: #333;
+}
+
+.input-box input {
+    height: .9rem;
+    font-size: .28rem;
+    color: #333;
+}
+
+.btns {
+    width: 6.9rem;
+    height: .9rem;
+    line-height: .9rem;
+    text-align: center;
+    font-size: .3rem;
+    color: #fff;
+    background: #5c50f8;
+    border-radius: .6rem;
+    margin: .5rem auto;
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>充值</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="expires" content="-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/vue.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/api.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <div class='view'>
+            <div class='container'>
+                <div class='user-box'>
+                    <img src="./image/mouth.png" :class="{'show':current == 0}">
+                    <img src="./image/quarter.png" :class="{'show':current == 1}">
+                    <img src="./image/ban.png" :class="{'show':current == 2}">
+                    <img src="./image/year.png" :class="{'show':current == 3}">
+                </div>
+                <div class='topup-title'>套餐选择</div>
+                <div class='recharge-box'>
+                    <div v-for='(item,index) in list' class='item lt ' :key="index" :class="{'bor':current == index}" @click='clickTab(item,index)'>
+                        <div class='times'>{{item.txt}}</div>
+                        <div class="recharge-price">
+                            <div class='price lt'>￥{{item.price}}/{{item.text}}</div>
+                            <div class='huei rt'>{{item.total}}</div>
+                        </div>
+                        <div class='super' v-if='current == index'>超值</div>
+                    </div>
+                </div>
+                <div class='phone-item'>
+                    <span>手机号:</span>
+                    <input type="text" maxlength="11" v-model='phone' placeholder="请输入要充值手机号" class='intP'>
+                </div>
+                <div class='btns' @click='subMit'>立即开通</div>
+
+            </div>
+        </div>
+    </div>
+    <div class='hint'></div>
+</body>
+<script>
+    // https: //open.weixin.qq.com/connect/oauth2/authorize?appid=wxd1b43b0fff7a7bd0&redirect_uri=http://dingcanphp.applinzi.com/getUserInfo.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect
+    var count = 0;
+    var app = new Vue({
+        el: "#app",
+        data: {
+            current: 0,
+            phone: '',
+            price: '',
+            code: '',
+            item: {
+                price: 0.01,
+                title: 1,
+                text: '月',
+                total: '30元',
+                txt: '新用户限时活动'
+            },
+            list: [{
+                price: 0.01,
+                title: 1,
+                text: '月',
+                total: '30元',
+                txt: '新用户限时活动'
+            }, {
+                price: 29,
+                title: 2,
+                text: '季',
+                total: '90元',
+                txt: '季会员限时活动'
+            }, {
+                price: 59,
+                title: 3,
+                text: '半',
+                total: '180元',
+                txt: '半年限时活动'
+            }, {
+                price: 99,
+                title: 4,
+                text: '年',
+                total: '360元',
+                txt: '年会员限时活动'
+            }],
+            data: {},
+        },
+        methods: {
+            clickTab(item, index) {
+                this.current = index;
+                this.item = item;
+            },
+            subMit() {
+                let str = /^(0|[1-9][0-9]*)$/;
+                let phone = /^1[0-9]{10}$/;
+                if (!phone.test(this.phone)) {
+                    hint('填写要充值的手机号', 1000)
+                } else {
+                    _ajax.post(api.order, {
+                        phone: this.phone,
+                        origin: 2,
+                        goods_id: this.item.title,
+                        price: this.item.price,
+                        code: '011NCj2r0y753n1cCD2r0N8k2r0NCj2c',
+                    }, res => {
+                        if (res.code == 200) {
+                            _ajax.post(api.pay, {
+                                order_sn: res.data.order_sn,
+                                pay_type: 1,
+                                phone: this.phone
+                            }, data => {
+                                WeixinJSBridge.invoke(
+                                    'getBrandWCPayRequest', {
+                                        "appId": data.data.appId, //公众号名称，由商户传入     
+                                        "timeStamp": data.data.timeStamp, //时间戳，自1970年以来的秒数     
+                                        "nonceStr": data.data.nonceStr, //随机串     
+                                        "package": data.data.packAge,
+                                        "signType": data.data.signType, //微信签名方式：     
+                                        "paySign": data.data.paySign //微信签名 
+                                    },
+                                    function(res) {
+                                        if (res.err_msg == "get_brand_wcpay_request:ok") {
+
+                                            // 使用以上方式判断前端返回,微信团队郑重提示：
+                                            //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+                                        }
+                                    });
+                            })
+
+                        } else {
+                            hint(res.msg, 1000)
+                        }
+                    })
+                }
+
+            },
+        },
+        mounted() {
+            let str = getQueryString()
+            this.code = str.code;
+        },
+    })
+</script>
+
+</html>
