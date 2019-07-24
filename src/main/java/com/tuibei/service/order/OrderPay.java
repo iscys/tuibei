@@ -2,8 +2,11 @@ package com.tuibei.service.order;
 
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.tuibei.model.order.Order;
+import com.tuibei.model.user.User;
 
 public interface OrderPay {
+
+
 
     Order createOrder(Order order) throws Exception;
 
@@ -26,5 +29,32 @@ public interface OrderPay {
                 break;
 
         }
+    }
+
+
+    static long switchLevelAndTime(Order orderInfo, User user) {
+        String goods_id = orderInfo.getGoods_id();
+        long addTime=0;
+        switch (goods_id){
+            case "1":
+                user.setLevel_id("1");
+                addTime=30*24*60*60;
+                break;
+            case "2":
+                user.setLevel_id("2");
+                addTime=90*24*60*60;
+                break;
+            case "3":
+                user.setLevel_id("3");
+                addTime=182*24*60*60;
+                break;
+            case "4":
+                user.setLevel_id("3");
+                addTime=365*24*60*60;
+                break;
+
+        }
+
+        return addTime;
     }
 }
