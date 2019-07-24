@@ -1,5 +1,6 @@
 package com.tuibei.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.binarywang.wxpay.config.WxPayConfig;
 import com.github.binarywang.wxpay.service.WxPayService;
 import com.github.binarywang.wxpay.service.impl.WxPayServiceImpl;
@@ -28,6 +29,13 @@ public class WxsmallPayConfig {
         WxPayService wxPayService = new WxPayServiceImpl();
         wxPayService.setConfig(payConfig);
         return wxPayService;
+    }
+
+
+    @Bean
+    public ObjectMapper objectMapper() {
+
+        return new ObjectMapper();
     }
 
 

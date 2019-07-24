@@ -127,6 +127,12 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
         return ResultObject.success(null);
     }
 
+    @Override
+    public HashMap<Integer, OrderPay> getOrderPayCache() {
+
+        return orderPayHashMap;
+    }
+
 
     @Override
     public void afterPropertiesSet() throws Exception {

@@ -14,6 +14,8 @@ import com.tuibei.model.order.Order;
 import com.tuibei.model.user.User;
 import com.tuibei.model.user.VipLog;
 import com.tuibei.model.user.VipModel;
+import com.tuibei.service.order.OrderPay;
+import com.tuibei.service.order.PrepareOrderService;
 import com.tuibei.service.pay.WxPayService;
 import com.tuibei.utils.DateUtils;
 import com.tuibei.utils.ResultObject;
@@ -26,12 +28,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 
 @Service
 @Transactional
 public class WxPayServiceImpl implements WxPayService {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private PrepareOrderService delegateService;
 
     @Autowired
     private com.github.binarywang.wxpay.service.WxPayService wxPay;
@@ -60,45 +66,20 @@ public class WxPayServiceImpl implements WxPayService {
             return ResultObject.build(Constant.ORDER_STATUS_ERROR,Constant.ORDER_STATUS_ERROR_MESSAGE,null);
 
         }
-        String member_id = orderInfo.getMember_id();
+        String phone = orderInfo.getPhone();
         User user =new User();
-        user.setMember_id(member_id);
-        User userInfo = userMapper.getUserInfo(user);
+        user.setMember_id(phone);
+        User userInfo = userMapper.getSimpleUserInfo(user);
         if(null==userInfo){
             return ResultObject.build(Constant.MEMBER_XXX_NULL,Constant.MEMBER_XXX_NULL_MESSAGE,null);
         }
-        user=null;
-        String openid =userInfo.getOpenid();
-        String order_sn = orderInfo.getOrder_sn();
-        String goods_id = orderInfo.getGoods_id();
-        logger.info("订单：{} 开始组装微信支付信息",order_sn);
-        WxPayUnifiedOrderRequest payOrder =new WxPayUnifiedOrderRequest();
-        payOrder.setSpbillCreateIp(order.getClientIp());
-        if(order.getPay_type().equals("1")) {
-            payOrder.setTradeType(WxPayConstants.TradeType.JSAPI);//小程序公众号支付
-        }
-        payOrder.setOutTradeNo(order.getOrder_sn());
-        payOrder.setOpenid(openid);
-        payOrder.setNotifyUrl(Constant.COMMON.DOMAIN+"/wx/notify");
-        if(goods_id.equals("1"))
-        {
-            payOrder.setBody("季卡");
-        }else if(goods_id.equals("2")){
-            payOrder.setBody("年卡");
-        }else if(goods_id.equals("3")){
-            payOrder.setBody("月卡");
-        }
-        payOrder.setAttach(goods_id);
-        payOrder.setTotalFee(BaseWxPayRequest.yuanToFen(orderInfo.getPrice()));
-        Object wxPackage = null;
-        try {
-            wxPackage = wxPay.createOrder(payOrder);
-        } catch (WxPayException e) {
-            logger.error("时间：{} ,订单号：{}微信统一下单失败,reason:{}", DateUtils.stableTime(),order_sn,e.getMessage());
-            return ResultObject.build(Constant.WX_PAY_EXCEPTION,Constant.WX_PAY_EXCEPTION_MESSAGE,e.getMessage());
-        }
 
-        return ResultObject.success(wxPackage);
+        user=null;
+        HashMap<Integer, OrderPay> orderPayCache = delegateService.getOrderPayCache();
+        OrderPay orderPay = orderPayCache.get(orderInfo.getOrigin());
+        Object o = orderPay.payOrder(orderInfo);
+
+        return (ResultObject) o;
 
     }
 
