@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Data
 @ToString
 public class User implements Serializable {
-
+    @JsonIgnore
     //主键id
     private Integer id;
     //性别
@@ -49,6 +49,7 @@ public class User implements Serializable {
     @JsonIgnore
     //手机验证码
     private String phone_code;
+    @JsonIgnore
     //关注公众号时间
     private String time;
     //vip 失效时间

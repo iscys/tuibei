@@ -20,4 +20,6 @@ public interface UserMapper {
     User getUserInfoAndVipInfo(User user);
 
     void saveVipLog(VipLog vipLog);
+
+    User getSimpleUserInfo(User tmpUser);
 }

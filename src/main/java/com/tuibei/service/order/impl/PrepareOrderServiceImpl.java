@@ -18,6 +18,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 
@@ -56,10 +57,18 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
 
         int origin = order.getOrigin();
         OrderPay orderPay = orderPayHashMap.get(origin);
+
         try {
             orderPay.createOrder(order);
+            if(StringUtils.isEmpty(order.getOpenid())){
+                logger.error("获取用户参数信息为空：来源:{} 用户 :member_id={},手机号：{},openid:{}",
+                        order.getOrigin(),order.getMember_id(),order.getPhone(),order.getOpenid());
+                return ResultObject.build(Constant.MEMBER_XXX_NULL,Constant.MEMBER_XXX_NULL_MESSAGE,null);
+            }
+
+
         }catch (Exception e){
-            logger.error("订单生成错误,错误信息：{} 来源 -> {} ,用户：{}",e.getMessage(),origin,order.getMember_id());
+            logger.error("订单生成错误,错误信息：{} 来源 -> {}",e.getMessage(),origin);
             ResultObject.build(Constant.ORDER_ERROR,Constant.ORDER_ERROR_MESSAGE,null);
         }
         if(order.getGoods_id().equals("1")) {

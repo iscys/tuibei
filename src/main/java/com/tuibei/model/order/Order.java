@@ -17,6 +17,8 @@ public class Order {
     private String openid;//公众号支付带有open_id
     @JsonIgnore
     private String code;//微信code
+    @JsonIgnore
+    private String phone;
     private String order_sn;//订单号
     private String goods_id;//商品ID
     private String account;//余额
