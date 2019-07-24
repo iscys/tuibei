@@ -68,7 +68,7 @@ public class WxPayServiceImpl implements WxPayService {
         }
         String phone = orderInfo.getPhone();
         User user =new User();
-        user.setMember_id(phone);
+        user.setPhone(phone);
         User userInfo = userMapper.getSimpleUserInfo(user);
         if(null==userInfo){
             return ResultObject.build(Constant.MEMBER_XXX_NULL,Constant.MEMBER_XXX_NULL_MESSAGE,null);
@@ -77,7 +77,7 @@ public class WxPayServiceImpl implements WxPayService {
         user=null;
         HashMap<Integer, OrderPay> orderPayCache = delegateService.getOrderPayCache();
         OrderPay orderPay = orderPayCache.get(orderInfo.getOrigin());
-        Object o = orderPay.payOrder(orderInfo);
+        Object o = orderPay.payOrder(order,orderInfo);
 
         return (ResultObject) o;
 

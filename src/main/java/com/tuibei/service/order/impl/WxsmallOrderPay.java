@@ -62,15 +62,15 @@ public class WxsmallOrderPay implements OrderPay {
      * @throws Exception
      */
     @Override
-    public Object payOrder(Order order) throws Exception {
+    public Object payOrder(Order sourceOrder,Order order) throws Exception {
 
         String order_sn = order.getOrder_sn();
         String goods_id = order.getGoods_id();
         String openid =order.getOpenid();
         logger.info("订单：{} 开始组装微信支付信息",order_sn);
         WxPayUnifiedOrderRequest payOrder =new WxPayUnifiedOrderRequest();
-        payOrder.setSpbillCreateIp(order.getClientIp());
-        if(order.getPay_type().equals("1")) {
+        payOrder.setSpbillCreateIp(sourceOrder.getClientIp());
+        if(sourceOrder.getPay_type().equals("1")) {
             payOrder.setTradeType(WxPayConstants.TradeType.JSAPI);//小程序公众号支付
         }
         payOrder.setOutTradeNo(order.getOrder_sn());

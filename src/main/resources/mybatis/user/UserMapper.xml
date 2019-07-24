@@ -31,6 +31,35 @@
     </select>
 
 
+
+    <select id="getSimpleUserInfo" parameterType="com.tuibei.model.user.User" resultType="com.tuibei.model.user.User">
+
+       select a.member_id,a.phone,a.openid,a.unionid ,a.origin,a.master,a.invite_code
+       from
+        sdb_tuibei_user a
+        where 1=1
+        <if test="phone !=null  and phone != '' ">
+            and a.phone=#{phone}
+        </if>
+        <if test="openid !=null  and openid != '' ">
+            and a.openid=#{openid}
+        </if>
+        <if test="unionid !=null  and unionid != '' ">
+            and a.unionid=#{unionid}
+        </if>
+        <if test="invite_code !=null  and invite_code != '' ">
+            and a.invite_code=#{invite_code}
+        </if>
+        <if test="password !=null  and password != '' ">
+            and a.password=#{password}
+        </if>
+        <if test="member_id !=null  and member_id != '' ">
+            and a.member_id=#{member_id}
+        </if>
+        limit 1
+    </select>
+
+
     <insert id="saveNewUser" parameterType="com.tuibei.model.user.User">
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             select LAST_INSERT_ID()

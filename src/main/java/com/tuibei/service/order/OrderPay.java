@@ -7,7 +7,7 @@ public interface OrderPay {
 
     Order createOrder(Order order) throws Exception;
 
-    Object payOrder(Order order) throws Exception;
+    Object payOrder(Order sourceOrder,Order order) throws Exception;
 
     static void switchOrderType(Order order,WxPayUnifiedOrderRequest req){
         String goods_id = order.getGoods_id();
