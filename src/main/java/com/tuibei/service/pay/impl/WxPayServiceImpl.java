@@ -115,24 +115,7 @@ public class WxPayServiceImpl implements WxPayService {
             long addTime=0;
             String goods_id =orderInfo.getGoods_id();
 
-
-            if(goods_id.equals("1")){
-                //季卡
-                user.setLevel_id("1");
-                addTime=90*24*60*60;
-            }else if(goods_id.equals("2")){
-                //年卡
-                user.setLevel_id("2");
-                addTime=365*24*60*60;
-            }else if(goods_id.equals("3")){
-                user.setLevel_id("3");
-                //月卡
-                addTime=30*24*60*60;
-               // user.setUse_free(1);//标记此人已经使用了免费的次数
-
-            }else{
-                user.setLevel_id("0");
-            }
+            addTime=OrderPay.switchLevelAndTime(orderInfo,user);
 
             if(vip_expire_time<current_time){
                 start =current_time;
