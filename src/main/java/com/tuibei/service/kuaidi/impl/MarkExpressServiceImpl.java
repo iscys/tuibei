@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +37,10 @@ public class MarkExpressServiceImpl implements MarkExpressService {
      */
     @Override
     public ResultObject getRecordList(PageData pd) {
+        String operation_type = pd.getString("operation_type");
+        if(!StringUtils.isEmpty(operation_type)||operation_type.equals("0")){
+            pd.put("operation_type","");
+        }
         logger.info("获取记录列表");
         String pageNum = pd.get("pageNum").toString();
         Integer totalRecord =markExpressMapper.getRecordListCount(pd);
