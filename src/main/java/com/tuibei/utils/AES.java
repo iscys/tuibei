@@ -40,6 +40,11 @@ public class AES {
      */
     private static final String TRANSFORM_ECB_PKCS5 = "AES/ECB/PKCS5Padding";
 
+
+
+    public static String encrypt(String value){
+        return encryptCbcMode(value,null,null);
+    }
     /**
      * 基于CBC工作模式的AES加密
      * @author zifangsky
@@ -249,7 +254,7 @@ public class AES {
     }
 
     public static void main(String[] args) {
-        String encryptedStr = AES.encryptCbcMode("hello world!", null, null);
+        String encryptedStr = AES.encrypt("hello world!");
         System.out.println(encryptedStr);
 
         String originalStr = AES.decryptCbcMode(encryptedStr, null, null);
