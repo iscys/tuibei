@@ -71,7 +71,7 @@ public class AES {
                 Cipher encipher = Cipher.getInstance(TRANSFORM_CBC_PKCS5);
 
                 //加密模式
-                encipher.init(Cipher.ENCRYPT_MODE, keySpec);
+                encipher.init(Cipher.ENCRYPT_MODE, keySpec,ivParameterSpec);
                 //使用AES加密
                 byte[] encrypted = encipher.doFinal(getUTF8Bytes(value));
                 //然后转成BASE64返回
