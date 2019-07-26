@@ -92,9 +92,6 @@ public class AES {
 
     /**
      * 基于CBC工作模式的AES解密
-     * @author zifangsky
-     * @date 2018/8/14 11:42
-     * @since 1.0.0
      * @param encryptedStr AES加密之后的字符串
      * @param key 秘钥，如果不填则使用默认值
      * @param iv 初始化向量值，如果不填则使用默认值
@@ -139,9 +136,6 @@ public class AES {
 
     /**
      * 基于ECB工作模式的AES加密
-     * @author zifangsky
-     * @date 2018/8/14 11:42
-     * @since 1.0.0
      * @param value 待加密字符串
      * @param key 秘钥，如果不填则使用默认值
      * @return java.lang.String
@@ -176,9 +170,6 @@ public class AES {
 
     /**
      * 基于ECB工作模式的AES解密
-     * @author zifangsky
-     * @date 2018/8/14 11:42
-     * @since 1.0.0
      * @param encryptedStr AES加密之后的字符串
      * @param key 秘钥，如果不填则使用默认值
      * @return java.lang.String
@@ -254,7 +245,7 @@ public class AES {
     }
 
     public static void main(String[] args) {
-        String encryptedStr = AES.encrypt("member_id=wqeeff&time=123425845834");
+        String encryptedStr = AES.encrypt("{\"username\":\"Tom\",\"password\":\"123456\",\"mobile\":\"12306\",\"email\":\"admin@zifangsky.cn\"}");
         System.out.println(encryptedStr);
 
         String originalStr = AES.decryptCbcMode(encryptedStr, null, null);
