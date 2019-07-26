@@ -254,7 +254,7 @@ public class AES {
     }
 
     public static void main(String[] args) {
-        String encryptedStr = AES.encrypt("hello world!");
+        String encryptedStr = AES.encrypt("member_id=wqeeff&time=123425845834");
         System.out.println(encryptedStr);
 
         String originalStr = AES.decryptCbcMode(encryptedStr, null, null);
