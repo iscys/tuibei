@@ -1,5 +1,7 @@
 package com.tuibei.controller.user;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tuibei.model.KuaidiCommonExtend;
 import com.tuibei.model.constant.Constant;
 import com.tuibei.model.user.User;
 import com.tuibei.service.user.UserService;
