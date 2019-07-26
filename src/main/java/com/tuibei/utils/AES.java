@@ -29,7 +29,7 @@ public class AES {
     /**
      * 默认加密的KEY
      */
-    private static final String KEY_DEFAULT = "8G5M4Ff9hel8fUA9";
+    private static final String KEY_DEFAULT = "tuibeikeijiencrypt+=1";
     /**
      * 工作模式：CBC
      */
