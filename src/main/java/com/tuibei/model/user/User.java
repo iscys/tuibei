@@ -13,8 +13,6 @@ import java.math.BigDecimal;
 
 @Data
 @ToString
-@Builder
-@NoArgsConstructor
 public class User implements Serializable {
     @JsonIgnore
     //主键id
