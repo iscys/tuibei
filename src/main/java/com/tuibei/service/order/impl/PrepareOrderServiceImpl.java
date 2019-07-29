@@ -75,6 +75,7 @@ public class PrepareOrderServiceImpl implements PrepareOrderService, Initializin
 
 
         User check =new User();
+
         check.setMember_id(order.getMember_id());
         VipModel vipInfo = userMapper.getVipInfo(check);
         long timeInSecond = DateUtils.getTimeInSecond_long();

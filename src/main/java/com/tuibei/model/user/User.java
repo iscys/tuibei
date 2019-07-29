@@ -3,7 +3,9 @@ package com.tuibei.model.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -11,6 +13,8 @@ import java.math.BigDecimal;
 
 @Data
 @ToString
+@Builder
+@NoArgsConstructor
 public class User implements Serializable {
     @JsonIgnore
     //主键id
