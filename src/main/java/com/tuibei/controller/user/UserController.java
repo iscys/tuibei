@@ -1,7 +1,5 @@
 package com.tuibei.controller.user;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tuibei.model.KuaidiCommonExtend;
 import com.tuibei.model.constant.Constant;
 import com.tuibei.model.user.User;
 import com.tuibei.service.user.UserService;
@@ -11,10 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
