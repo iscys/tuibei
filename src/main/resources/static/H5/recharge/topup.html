@@ -111,7 +111,7 @@
                         origin: 2,
                         goods_id: this.item.title,
                         price: this.item.price,
-                        code: '011NCj2r0y753n1cCD2r0N8k2r0NCj2c',
+                        code: this.code,
                     }, res => {
                         if (res.code == 200) {
                             _ajax.post(api.pay, {
