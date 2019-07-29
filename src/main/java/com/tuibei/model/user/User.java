@@ -45,7 +45,7 @@ public class User implements Serializable {
     //邀请码,每一个用户会拥有一个邀请码
     private String invite_code;
     //用户来源
-    private String origin;//0 为app 来源 1 为小程序来源
+    private String origin;//0 为app 来源 1 为小程序来源 2-公众号来源
     //用户等级
     private String level_id;
     //用户上一级member_id
