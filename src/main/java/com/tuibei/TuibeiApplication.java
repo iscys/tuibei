@@ -14,6 +14,7 @@ public class TuibeiApplication {
 
     public static void main(String[] args) {
       SpringApplication.run(TuibeiApplication.class, args);
+
     }
 
 
