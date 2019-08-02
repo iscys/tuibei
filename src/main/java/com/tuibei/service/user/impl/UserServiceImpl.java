@@ -244,7 +244,6 @@ public class UserServiceImpl implements UserService {
         sum.put("invite_count_bak",0);
 
         if(user.getMember_id().equals("9d251cbf7d564642a73254ce7546a248")){
-            sum.put("earning","64.67");
             sum.put("invite_count",userInfo.getInvite_count()+24);
             sum.put("invite_code",userInfo.getInvite_code());
             sum.put("invite_count_bak",15);
